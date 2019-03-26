@@ -1,0 +1,183 @@
+@import "normalize.css";
+
+:root {
+  --color-red: 255, 0, 0;
+  --color-blue: 0, 0, 255;
+  --color-yellow: 255, 255, 0;
+
+  /* Base styles */
+
+  --document-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --document-font-size: 1rem;
+  --document-line-height: 1.5;
+  --document-background: 255, 255, 255;
+  --document-color: var(--color-red);
+
+  --border-width: 2px;
+
+  /* Easing curves */
+
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/**
+ * Document styles
+ * 1. Global box sizing
+ * 2. Guard for horizontal scrolling
+ * 3. Support sticky footer solutions
+ * 4. Simply feels better then global text cursor
+ * 5. Fabulous text rendering
+ * 6. Fabulous svg text sizing
+ */
+
+ :root {
+  box-sizing: border-box; /* 1 */
+  width: 100%; /* 2 */
+  height: 100%; /* 3 */
+  cursor: default; /* 4 */
+  background: rgb(var(--document-background-color));
+  font-family: var(--document-font-family);
+  color: rgb(var(--document-color));
+  font-size: 100%;
+  line-height: var(--document-line-height);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased; /* 5 */
+  -moz-osx-font-smoothing: grayscale; /* 5 */
+  text-rendering: geometricPrecision; /* 6 */
+}
+
+@media (min-width: 1500px) {
+  :root {
+    font-size: 110%;
+  }
+}
+
+@media (min-width: 1800px) {
+  :root {
+    font-size: 120%;
+  }
+}
+
+::selection {
+  background: rgb(var(--color-yellow));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit; /* 1 */
+}
+
+/**
+ * Media elements
+ */
+
+svg,
+img,
+video,
+iframe {
+  vertical-align: bottom;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+ * Inline elements
+ */
+
+strong {
+  font-weight: 600;
+}
+
+/*
+ * Clickable elements
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove the tapping delay
+ */
+
+ a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover,
+a:active {
+  background-color: transparent; /* 1 */
+}
+
+a,
+area,
+button,
+input,
+label,
+select,
+summary,
+textarea,
+[tabindex] {
+  -ms-touch-action: manipulation; /* 2 */
+  touch-action: manipulation; /* 2 */
+}
+
+/**
+ * 1. Can't be changed from normal in Firefox, so might just lock it
+ */
+
+input {
+  font: inherit;
+  line-height: normal !important; /* 1 */
+}
+
+/**
+ * Reset a few styles
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+blockquote,
+iframe,
+figure {
+  font: inherit;
+  margin: 0;
+  border: 0;
+  list-style: none;
+  padding: 0;
+}
+
+/**
+ * Clean out browser button styles
+ */
+
+button {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  cursor: default;
+}
+
+/**
+ * Pointer cursors are for links, not for actions on the same page
+ */
+
+:root[scripting-enabled] [role="button"],
+:root[scripting-enabled] [role="tab"] {
+  cursor: default;
+}

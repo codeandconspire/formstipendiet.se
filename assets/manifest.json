@@ -1,0 +1,8 @@
+{
+  "name": "Formstipendiet",
+  "short_name": "Form",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "background_color": "#ffffff",
+  "theme_color": "#ff0000"
+}
