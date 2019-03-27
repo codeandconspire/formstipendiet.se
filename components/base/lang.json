@@ -1,5 +1,9 @@
 {
   "SITE_NAME": "Formstipendiet",
   "SITE_DESCRIPTION": "Text om Formstipendiet",
-  "DEFAULT_TITLE": "DEFAULT_TITLE"
+  "DEFAULT_TITLE": "DEFAULT_TITLE",
+  "Question %s of %s": "Question %s of %s",
+  "Cancel": "Cancel",
+  "Previous question": "Previous question",
+  "Next question": "Next question"
 }

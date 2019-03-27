@@ -1,6 +1,7 @@
 var html = require('choo/html')
-var raw = require('choo/html/raw')
 var { i18n } = require('../components/base')
+var statusbar = require('../components/statusbar')
+var toolbar = require('../components/toolbar')
 
 var text = i18n()
 
@@ -14,23 +15,14 @@ function home (state, emit) {
   })
 
   return html`
-    <body class="View" id="view">
-      <script type="application/ld+json">${raw(JSON.stringify(linkedData(state)))}</script>
-      <main class="View-main">
-        Formstipendiet
+    <body id="home">
+      <main class="u-scroll">
+        <div class="Form">
+          ${statusbar()}
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, eaque nesciunt deserunt incidunt voluptatibus et illo nemo laborum. Doloribus nemo tenetur temporibus id ducimus veniam atque ullam eum cumque explicabo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, eaque nesciunt deserunt incidunt voluptatibus et illo nemo laborum. Doloribus nemo tenetur temporibus id ducimus veniam atque ullam eum cumque explicabo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, eaque nesciunt deserunt incidunt voluptatibus et illo nemo laborum. Doloribus nemo tenetur temporibus id ducimus veniam atque ullam eum cumque explicabo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, eaque nesciunt deserunt incidunt voluptatibus et illo nemo laborum. Doloribus nemo tenetur temporibus id ducimus veniam atque ullam eum cumque explicabo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, eaque nesciunt deserunt incidunt voluptatibus et illo nemo laborum. Doloribus nemo tenetur temporibus id ducimus veniam atque ullam eum cumque explicabo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, eaque nesciunt deserunt incidunt voluptatibus et illo nemo laborum. Doloribus nemo tenetur temporibus id ducimus veniam atque ullam eum cumque explicabo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, eaque nesciunt deserunt incidunt voluptatibus et illo nemo laborum. Doloribus nemo tenetur temporibus id ducimus veniam atque ullam eum cumque explicabo?Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, eaque nesciunt deserunt incidunt voluptatibus et illo nemo laborum. Doloribus nemo tenetur temporibus id ducimus veniam atque ullam eum cumque explicabo?
+          ${toolbar(status)}
+        </div>
       </main>
     </body>
   `
-}
-
-// format document as schema-compatible linked data table
-// obj -> obj
-function linkedData (state) {
-  return {
-    '@context': 'http://schema.org',
-    '@type': 'Organization',
-    name: text`DEFAULT_TITLE`,
-    url: state.origin,
-    logo: state.origin + '/icon.png'
-  }
 }

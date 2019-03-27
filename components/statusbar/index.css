@@ -1,0 +1,26 @@
+@import "../base";
+
+/* @define Statusbar */
+.Statusbar {
+  display: flex;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-bottom: var(--border-width) solid;
+  background: rgb(var(--document-background));
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.Statusbar-label {
+  flex: 0 0 50%;
+  padding: 0.5rem;
+}
+
+.Statusbar-cancel {
+  flex: 0 0 50%;
+  padding: 0.5rem;
+  text-align: right;
+  text-transform: uppercase;
+}

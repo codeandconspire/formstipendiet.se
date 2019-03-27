@@ -1,4 +1,5 @@
 @import "normalize.css";
+@import "./utils.css";
 
 :root {
   --color-red: 255, 0, 0;
@@ -36,6 +37,7 @@
   box-sizing: border-box; /* 1 */
   width: 100%; /* 2 */
   height: 100%; /* 3 */
+  overflow: hidden;
   cursor: default; /* 4 */
   background: rgb(var(--document-background-color));
   font-family: var(--document-font-family);
@@ -68,6 +70,11 @@
 *::before,
 *::after {
   box-sizing: inherit; /* 1 */
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
 }
 
 /**

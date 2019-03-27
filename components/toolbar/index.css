@@ -1,0 +1,27 @@
+@import "../base";
+
+/* @define Toolbar */
+.Toolbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 20vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: var(--border-width) solid;
+  text-align: center;
+  background: rgb(var(--document-background));
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.Toolbar-prev {
+  flex: 0 0 50%;
+  padding: 0.5rem;
+}
+
+.Toolbar-next {
+  flex: 0 0 50%;
+  padding: 0.5rem;
+}
