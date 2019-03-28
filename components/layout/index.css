@@ -1,0 +1,18 @@
+@import "../base";
+
+/* @define Layout */
+.Layout {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+@media (min-width: 800px) {
+  .Layout {
+    flex-wrap: nowrap;
+  }
+}
+
+.Layout-main {
+
+}

@@ -5,7 +5,7 @@ var text = i18n()
 
 module.exports = statusbar
 
-function statusbar (props) {
+function statusbar (props = {}) {
   return html`
     <div class="Statusbar">
       <span class="u-hiddenVisually">${text(`Question %s of %s`, props.current, props.total)}</span>

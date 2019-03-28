@@ -1,0 +1,99 @@
+@import "../../components/base/";
+
+/* @define Home */
+.Home {
+  min-height: 100%;
+  position: relative;
+}
+
+.Home-greeting {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 2.5rem;
+}
+
+.Home-greeting p:not(:first-child) {
+  margin-top: 0.35em;
+}
+
+.Home-greeting p:not(:last-child) {
+  margin-bottom: 0.35em;
+}
+
+.Home-content {
+  padding: 2vw;
+  margin: auto 0;
+}
+
+.Home-apply {
+  display: flex;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.Home-apply::before {
+  content: "";
+  order: -1;
+  flex: 1 0 auto;
+  height: 2px;
+  background-color: red;
+}
+
+.Home-apply::after {
+  content: "";
+  order: -1;
+  display: block;
+  width: 0.25em;
+  height: 0.4em;
+  margin-right: 0.5em;
+  position: relative;
+  left: -1px;
+  background: url("./arrow.svg") 0 0 no-repeat;
+  background-size: 100% auto;
+}
+
+.Home-apply:hover::after,
+.Home-apply:hover::before {
+  transform: translateX(0.5em);
+}
+
+.Home-menu {
+  position: absolute;
+  top: 2vh;
+  right: 2vh;
+
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  word-spacing: 0.4em;
+  color: red;
+
+  transform-origin: center;
+  animation: Home-menu--spinning 45s infinite linear;
+}
+
+.Home-menu .Home-dot {
+  transform-origin: center;
+  transition: transform 300ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  will-change: transform;
+}
+
+.Home-menu:hover .Home-dot {
+  transform: scale(8);
+}
+
+@keyframes Home-menu--spinning {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Home-footer {
+  width: 100%;
+  border-top: 2px solid red;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
