@@ -11,8 +11,9 @@
   .Layout {
     flex-wrap: nowrap;
   }
+
+  .Layout-sidebar {
+    flex: 0 0 35%;
+  }
 }
 
-.Layout-main {
-
-}

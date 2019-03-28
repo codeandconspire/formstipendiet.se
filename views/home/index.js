@@ -47,7 +47,10 @@ function home (state, emit) {
               </div>
             ` : null}
           </div>
-         `, null)}
+         `, html`
+          <div class="Home-sidebar">
+          </div>
+         `)}
       </main>
     </body>
   `

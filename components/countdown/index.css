@@ -31,7 +31,7 @@
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  border: 2px solid red;
+  border: 2px solid rgb(var(--color-red));
   margin: 0 1rem;
   position: relative;
   border-radius: 1rem;
@@ -42,7 +42,7 @@
   position: absolute;
   left: 50%;
   top: calc(50% - 1px);
-  background-color: red;
+  background-color: rgb(var(--color-red));
   transform-origin: 0 50%;
 }
 
