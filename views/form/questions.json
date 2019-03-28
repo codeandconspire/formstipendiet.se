@@ -1,0 +1,13 @@
+[{
+  "name": "has-applied",
+  "text": "Har du skickat in din ansökan till Kvällsskolan på Beckmans?",
+  "options": [{
+    "text": "Ja, självklart",
+    "type": "radio"
+  }, {
+    "text": "Nej..",
+    "tooltip": "Se till att göra det på <a href=\"https://www.beckmans.se\" rel=\"noopener noreferrer\">beckmans.se</a>",
+    "type": "radio",
+    "valid": false
+  }]
+}]

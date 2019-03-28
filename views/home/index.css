@@ -2,11 +2,19 @@
 
 /* @define Home */
 .Home {
-  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
   position: relative;
 }
 
-.Home-greeting {
+@media (min-width: 1000px) {
+  .Home {
+    flex-wrap: nowrap;
+  }
+}
+
+.Home-main {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,11 +25,17 @@
   font-size: 2.5rem;
 }
 
-.Home-greeting p:not(:first-child) {
+@media (min-width: 1000px) {
+  .Home-main {
+    flex: 1 1 auto;
+  }
+}
+
+.Home-main p:not(:first-child) {
   margin-top: 0.35em;
 }
 
-.Home-greeting p:not(:last-child) {
+.Home-main p:not(:last-child) {
   margin-bottom: 0.35em;
 }
 
@@ -103,4 +117,10 @@
 .Home-sidebar {
   height: 100%;
   background-color: rgb(var(--color-red));
+}
+
+@media (min-width: 1000px) {
+  .Home-sidebar {
+    flex: 0 0 35%;
+  }
 }

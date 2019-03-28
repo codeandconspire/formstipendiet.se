@@ -1,0 +1,96 @@
+@import "../../components/base";
+
+/* @define Form */
+.Form {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+@media (min-width: 1000px) {
+  .Form {
+    flex-wrap: nowrap;
+  }
+}
+
+.Form-main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+@media (min-width: 1000px) {
+  .Form-main {
+    flex: 0 1 50%;
+  }
+}
+
+.Form-statusbar {
+  display: flex;
+  padding: 0.4rem 0.4rem 0.2rem;
+  border-bottom: 2px solid rgb(var(--color-red));
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.Form-cancel {
+  margin-left: auto;
+}
+
+.Form-question {
+  flex: 1 1 auto;
+  padding:  0.4rem 0.4rem 0.2rem;
+  font-size: 3.75rem;
+}
+
+.Form-footer {
+  padding: 1rem;
+  height: 10vh;
+  max-height: 5.5rem;
+  border-top: 2px solid rgb(var(--color-red));
+}
+
+@media (min-width: 1000px) {
+  .Form-sidebar {
+    border-left: 2px solid rgb(var(--color-red));
+  }
+}
+
+@media (min-width: 1000px) {
+  .Form-sidebar {
+    flex: 0 1 50%;
+    display: flex;
+  }
+}
+
+.Form-options {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.Form-option {
+  flex: 1 1 auto;
+  display: flex;
+}
+
+.Form-option:not(:last-child) {
+  border-bottom: 2px solid rgb(var(--color-red));
+}
+
+.Form-toggle {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.Form-option--checkbox,
+.Form-option--radio {
+  padding: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+}
