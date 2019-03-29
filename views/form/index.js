@@ -51,6 +51,8 @@ class Form extends Component {
     if (!isNaN(step)) this.local.step = step
     else step = this.local.step
 
+    var query = serialize(this.local.answers)
+
     var self = this
     var question = questions[step]
     var isValid = Boolean(question.options.find(function (option) {
@@ -88,7 +90,7 @@ class Form extends Component {
           </div>
           <div class="Form-sidebar">
             <div class="Form-options">
-              ${question.options.map((option) => {
+              ${question.options.map((option, index) => {
                 var name = option.name || question.name
                 var value = encodeURIComponent(option.label)
                 var answer = this.local.answers[name]
@@ -98,7 +100,7 @@ class Form extends Component {
                     let checked = Boolean(answer && answer.includes(value))
                     return html`
                       <label class="Form-option Form-option--checkbox">
-                        <input class="Form-toggle" type="checkbox" name="${name}" value="${value}" checked=${checked} required onchange=${onchange}>
+                        <input id="${this.local.id}-${step}-${index}" class="Form-toggle" type="checkbox" name="${name}" value="${value}" checked=${checked} required onchange=${onchange}>
                         <span class="Form-label">
                           ${option.label}
                           ${checked && option.tooltip ? html`<span class="Form-tooltip">${raw(option.tooltip)}</span>` : null}
@@ -107,10 +109,10 @@ class Form extends Component {
                     `
                   }
                   case 'radio': {
-                    let checked = answer ? answer === value : false
+                    let checked = Boolean(answer && answer.includes(value))
                     return html`
                       <label class="Form-option Form-option--radio">
-                        <input class="Form-toggle" type="radio" name="${name}" value="${value}" checked=${checked} required onchange=${onchange}>
+                        <input id="${this.local.id}-${step}-${index}" class="Form-toggle" type="radio" name="${name}" value="${value}" checked=${checked} required onchange=${onchange}>
                         <span class="Form-label">
                           ${option.label}
                           ${checked && option.tooltip ? html`<span class="Form-tooltip">${raw(option.tooltip)}</span>` : null}
@@ -123,7 +125,7 @@ class Form extends Component {
               })}
             </div>
             <div class="Form-nav">
-              <a href="${state.href}${serialize(this.local.answers)}&q=${step - 1}" class="Form-action Form-action--prev ${step === 0 ? 'is-disabled' : ''}" label="Föregående fråga">
+              <a href="${state.href}${query}${query ? '&' : '?'}q=${step - 1}" class="Form-action Form-action--prev ${step === 0 ? 'is-disabled' : ''}" label="Föregående fråga">
                 <span class="Form-button">Föregående fråga</span>
             </a>
               ${step === questions.length - 1 ? html`
@@ -149,12 +151,12 @@ class Form extends Component {
       var toggle = target.type === 'radio' || target.type === 'checkbox'
 
       if (question.multiple) {
-        let current = answers[name] ? answers[name].split(', ') : []
+        let current = answers[name] ? answers[name].split(',') : []
         if (toggle) {
           if (target.checked) {
-            answers[name] = current.concat(value).join(', ')
+            answers[name] = current.concat(value).join(',')
           } else {
-            value = current.filter((str) => str !== value).join(', ')
+            value = current.filter((str) => str !== value).join(',')
             answers[name] = value
           }
         } else if (value) {
