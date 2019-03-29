@@ -2,12 +2,35 @@
   "name": "has-applied",
   "text": "Har du skickat in din ansökan till Kvällsskolan på Beckmans?",
   "options": [{
-    "text": "Ja, självklart",
+    "label": "Ja, självklart",
     "type": "radio"
   }, {
-    "text": "Nej..",
+    "label": "Nej..",
     "tooltip": "Se till att göra det på <a href=\"https://www.beckmans.se\" rel=\"noopener noreferrer\">beckmans.se</a>",
     "type": "radio",
-    "valid": false
+    "invalid": true
+  }]
+}, {
+  "name": "prior-studies",
+  "multiple": true,
+  "text": "Vad har du pluggat tidigare?",
+  "options": [{
+    "label": "Grundskola (årskurs 1-9)",
+    "type": "checkbox"
+  }, {
+    "label": "Gymnasium",
+    "type": "checkbox"
+  }, {
+    "label": "Högskola",
+    "type": "checkbox"
+  }, {
+    "label": "Universitet",
+    "type": "checkbox"
+  }, {
+    "label": "Fristående kurser",
+    "type": "checkbox"
+  }, {
+    "label": "Annat:",
+    "type": "text"
   }]
 }]

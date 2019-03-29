@@ -2,6 +2,10 @@ var fs = require('fs')
 var path = require('path')
 var common = require('./lang.json')
 
+if (typeof window !== 'undefined') {
+  require('focus-visible')
+}
+
 // initialize translation utility with given language file
 // obj -> str
 exports.i18n = i18n

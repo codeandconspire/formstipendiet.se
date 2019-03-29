@@ -5,6 +5,7 @@
   --color-red: 255, 0, 0;
   --color-blue: 25, 128, 240;
   --color-yellow: 255, 255, 0;
+  --color-gray: 230, 230, 230;
 
   /* Base styles */
 
@@ -49,7 +50,6 @@
   box-sizing: border-box; /* 1 */
   width: 100%; /* 2 */
   height: 100%; /* 3 */
-  overflow: hidden;
   cursor: default; /* 4 */
   background: rgb(var(--document-background-color));
   font-family: var(--document-font-family);
@@ -78,6 +78,25 @@
   background: rgb(var(--color-yellow));
 }
 
+/**
+ * Remove default focus styles for mouse users if :focus-visible is supported on
+ * this platform, or polyfilled with https://github.com/WICG/focus-visible
+ */
+
+:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+/**
+ * Provide enhanced focus styles for keyboard focus
+ */
+
+:focus-visible {
+  background: rgb(var(--color-yellow));
+  color: rgb(var(--color-red));
+  outline: none;
+}
+
 *,
 *::before,
 *::after {
@@ -86,7 +105,6 @@
 
 body {
   height: 100%;
-  overflow: hidden;
 }
 
 /**
