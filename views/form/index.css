@@ -19,6 +19,10 @@
   flex-direction: column;
 }
 
+.Form--summary .Form-main {
+  flex: 0 1 auto;
+}
+
 @media (min-width: 1000px) {
   .Form-main {
     height: 100%;
@@ -40,6 +44,7 @@
 
 .Form-question {
   flex: 1 1 auto;
+  min-height: 7.5rem;
   padding:  0.4rem 0.4rem 0.2rem;
   font-size: 3.75rem;
 }
@@ -58,7 +63,13 @@
 }
 
 .Form-sidebar {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+}
+
+.Form--summary .Form-sidebar {
+  flex: 1 1 auto;
 }
 
 @media (min-width: 1000px) {
@@ -76,6 +87,30 @@
 }
 
 /**
+ * Summary
+ */
+
+.Form-summary {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid rgb(var(--color-red));
+}
+
+.Form-title {
+  padding: 0 0.5rem;
+  margin-top: 2.5rem;
+  font-style: italic;
+  font-size: 1.5rem;
+}
+
+.Form-value {
+  padding: 0 0.5rem;
+  margin-left: 0;
+  font-size: 1.5rem;
+}
+
+/**
  * Actions
  */
 
@@ -87,7 +122,7 @@
 
 .Form-action {
   flex: 1 1 50%;
-  height: 7.5rem;
+  min-height: 7.5rem;
   padding: 2rem 1rem;
   overflow: hidden;
   white-space: nowrap;
@@ -117,6 +152,19 @@
   background-size: 3rem;
 }
 
+.Form-action--restart {
+  flex: 0 1 auto;
+  margin-top: auto;
+  padding: 2rem 0.5rem;
+  border-top: 2px solid rgb(var(--color-red));
+  font-style: italic;
+}
+
+.Form-action--restart .Form-button {
+  text-decoration: underline;
+  font-style: normal;
+}
+
 .Form-action:focus-visible {
   color: rgb(var(--color-red));
   background-color: transparent;
@@ -133,6 +181,10 @@
 
 .Form-button {
   display: none;
+}
+
+.Form--summary .Form-button {
+  display: block;
 }
 
 @media (min-width: 1000px) {

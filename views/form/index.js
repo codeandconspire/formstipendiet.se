@@ -1,7 +1,7 @@
 var html = require('choo/html')
 var raw = require('choo/html/raw')
 var Component = require('choo/component')
-var { i18n } = require('../../components/base')
+var { i18n, className } = require('../../components/base')
 
 var text = i18n()
 var questions = require('./questions.json')
@@ -42,6 +42,10 @@ class Form extends Component {
     }
   }
 
+  unload () {
+    this.local.step = 0
+  }
+
   update () {
     return true
   }
@@ -55,7 +59,8 @@ class Form extends Component {
 
     var self = this
     var question = questions[step]
-    var isValid = Boolean(question.options.find(function (option) {
+    var isSummary = step === questions.length
+    var isValid = isSummary || Boolean(question.options.find(function (option) {
       var answer = self.local.answers[option.name || question.name]
       if (!answer) return false
       if (!answer.includes(encodeURIComponent(option.label))) return false
@@ -66,19 +71,19 @@ class Form extends Component {
 
     return html`
       <body id="${this.local.id}">
-        <form class="Form ${isValid ? 'is-valid' : ''}" action="${state.href}" method="${step === questions.length - 1 ? 'POST' : 'GET'}">
+        <form class="${className('Form', { 'Form--summary': isSummary, 'is-valid': isValid })}" action="${state.href}" method="${isSummary ? 'POST' : 'GET'}">
           ${Object.keys(this.local.answers)
-            .filter((key) => question.options.find((option) => question.name !== key && option.name !== key))
+            .filter((key) => question && question.options.find((option) => question.name !== key && option.name !== key))
             .map((key) => html`
               <input type="hidden" name="${key}" value="${this.local.answers[key]}">
           `)}
           <div class="Form-main">
             <div class="Form-statusbar">
-              ${step + 1}/${questions.length}
+              ${step < questions.length ? `${step + 1}/${questions.length}` : null}
               <a href="/" class="Form-cancel">Avbryt</a>
             </div>
             <div class="Form-question">
-              <p>${question.text}</p>
+              <p>${step < questions.length ? question.text : 'Granska din ansökan'}</p>
             </div>
             <div class="Form-footer">
               ${step > 0 ? html`
@@ -89,46 +94,43 @@ class Form extends Component {
             </div>
           </div>
           <div class="Form-sidebar">
-            <div class="Form-options">
-              ${question.options.map((option, index) => {
-                var name = option.name || question.name
-                var value = encodeURIComponent(option.label)
-                var answer = this.local.answers[name]
+            ${step < questions.length ? html`
+              <div class="Form-options">
+                ${question.options.map(asOption)}
+              </div>
+            ` : html`
+              <div class="Form-summary">
+                <dl>
+                  ${questions.reduce((list, question) => {
+                    let answers = Object.keys(this.local.answers).filter((key) => {
+                      if (key === question.name) return true
+                      return question.options.find((opt) => opt.name === key)
+                    })
 
-                switch (option.type) {
-                  case 'checkbox': {
-                    let checked = Boolean(answer && answer.includes(value))
-                    return html`
-                      <label class="Form-option Form-option--checkbox">
-                        <input id="${this.local.id}-${step}-${index}" class="Form-toggle" type="checkbox" name="${name}" value="${value}" checked=${checked} required onchange=${onchange}>
-                        <span class="Form-label">
-                          ${option.label}
-                          ${checked && option.tooltip ? html`<span class="Form-tooltip">${raw(option.tooltip)}</span>` : null}
-                        </span>
-                      </label>
-                    `
-                  }
-                  case 'radio': {
-                    let checked = Boolean(answer && answer.includes(value))
-                    return html`
-                      <label class="Form-option Form-option--radio">
-                        <input id="${this.local.id}-${step}-${index}" class="Form-toggle" type="radio" name="${name}" value="${value}" checked=${checked} required onchange=${onchange}>
-                        <span class="Form-label">
-                          ${option.label}
-                          ${checked && option.tooltip ? html`<span class="Form-tooltip">${raw(option.tooltip)}</span>` : null}
-                        </span>
-                      </label>
-                    `
-                  }
-                  default: return null
-                }
-              })}
-            </div>
+                    list.push(html`<dt class="Form-title">${question.text}</dt>`)
+
+                    for (let i = 0, len = answers.length; i < len; i++) {
+                      if (i !== 0) len.push(html`<br>`)
+                      let value = decodeURIComponent(this.local.answers[answers[i]])
+                      list.push(html`<dd class="Form-value">${value.replace(/,([^\s])/g, ', $1')}</dd>`)
+                    }
+
+                    return list
+                  }, [])}
+                </dl>
+                <div class="Form-action Form-action--restart">
+                    Blev något fel?<br>
+                    <a href="${state.href}${query}${query ? '&' : '?'}q=0" class="Form-button">Gå tillbaka och ändra</a>
+                </div>
+              </div>
+            `}
             <div class="Form-nav">
-              <a href="${state.href}${query}${query ? '&' : '?'}q=${step - 1}" class="Form-action Form-action--prev ${step === 0 ? 'is-disabled' : ''}" label="Föregående fråga">
-                <span class="Form-button">Föregående fråga</span>
-            </a>
-              ${step === questions.length - 1 ? html`
+              ${!isSummary ? html`
+                <a href="${state.href}${query}${query ? '&' : '?'}q=${step - 1}" class="Form-action Form-action--prev ${step === 0 ? 'is-disabled' : ''}" label="Föregående fråga">
+                  <span class="Form-button">Föregående fråga</span>
+                </a>
+              ` : null}
+              ${isSummary ? html`
                 <button type="submit" class="Form-action Form-action--submit" disabled=${!isValid} label="Skicka ansökan">
                   <span class="Form-button">Skicka ansökan</span>
                 </button>
@@ -142,6 +144,40 @@ class Form extends Component {
         </form>
       </body>
     `
+
+    function asOption (option, index) {
+      var name = option.name || question.name
+      var value = encodeURIComponent(option.label)
+      var answer = self.local.answers[name]
+
+      switch (option.type) {
+        case 'checkbox': {
+          let checked = Boolean(answer && answer.includes(value))
+          return html`
+            <label class="Form-option Form-option--checkbox">
+              <input id="${self.local.id}-${step}-${index}" class="Form-toggle" type="checkbox" name="${name}" value="${value}" checked=${checked} onchange=${onchange}>
+              <span class="Form-label">
+                ${option.label}
+                ${checked && option.tooltip ? html`<span class="Form-tooltip">${raw(option.tooltip)}</span>` : null}
+              </span>
+            </label>
+          `
+        }
+        case 'radio': {
+          let checked = Boolean(answer && answer.includes(value))
+          return html`
+            <label class="Form-option Form-option--radio">
+              <input id="${self.local.id}-${step}-${index}" class="Form-toggle" type="radio" name="${name}" value="${value}" checked=${checked} required onchange=${onchange}>
+              <span class="Form-label">
+                ${option.label}
+                ${checked && option.tooltip ? html`<span class="Form-tooltip">${raw(option.tooltip)}</span>` : null}
+              </span>
+            </label>
+          `
+        }
+        default: return null
+      }
+    }
 
     function onchange (event) {
       var target = event.target
