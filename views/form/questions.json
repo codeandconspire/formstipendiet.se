@@ -3,6 +3,7 @@
   "text": "Har du skickat in din ansökan till Kvällsskolan på Beckmans?",
   "options": [{
     "label": "Ja, självklart",
+    "required": "true",
     "type": "radio"
   }, {
     "label": "Nej..",
@@ -30,6 +31,7 @@
     "label": "Fristående kurser",
     "type": "checkbox"
   }, {
+    "name": "prior-studies-other",
     "label": "Annat:",
     "type": "text"
   }]

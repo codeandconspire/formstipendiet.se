@@ -346,3 +346,18 @@
 .Form-tooltip a {
   text-decoration: underline;
 }
+
+.Form-option--text {
+  display: flex;
+}
+
+.Form-text--inline {
+  flex: 1 0 auto;
+  padding: 0 0.5em;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: 0;
+  color: currentColor;
+  -webkit-appearance: none;
+}

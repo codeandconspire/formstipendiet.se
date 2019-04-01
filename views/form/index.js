@@ -104,7 +104,7 @@ class Form extends Component {
                 <div class="Form-error">
                   <h2>Hoppsan!</h2>
                   <p>Något verkar gått galet. Kontrollera att allt är ifyllt rätt innan du försöker igen.</p>
-                  ${process.env.NODE_ENV === 'development' ? html`<pre>${this.local.error.message}</pre>` : null}
+                  ${process.env.NODE_ENV === 'development' ? html`<pre>${this.local.error.stack}</pre>` : null}
                 </div>
               ` : null}
             </div>
@@ -172,15 +172,15 @@ class Form extends Component {
 
     function asOption (option, index) {
       var name = option.name || question.name
-      var value = encodeURIComponent(option.label)
       var answer = self.local.answers[name]
 
       switch (option.type) {
         case 'checkbox': {
+          let value = encodeURIComponent(option.label)
           let checked = Boolean(answer && answer.includes(value))
           return html`
             <label class="Form-option Form-option--checkbox">
-              <input id="${self.local.id}-${step}-${index}" class="Form-toggle" type="checkbox" name="${name}" value="${value}" checked=${checked} onchange=${onchange}>
+              <input id="${self.local.id}-${step}-${index}" class="Form-toggle" type="checkbox" name="${name}" value="${value}" checked=${checked} required=${Boolean(option.required)} onchange=${onchange}>
               <span class="Form-label">
                 ${option.label}
                 ${checked && option.tooltip ? html`<span class="Form-tooltip">${raw(option.tooltip)}</span>` : null}
@@ -189,14 +189,24 @@ class Form extends Component {
           `
         }
         case 'radio': {
+          let value = encodeURIComponent(option.label)
           let checked = Boolean(answer && answer.includes(value))
           return html`
             <label class="Form-option Form-option--radio">
-              <input id="${self.local.id}-${step}-${index}" class="Form-toggle" type="radio" name="${name}" value="${value}" checked=${checked} required onchange=${onchange}>
+              <input id="${self.local.id}-${step}-${index}" class="Form-toggle" type="radio" name="${name}" value="${value}" checked=${checked} required=${Boolean(option.required)} onchange=${onchange}>
               <span class="Form-label">
                 ${option.label}
                 ${checked && option.tooltip ? html`<span class="Form-tooltip">${raw(option.tooltip)}</span>` : null}
               </span>
+            </label>
+          `
+        }
+        case 'text': {
+          let value = decodeURIComponent(answer || '')
+          return html`
+            <label class="Form-option Form-option--text">
+              <span class="Form-label">${option.label}</span>
+              <input id="${self.local.id}-${step}-${index}" class="${className('Form-text', { 'Form-text--inline': question.multiple })}" type="text" name="${name}" value="${value}" required=${Boolean(option.required)} onchange=${onchange}>
             </label>
           `
         }
@@ -209,35 +219,15 @@ class Form extends Component {
       var value = target.value
       var name = target.name
       var answers = self.local.answers
-      var toggle = target.type === 'radio' || target.type === 'checkbox'
 
-      if (question.multiple) {
+      if (question.multiple && target.type === 'checkbox') {
         let current = answers[name] || []
-        if (toggle) {
-          if (target.checked) {
-            answers[name] = current.concat(value)
-          } else {
-            value = current.filter((str) => str !== value)
-            answers[name] = value
-          }
-        } else if (value) {
-          answers[name] = current.concat(value)
-        } else {
-          delete answers[name]
-        }
-      } else {
-        if (toggle) {
-          if (target.checked) {
-            answers[name] = value
-          } else {
-            delete answers[name]
-          }
-        } else if (value) {
-          answers[name] = value
-        } else {
-          delete answers[name]
-        }
+        if (target.checked) value = current.concat(value)
+        else value = current.filter((str) => str !== value)
       }
+
+      if (value) answers[name] = value
+      else delete answers[name]
 
       window.localStorage.setItem(self.local.id, JSON.stringify(answers))
       self.rerender()
