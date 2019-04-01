@@ -69,14 +69,26 @@ class Form extends Component {
       return value
     }))
 
+    var answers = []
+    Object.keys(this.local.answers).filter((key) => {
+      if (!question) return true
+      return question.options.find((option) => question.name !== key && option.name !== key)
+    }).forEach((key) => {
+      var value = this.local.answers[key]
+      if (Array.isArray(value)) {
+        answers[key] = answers[key] || []
+        for (let i = 0, len = value.length; i < len; i++) {
+          answers[key].push([key, value[i]])
+        }
+      } else {
+        answers.push([key, value])
+      }
+    })
+
     return html`
       <body id="${this.local.id}">
         <form class="${className('Form', { 'Form--summary': isSummary, 'is-valid': isValid })}" action="${state.href}" method="${isSummary ? 'POST' : 'GET'}">
-          ${Object.keys(this.local.answers)
-            .filter((key) => question && question.options.find((option) => question.name !== key && option.name !== key))
-            .map((key) => html`
-              <input type="hidden" name="${key}" value="${this.local.answers[key]}">
-          `)}
+          ${answers.map(([name, value]) => html`<input type="hidden" name="${name}" value="${value}">`)}
           <div class="Form-main">
             <div class="Form-statusbar">
               ${step < questions.length ? `${step + 1}/${questions.length}` : null}
@@ -111,8 +123,10 @@ class Form extends Component {
 
                     for (let i = 0, len = answers.length; i < len; i++) {
                       if (i !== 0) len.push(html`<br>`)
-                      let value = decodeURIComponent(this.local.answers[answers[i]])
-                      list.push(html`<dd class="Form-value">${value.replace(/,([^\s])/g, ', $1')}</dd>`)
+                      let value = this.local.answers[answers[i]]
+                      if (Array.isArray(value)) value = value.map(decodeURIComponent)
+                      else value = decodeURIComponent(value)
+                      list.push(html`<dd class="Form-value">${value}</dd>`)
                     }
 
                     return list
@@ -187,16 +201,16 @@ class Form extends Component {
       var toggle = target.type === 'radio' || target.type === 'checkbox'
 
       if (question.multiple) {
-        let current = answers[name] ? answers[name].split(',') : []
+        let current = answers[name] || []
         if (toggle) {
           if (target.checked) {
-            answers[name] = current.concat(value).join(',')
+            answers[name] = current.concat(value)
           } else {
-            value = current.filter((str) => str !== value).join(',')
+            value = current.filter((str) => str !== value)
             answers[name] = value
           }
         } else if (value) {
-          answers[name] = value
+          answers[name] = current.concat(value)
         } else {
           delete answers[name]
         }
