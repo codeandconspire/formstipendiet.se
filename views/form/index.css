@@ -87,6 +87,18 @@
 }
 
 /**
+ * Error
+ */
+
+.Form-error {
+  padding: 1rem;
+  margin: 1rem 0.5rem;
+  color: #fff;
+  font-size: 1.5rem;
+  background-color: rgb(var(--color-red));
+}
+
+/**
  * Summary
  */
 

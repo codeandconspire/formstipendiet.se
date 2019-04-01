@@ -2,13 +2,19 @@ if (!process.env.NOW) require('dotenv/config')
 
 var jalla = require('jalla')
 var dedent = require('dedent')
-var { get } = require('koa-route')
+var { get, post } = require('koa-route')
 var purge = require('./lib/purge')
 
 var app = jalla('index.js', {
   sw: 'sw.js',
   serve: process.env.NODE_ENV === 'production'
 })
+
+app.use(post('/ansok', async function (ctx, next) {
+  // TODO: post to Google Forms
+  ctx.body = {}
+  next()
+}))
 
 // disallow robots anywhere but live
 app.use(get('/robots.txt', function (ctx, next) {

@@ -37,6 +37,8 @@ class Form extends Component {
     var step = +state.query.q
     this.local = state.components[id] = {
       id: id,
+      error: null,
+      loading: false,
       step: isNaN(step) ? 0 : step,
       answers: Object.assign({}, persisted, queried)
     }
@@ -44,10 +46,12 @@ class Form extends Component {
 
   unload () {
     this.local.step = 0
+    this.local.error = null
+    this.local.loading = false
   }
 
   update () {
-    return true
+    return !this.local.loading
   }
 
   createElement (state, emit) {
@@ -87,7 +91,7 @@ class Form extends Component {
 
     return html`
       <body id="${this.local.id}">
-        <form class="${className('Form', { 'Form--summary': isSummary, 'is-valid': isValid })}" action="${state.href}" method="${isSummary ? 'POST' : 'GET'}">
+        <form class="${className('Form', { 'Form--summary': isSummary, 'is-valid': isValid })}" action="${state.href}" method="${isSummary ? 'POST' : 'GET'}" onsubmit=${onsubmit}>
           ${answers.map(([name, value]) => html`<input type="hidden" name="${name}" value="${value}">`)}
           <div class="Form-main">
             <div class="Form-statusbar">
@@ -96,6 +100,13 @@ class Form extends Component {
             </div>
             <div class="Form-question">
               <p>${step < questions.length ? question.text : 'Granska din ansökan'}</p>
+              ${this.local.error ? html`
+                <div class="Form-error">
+                  <h2>Hoppsan!</h2>
+                  <p>Något verkar gått galet. Kontrollera att allt är ifyllt rätt innan du försöker igen.</p>
+                  ${process.env.NODE_ENV === 'development' ? html`<pre>${this.local.error.message}</pre>` : null}
+                </div>
+              ` : null}
             </div>
             <div class="Form-footer">
               ${step > 0 ? html`
@@ -230,6 +241,36 @@ class Form extends Component {
 
       window.localStorage.setItem(self.local.id, JSON.stringify(answers))
       self.rerender()
+    }
+
+    function onsubmit (event) {
+      if (isSummary) {
+        self.local.error = null
+        self.local.loading = true
+        self.rerender()
+        window.fetch('/ansok', {
+          method: 'POST',
+          body: JSON.stringify(self.local.answers),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        }).then(function (res) {
+          if (!res.ok) return res.text().then((err) => Promise.reject(Error(err)))
+          window.localStorage.removeItem(self.local.id)
+          self.local.loading = false
+          emit('pushState', '/tack')
+        }).catch(function (err) {
+          self.local.loading = false
+          self.local.error = err
+          window.scrollTo(0, 0)
+          self.rerender()
+        })
+      } else {
+        self.local.step += 1
+        self.rerender()
+      }
+      event.preventDefault()
     }
   }
 }

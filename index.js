@@ -17,6 +17,7 @@ app.use(require('choo-service-worker')('/sw.js'))
 
 app.route('/', require('./views/home'))
 app.route('/ansok', require('./views/form'))
+app.route('/tack', require('./views/thanks'))
 
 try {
   module.exports = app.mount('body')
