@@ -3,7 +3,7 @@
   "text": "Har du skickat in din ansökan till Kvällsskolan på Beckmans?",
   "options": [{
     "label": "Ja, självklart",
-    "required": "true",
+    "required": true,
     "type": "radio"
   }, {
     "label": "Nej..",
@@ -34,5 +34,14 @@
     "name": "prior-studies-other",
     "label": "Annat:",
     "type": "text"
+  }]
+}, {
+  "name": "why-you",
+  "text": "Berätta lite om varför du tycker att du ska få Formstipendiet.",
+  "options": [{
+    "limit": 500,
+    "label": "Varför tycker du att du ska få Formstipendiet?",
+    "required": true,
+    "type": "textarea"
   }]
 }]

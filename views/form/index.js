@@ -1,6 +1,7 @@
 var html = require('choo/html')
 var raw = require('choo/html/raw')
 var Component = require('choo/component')
+var limit = require('../../components/limit')
 var { i18n, className } = require('../../components/base')
 
 var text = i18n()
@@ -67,7 +68,9 @@ class Form extends Component {
     var isValid = isSummary || Boolean(question.options.find(function (option) {
       var answer = self.local.answers[option.name || question.name]
       if (!answer) return false
-      if (!answer.includes(encodeURIComponent(option.label))) return false
+      if (question.multiple) {
+        if (!answer.includes(encodeURIComponent(option.label))) return false
+      }
       var value = Boolean(answer)
       if (option.invalid && value) return false
       return value
@@ -215,7 +218,21 @@ class Form extends Component {
           return html`
             <label class="Form-option Form-option--text">
               <span class="Form-label">${option.label}</span>
-              <input id="${self.local.id}-${step}-${index}" class="${className('Form-text', { 'Form-text--inline': question.multiple })}" type="text" name="${name}" value="${value}" required=${Boolean(option.required)} onchange=${onchange}>
+              <input id="${self.local.id}-${step}-${index}" class="${className('Form-text', { 'Form-text--inline': question.multiple })}" type="text" name="${name}" value="${value}" required=${Boolean(option.required)} oninput=${onchange}>
+            </label>
+          `
+        }
+        case 'textarea': {
+          let value = decodeURIComponent(answer || '')
+          let oninput = (event) => {
+            onchange(event)
+            if (event.target.value > option.limit) event.preventDefault()
+          }
+          return html`
+            <label class="Form-option Form-option--textarea">
+              ${limit(value, option.limit)}
+              <span class="u-hiddenVisually">${option.label}</span>
+              <textarea id="${self.local.id}-${step}-${index}" class="Form-text" type="text" name="${name}" maxlength="${option.limit}" rows="9" placeholder="Skriv här…" required=${Boolean(option.required)} oninput=${oninput}>${value}</textarea>
             </label>
           `
         }

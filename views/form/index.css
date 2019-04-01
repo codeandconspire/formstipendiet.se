@@ -145,7 +145,7 @@
   border-left: 2px solid rgb(var(--color-red));
 }
 
-.Form-action:disabled {
+:root[scripting-enabled] .Form-action:disabled {
   color: transparent;
 }
 
@@ -159,7 +159,8 @@
   background-size: 100% 100%;
 }
 
-.Form-action--next:not(:disabled) {
+:root:not([scripting-enabled]) .Form-action--next,
+:root[scripting-enabled] .Form-action--next:not(:disabled) {
   background: url("./next.svg") no-repeat center center;
   background-size: 3rem;
 }
@@ -186,7 +187,8 @@
   text-decoration: underline;
 }
 
-.Form-action--submit:not(:disabled) {
+:root:not([scripting-enabled]) .Form-action--submit,
+:root[scripting-enabled] .Form-action--submit:not(:disabled) {
   background-color: rgb(var(--color-red));
   color: #fff;
 }
@@ -234,7 +236,7 @@
   flex: 1 1 auto;
   display: flex;
   align-items: center;
-  height: 7.5rem;
+  min-height: 7.5rem;
   padding: 2rem 0.5rem;
   position: relative;
   font-size: 2rem;
@@ -351,13 +353,25 @@
   display: flex;
 }
 
-.Form-text--inline {
+.Form-text {
   flex: 1 0 auto;
-  padding: 0 0.5em;
+  padding: 0 0.5rem;
   border: 0;
   background: transparent;
   border-radius: 0;
   box-shadow: 0;
   color: currentColor;
   -webkit-appearance: none;
+}
+
+.Form-text::placeholder {
+  color: currentColor;
+}
+
+.Form-option--textarea {
+  padding: 1.2rem 0 0;
+}
+
+.Form-option--textarea .Form-text {
+  padding: 0.5rem;
 }
