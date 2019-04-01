@@ -133,7 +133,7 @@ class Form extends Component {
                     list.push(html`<dt class="Form-title">${question.text}</dt>`)
 
                     for (let i = 0, len = answers.length; i < len; i++) {
-                      if (i !== 0) len.push(html`<br>`)
+                      if (i !== 0) list.push(html`<br>`)
                       let value = this.local.answers[answers[i]]
                       if (Array.isArray(value)) value = value.map(decodeURIComponent)
                       else value = decodeURIComponent(value)
@@ -145,13 +145,13 @@ class Form extends Component {
                 </dl>
                 <div class="Form-action Form-action--restart">
                     Blev något fel?<br>
-                    <a href="${state.href}${query}${query ? '&' : '?'}q=0" class="Form-button">Gå tillbaka och ändra</a>
+                    <a href="${state.href}${query}${query ? '&' : '?'}q=0" class="Form-button" onclick=${goto(0)}>Gå tillbaka och ändra</a>
                 </div>
               </div>
             `}
             <div class="Form-nav">
               ${!isSummary ? html`
-                <a href="${state.href}${query}${query ? '&' : '?'}q=${step - 1}" class="Form-action Form-action--prev ${step === 0 ? 'is-disabled' : ''}" label="Föregående fråga">
+                <a href="${state.href}${query}${query ? '&' : '?'}q=${step - 1}" class="Form-action Form-action--prev ${step === 0 ? 'is-disabled' : ''}" label="Föregående fråga" onclick=${goto(step - 1)}>
                   <span class="Form-button">Föregående fråga</span>
                 </a>
               ` : null}
@@ -169,6 +169,15 @@ class Form extends Component {
         </form>
       </body>
     `
+
+    function goto (step) {
+      return function (event) {
+        self.local.step = step
+        if (state.query.q) emit('pushState', state.href)
+        else self.rerender()
+        event.preventDefault()
+      }
+    }
 
     function asOption (option, index) {
       var name = option.name || question.name
@@ -258,7 +267,8 @@ class Form extends Component {
         })
       } else {
         self.local.step += 1
-        self.rerender()
+        if (state.query.q) emit('pushState', state.href)
+        else self.rerender()
       }
       event.preventDefault()
     }
