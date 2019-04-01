@@ -96,11 +96,13 @@ class Form extends Component {
       <body id="${this.local.id}">
         <form class="${className('Form', { 'Form--summary': isSummary, 'is-valid': isValid })}" action="${state.href}" method="${isSummary ? 'POST' : 'GET'}" onsubmit=${onsubmit}>
           ${answers.map(([name, value]) => html`<input type="hidden" name="${name}" value="${value}">`)}
+
+          <div class="Form-statusbar">
+            <span>${step < questions.length ? `${step + 1}/${questions.length}` : null}</span>
+            <a href="/" class="Form-cancel"><span>Avbryt</span></a>
+          </div>
+
           <div class="Form-main">
-            <div class="Form-statusbar">
-              ${step < questions.length ? `${step + 1}/${questions.length}` : null}
-              <a href="/" class="Form-cancel">Avbryt</a>
-            </div>
             <div class="Form-question">
               <p>${step < questions.length ? question.text : 'Granska din ansökan'}</p>
               ${this.local.error ? html`
@@ -111,64 +113,65 @@ class Form extends Component {
                 </div>
               ` : null}
             </div>
-            <div class="Form-footer">
-              ${step > 0 ? html`
-                <button type="submit" name="q" value="${step - 1}">
-                  Föregående fråga
-                </button>
-              ` : null}
-            </div>
-          </div>
-          <div class="Form-sidebar">
-            ${step < questions.length ? html`
-              <div class="Form-options">
-                ${question.options.map(asOption)}
-              </div>
-            ` : html`
-              <div class="Form-summary">
-                <dl>
-                  ${questions.reduce((list, question) => {
-                    let answers = Object.keys(this.local.answers).filter((key) => {
-                      if (key === question.name) return true
-                      return question.options.find((opt) => opt.name === key)
-                    })
 
-                    list.push(html`<dt class="Form-title">${question.text}</dt>`)
-
-                    for (let i = 0, len = answers.length; i < len; i++) {
-                      if (i !== 0) list.push(html`<br>`)
-                      let value = this.local.answers[answers[i]]
-                      if (Array.isArray(value)) value = value.map(decodeURIComponent)
-                      else value = decodeURIComponent(value)
-                      list.push(html`<dd class="Form-value">${value}</dd>`)
-                    }
-
-                    return list
-                  }, [])}
-                </dl>
-                <div class="Form-action Form-action--restart">
-                    Blev något fel?<br>
-                    <a href="${state.href}${query}${query ? '&' : '?'}q=0" class="Form-button" onclick=${goto(0)}>Gå tillbaka och ändra</a>
+            <div class="Form-tools">
+              ${step < questions.length ? html`
+                <div class="Form-options">
+                  ${question.options.map(asOption)}
                 </div>
-              </div>
-            `}
-            <div class="Form-nav">
-              ${!isSummary ? html`
-                <a href="${state.href}${query}${query ? '&' : '?'}q=${step - 1}" class="Form-action Form-action--prev ${step === 0 ? 'is-disabled' : ''}" label="Föregående fråga" onclick=${goto(step - 1)}>
-                  <span class="Form-button">Föregående fråga</span>
-                </a>
-              ` : null}
-              ${isSummary ? html`
-                <button type="submit" class="Form-action Form-action--submit" disabled=${!isValid} label="Skicka ansökan">
-                  <span class="Form-button">Skicka ansökan</span>
-                </button>
               ` : html`
-                <button type="submit" name="q" value="${step + 1}" class="Form-action Form-action--next" disabled=${!isValid} label="Nästa fråga">
-                  <span class="Form-button">Nästa fråga</span>
-                </button>
+                <div class="Form-summary">
+                  <dl>
+                    ${questions.reduce((list, question) => {
+                      let answers = Object.keys(this.local.answers).filter((key) => {
+                        if (key === question.name) return true
+                        return question.options.find((opt) => opt.name === key)
+                      })
+
+                      list.push(html`<dt class="Form-title">${question.text}</dt>`)
+
+                      for (let i = 0, len = answers.length; i < len; i++) {
+                        if (i !== 0) list.push(html`<br>`)
+                        let value = this.local.answers[answers[i]]
+                        if (Array.isArray(value)) value = value.map(decodeURIComponent)
+                        else value = decodeURIComponent(value)
+                        list.push(html`<dd class="Form-value">${value}</dd>`)
+                      }
+
+                      return list
+                    }, [])}
+                  </dl>
+                  <div class="Form-action Form-action--restart">
+                      Blev något fel?<br>
+                      <a href="${state.href}${query}${query ? '&' : '?'}q=0" class="Form-button" onclick=${goto(0)}>Gå tillbaka och ändra</a>
+                  </div>
+                </div>
               `}
             </div>
           </div>
+
+          <div class="Form-nav">
+            ${!isSummary ? html`
+              <a href="${state.href}${query}${query ? '&' : '?'}q=${step - 1}" class="Form-action Form-action--prev ${step === 0 ? 'is-disabled' : ''}" label="Föregående fråga" onclick=${goto(step - 1)}>
+                <span class="Form-button">Föregående fråga</span>
+              </a>
+            ` : null}
+            ${isSummary ? html`
+              <button type="submit" class="Form-action Form-action--submit" disabled=${!isValid} label="Skicka ansökan">
+                <span class="Form-button">Skicka ansökan</span>
+              </button>
+            ` : html`
+              <button type="submit" name="q" value="${step + 1}" class="Form-action Form-action--next" disabled=${!isValid} label="Nästa fråga">
+                <span class="Form-button">Nästa fråga</span>
+              </button>
+            `}
+          </div>
+
+          ${step > 0 ? html`
+            <button class="Form-footer" type="submit" name="q" value="${step - 1}">Föregående fråga</button>
+          ` : html`
+            <div class="Form-footer"></div>
+          `}
         </form>
       </body>
     `

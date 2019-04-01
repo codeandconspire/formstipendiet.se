@@ -1,52 +1,58 @@
 @import "../../components/base";
 
+:root {
+  --Form-space-sm: 6vh;
+  --Form-space-md: 8vh;
+  --Form-space-lg: 13vh;
+  --Form-statusbar-height: var(--Form-space-sm);
+  --Form-nav-height: var(--Form-space-lg);
+  --Form-padding: 0.3rem;
+  --Form-font-size-sm: 1rem;
+  --Form-font-size-md: 3.8vh;
+  --Form-font-size-lg: 6.3vh;
+  --Form-border-width: 1px;
+}
+
 /* @define Form */
+
+/**
+ * General form layout.
+ * Handling only dimensions, positioning, margins and scrolling.
+ */
+
 .Form {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-@media (min-width: 1000px) {
-  .Form {
-    flex-direction: row;
-  }
-}
-
-.Form-main {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.Form--summary .Form-main {
-  flex: 0 1 auto;
-}
-
-@media (min-width: 1000px) {
-  .Form-main {
-    height: 100%;
-    flex: 0 1 50%;
-  }
+  width: 100vw;
+  height: 100vh;
 }
 
 .Form-statusbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: var(--Form-statusbar-height)
+}
+
+.Form-main {
   display: flex;
-  padding: 0.4rem 0.4rem 0.2rem;
-  border-bottom: 2px solid rgb(var(--color-red));
-  font-size: 1.5rem;
-  text-transform: uppercase;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100% - var(--Form-statusbar-height) - var(--Form-nav-height));
+  position: relative;
+  top: var(--Form-statusbar-height);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.Form-cancel {
-  margin-left: auto;
-}
-
-.Form-question {
-  flex: 1 1 auto;
-  min-height: 7.5rem;
-  padding:  0.4rem 0.4rem 0.2rem;
-  font-size: 3.75rem;
+.Form-footer,
+.Form-nav {
+  width: 100%;
+  height: var(--Form-nav-height);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .Form-footer {
@@ -54,95 +60,136 @@
 }
 
 @media (min-width: 1000px) {
+  .Form-statusbar,
+  .Form-nav,
   .Form-footer {
-    padding: 1rem;
-    height: 10vh;
-    max-height: 5.5rem;
-    border-top: 2px solid rgb(var(--color-red));
+    width: 50%;
+  }
+
+  .Form-footer {
+    display: block;
+  }
+
+  .Form-nav {
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: auto;
+    width: var(--Form-nav-height);
+    height: 100%;
+  }
+
+  .Form-main {
+    height: 100%;
+    top: 0;
+    flex-direction: row;
+    overflow: hidden;
+    -webkit-overflow-scrolling: auto;
+  }
+
+  .Form-question {
+    width: 50%;
+    height: calc(100% - var(--Form-statusbar-height) - var(--Form-nav-height));
+    position: relative;
+    top: var(--Form-statusbar-height);
+  }
+
+  .Form-tools {
+    width: calc(50% - var(--Form-nav-height));
+    height: 100%;
+    margin-right: var(--Form-nav-height);
+  }
+
+  .Form-question,
+  .Form-tools {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
-.Form-sidebar {
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Root styles
+ */
+
+.Form {
+  font-size: var(--Form-font-size-md);
+}
+
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Status bar
+ */
+
+.Form-statusbar {
   display: flex;
-  flex-direction: column;
-  width: 100%;
+  align-items: center;
+  padding: 0 var(--Form-padding);
+  border-bottom: var(--Form-border-width) solid rgb(var(--color-red));
+  text-transform: uppercase;
+  background: #fff;
 }
 
-.Form--summary .Form-sidebar {
-  flex: 1 1 auto;
+.Form-cancel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+  height: 100%;
+  padding: 0 var(--Form-padding);
+  border-left: var(--Form-border-width) solid rgb(var(--color-red));
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Footer
+ */
+
+.Form-footer {
+
 }
 
 @media (min-width: 1000px) {
-  .Form-sidebar {
-    width: auto;
-    border-left: 2px solid rgb(var(--color-red));
-  }
-}
-
-@media (min-width: 1000px) {
-  .Form-sidebar {
-    flex: 0 1 50%;
+  .Form-footer {
     display: flex;
+    padding: 0 var(--Form-padding);
+    height: var(--Form-space-lg);
+    border-top: var(--Form-border-width) solid rgb(var(--color-red));
+    text-transform: uppercase;
+    background: #fff;
   }
 }
 
-/**
- * Error
- */
-
-.Form-error {
-  padding: 1rem;
-  margin: 1rem 0.5rem;
-  color: #fff;
-  font-size: 1.5rem;
-  background-color: rgb(var(--color-red));
-}
+/* -------------------------------------------------------------------------- */
 
 /**
- * Summary
- */
-
-.Form-summary {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  border-top: 2px solid rgb(var(--color-red));
-}
-
-.Form-title {
-  padding: 0 0.5rem;
-  margin-top: 2.5rem;
-  font-style: italic;
-  font-size: 1.5rem;
-}
-
-.Form-value {
-  padding: 0 0.5rem;
-  margin-left: 0;
-  font-size: 1.5rem;
-}
-
-/**
- * Actions
+ * Nav with actions
  */
 
 .Form-nav {
   display: flex;
-  position: relative;
-  border-top: 2px solid rgb(var(--color-red));
+  border-top: var(--Form-border-width) solid rgb(var(--color-red));
+  background: #fff;
+  text-transform: uppercase;
 }
 
 .Form-action {
   flex: 1 1 50%;
-  min-height: 7.5rem;
-  padding: 2rem 1rem;
+  height: 100%;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 2rem;
+  font: inherit;
 }
 
 .Form-action + .Form-action {
-  border-left: 2px solid rgb(var(--color-red));
+  border-left: var(--Form-border-width) solid rgb(var(--color-red));
 }
 
 :root[scripting-enabled] .Form-action:disabled {
@@ -151,7 +198,7 @@
 
 .Form-action--prev {
   background: url("./prev.svg") no-repeat center center;
-  background-size: 3rem;
+  background-size: var(--Form-space-md);
 }
 
 .Form-action--prev.is-disabled {
@@ -162,14 +209,13 @@
 :root:not([scripting-enabled]) .Form-action--next,
 :root[scripting-enabled] .Form-action--next:not(:disabled) {
   background: url("./next.svg") no-repeat center center;
-  background-size: 3rem;
+  background-size: var(--Form-space-md);
 }
 
 .Form-action--restart {
   flex: 0 1 auto;
   margin-top: auto;
-  padding: 2rem 0.5rem;
-  border-top: 2px solid rgb(var(--color-red));
+  border-top: var(--Form-border-width) solid rgb(var(--color-red));
   font-style: italic;
 }
 
@@ -203,16 +249,28 @@
 
 @media (min-width: 1000px) {
   .Form-nav {
-    flex-direction: column;
-    width: 4rem;
-    border-width: 0 0 0 2px;
+    border: 0;
+    border-left: var(--Form-border-width) solid rgb(var(--color-red));
+  }
+
+  .Form-action + .Form-action {
+    border: 0;
+  }
+
+  .Form-button {
+    display: block;
   }
 
   .Form-action--submit {
     flex: 1 0 100%;
   }
 
-  .Form-action--submit .Form-button {
+  .Form-action--prev {
+    display: none;
+  }
+
+  .Form-action--submit .Form-button,
+  .Form-action .Form-action--next {
     position: absolute;
     right: 0;
     top: 50%;
@@ -221,29 +279,74 @@
   }
 }
 
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Main
+ */
+
+.Form-main {
+  justify-content: space-between;
+}
+
+.Form-question {
+  padding: var(--Form-padding);
+  font-size: var(--Form-font-size-lg);
+}
+
+@media (min-width: 1000px) {
+  .Form-tools {
+    border-left: var(--Form-border-width) solid rgb(var(--color-red));
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Summary
+ */
+
+.Form-summary {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  border-top: var(--Form-border-width) solid rgb(var(--color-red));
+}
+
+.Form-title {
+  padding: 0 var(--Form-padding);
+  margin-top: var(--Form-space-md);
+  font-style: italic;
+}
+
+.Form-value {
+  padding: 0 var(--Form-padding);
+  margin-left: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+
 /**
  * Options
  */
 
 .Form-options {
-  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  border-top: 2px solid rgb(var(--color-red));
+  border-top: var(--Form-border-width) solid rgb(var(--color-red));
 }
 
 .Form-option {
   flex: 1 1 auto;
   display: flex;
   align-items: center;
-  min-height: 7.5rem;
-  padding: 2rem 0.5rem;
+  min-height: var(--Form-space-md);
+  padding: var(--Form-padding);
   position: relative;
-  font-size: 2rem;
 }
 
 .Form-option:not(:last-child) {
-  border-bottom: 2px solid rgb(var(--color-red));
+  border-bottom: var(--Form-border-width) solid rgb(var(--color-red));
 }
 
 .Form-toggle {
@@ -282,12 +385,18 @@
   color: #fff;
 }
 
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Tooltip
+ */
+
 .Form-tooltip {
   padding: 1rem;
   position: absolute;
   left: 100%;
   top: 50%;
-  font-size: 1rem;
+  font-size: var(--Form-font-size-sm);
   background: #fff;
   white-space: nowrap;
   color: rgb(var(--color-red));
@@ -374,4 +483,17 @@
 
 .Form-option--textarea .Form-text {
   padding: 0.5rem;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Error
+ */
+
+ .Form-error {
+  padding: 1rem;
+  margin: 1rem 0.5rem;
+  color: #fff;
+  background-color: rgb(var(--color-red));
 }

@@ -56,6 +56,7 @@
   color: rgb(var(--document-color));
   font-size: 100%;
   line-height: var(--document-line-height);
+  overflow: hidden;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased; /* 5 */
   -moz-osx-font-smoothing: grayscale; /* 5 */
@@ -105,6 +106,7 @@
 
 body {
   height: 100%;
+  overflow: hidden;
 }
 
 /**
