@@ -70,7 +70,7 @@ function form (state, emit) {
           <div class="Form-tools">
             ${!isSummary ? current.render(onchange) : html`
               <div class="Form-summary">
-                <dl>
+                <dl class="Form-dl">
                   ${all.reduce((list, question) => {
                     list.push(html`<dt class="Form-title">${question.title()}</dt>`)
                     var answers = Object.values(question.serialize())
@@ -83,9 +83,9 @@ function form (state, emit) {
                     return list
                   }, [])}
                 </dl>
-                <div class="Form-action Form-action--restart">
-                    Blev något fel?<br>
-                    <a href="${state.href}${query}${query ? '&' : '?'}q=0" class="Form-button" onclick=${goto(0)}>Gå tillbaka och ändra</a>
+                <div class="Form-restart">
+                  Blev något fel?<br>
+                  <a class="Form-link" href="${state.href}${query}${query ? '&' : '?'}q=0" onclick=${goto(0)}>Gå tillbaka och ändra</a>
                 </div>
               </div>
             `}
