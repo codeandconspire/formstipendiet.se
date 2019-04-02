@@ -7,10 +7,20 @@
   --Form-statusbar-height: var(--Form-space-sm);
   --Form-nav-height: var(--Form-space-lg);
   --Form-padding: 0.3rem;
-  --Form-font-size-sm: 1rem;
+  --Form-font-size-sm: 0.8rem;
   --Form-font-size-md: 3.8vh;
   --Form-font-size-lg: 6.3vh;
   --Form-border-width: 1px;
+}
+
+@media (min-width: 1000px) {
+  :root {
+    --Form-space-sm: 4vh;
+    --Form-space-md: 4vh;
+    --Form-space-lg: 9vh;
+    --Form-padding: 0.3rem;
+    --Form-font-size-md: 2.6vh;
+  }
 }
 
 /* @define Form */
