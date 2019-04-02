@@ -157,18 +157,27 @@
  * Footer
  */
 
-.Form-footer {
-
-}
-
 @media (min-width: 1000px) {
   .Form-footer {
     display: flex;
-    padding: 0 var(--Form-padding);
+    padding: 0 var(--Form-padding) 0 var(--Form-space-lg);
     height: var(--Form-space-lg);
     border-top: var(--Form-border-width) solid rgb(var(--color-red));
     text-transform: uppercase;
     background: #fff;
+  }
+
+  .Form-footer:not(:empty)::after {
+    content: "";
+    width: var(--Form-space-lg);
+    height: var(--Form-space-lg);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-image: url("./prev.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: var(--Form-space-md);
   }
 }
 
@@ -223,16 +232,8 @@
   background-size: var(--Form-space-md);
 }
 
-.Form-action--restart {
-  flex: 0 1 auto;
-  margin-top: auto;
-  border-top: var(--Form-border-width) solid rgb(var(--color-red));
-  font-style: italic;
-}
-
-.Form-action--restart .Form-button {
+.Form-restart {
   text-decoration: underline;
-  font-style: normal;
 }
 
 :root:not([scripting-enabled]) .Form-action--submit,
@@ -255,12 +256,22 @@
     border-left: var(--Form-border-width) solid rgb(var(--color-red));
   }
 
+  .Form-action {
+    position: relative;
+    text-transform: uppercase;
+  }
+
   .Form-action + .Form-action {
     border: 0;
   }
 
   .Form-button {
     display: block;
+    position: absolute;
+    right: 0;
+    bottom: calc(var(--Form-space-lg) - 1em);
+    transform-origin: 0 0;
+    transform: translateX(calc(100% - (var(--Form-nav-height) / 2) - 0.5em)) rotate(-90deg);
   }
 
   .Form-action--submit {
@@ -271,13 +282,33 @@
     display: none;
   }
 
-  .Form-action--submit .Form-button,
-  .Form-action .Form-action--next {
+  .Form-action--prev,
+  .Form-action--prev.is-disabled,
+  :root:not([scripting-enabled]) .Form-action--next,
+  :root[scripting-enabled] .Form-action--next:not(:disabled) {
+    background: none;
+  }
+
+  :root:not([scripting-enabled]) .Form-action--next::after,
+  :root[scripting-enabled] .Form-action--next:not(:disabled)::after,
+  :root[scripting-enabled] .Form-action--next:not(:disabled)::after,
+  :root:not([scripting-enabled]) .Form-action--submit::after,
+  :root[scripting-enabled] .Form-action--submit:not(:disabled)::after {
+    content: "";
+    width: var(--Form-space-lg);
+    height: var(--Form-space-lg);
     position: absolute;
-    right: 0;
-    top: 50%;
-    transform-origin: 0 0;
-    transform: translateX(calc(100% - 3rem)) rotate(-90deg) translate(-50%, 0%);
+    bottom: 0;
+    left: 0;
+    background-image: url("./next.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: var(--Form-space-md);
+  }
+
+  :root:not([scripting-enabled]) .Form-action--submit::after,
+  :root[scripting-enabled] .Form-action--submit:not(:disabled)::after {
+    background-image: url("./next-white.svg");
   }
 }
 
@@ -337,5 +368,6 @@
   padding: 1rem;
   margin: 1rem 0.5rem;
   color: #fff;
+  font-size: 14px;
   background-color: rgb(var(--color-red));
 }
