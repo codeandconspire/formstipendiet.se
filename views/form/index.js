@@ -103,7 +103,7 @@ function form (state, emit) {
               <span class="Form-button">Skicka ansökan</span>
             </button>
           ` : html`
-            <button type="submit" name="q" value="${state.step + 1}" class="Form-action Form-action--next" disabled=${!isValid} label="Nästa fråga">
+            <button type="submit" name="q" value="${state.step + 1}" class="Form-action Form-action--next ${!isValid ? 'is-disabled' : ''}" disabled=${!isValid} label="Nästa fråga">
               <span class="Form-button">Nästa fråga</span>
             </button>
           `}

@@ -237,6 +237,10 @@
   background-size: 100% 100%;
 }
 
+.Form-action.is-disabled + .Form-action.is-disabled {
+  background-image: none;
+}
+
 :root:not([scripting-enabled]) .Form-action--next,
 :root[scripting-enabled] .Form-action--next:not(:disabled) {
   background-image: url("./next.svg");
