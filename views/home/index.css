@@ -54,7 +54,7 @@
   content: "";
   order: -1;
   flex: 1 0 auto;
-  height: 2px;
+  height: 1px;
   background-color: rgb(var(--color-red));
 }
 
@@ -108,7 +108,7 @@
 
 .Home-footer {
   width: 100%;
-  border-top: 2px solid rgb(var(--color-red));
+  border-top: 1px solid rgb(var(--color-red));
   position: absolute;
   left: 0;
   bottom: 0;

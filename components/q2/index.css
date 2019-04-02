@@ -1,0 +1,48 @@
+@import "../base";
+
+/* @Q2 */
+.Q2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.Q2-option {
+  display: flex;
+  position: relative;
+  padding-top: 0.6em;
+}
+
+@media (min-width: 1000px) {
+  .Q2-option {
+    min-height: 65vh;
+    border: solid rgb(var(--color-red));
+    border-width: 1px 0;
+  }
+}
+
+.Q2-text {
+  width: 100%;
+  flex: 1 1 auto;
+  padding: var(--Form-padding);
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  color: currentColor;
+  resize: none;
+  -webkit-appearance: none;
+}
+
+.Q2-text::placeholder {
+  color: currentColor;
+}
+
+.Q2-limit {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  font-size: 0.8rem;
+  color: rgb(var(--color-red));
+}

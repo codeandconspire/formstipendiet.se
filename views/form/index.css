@@ -59,6 +59,10 @@
   display: none;
 }
 
+.Form-tools {
+  border-top: 1px solid rgb(var(--color-red))
+}
+
 @media (min-width: 1000px) {
   .Form-statusbar,
   .Form-nav,
@@ -95,9 +99,10 @@
   }
 
   .Form-tools {
-    width: calc(50% - var(--Form-nav-height));
     height: 100%;
+    width: calc(50% - var(--Form-nav-height));
     margin-right: var(--Form-nav-height);
+    border: 0;
   }
 
   .Form-question,
@@ -320,177 +325,6 @@
 .Form-value {
   padding: 0 var(--Form-padding);
   margin-left: 0;
-}
-
-/* -------------------------------------------------------------------------- */
-
-/**
- * Options
- */
-
-.Form-options {
-  display: flex;
-  flex-direction: column;
-  border-top: var(--Form-border-width) solid rgb(var(--color-red));
-}
-
-@media (min-width: 1000px) {
-  .Form-options {
-    border: 0;
-  }
-}
-
-.Form-option {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  min-height: var(--Form-space-md);
-  padding: var(--Form-padding);
-  position: relative;
-}
-
-.Form-option:not(:last-child) {
-  border-bottom: var(--Form-border-width) solid rgb(var(--color-red));
-}
-
-.Form-toggle {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  outline: none;
-}
-
-.Form-toggle:checked {
-  background: rgb(var(--color-red));
-}
-
-@media (min-width: 1000px) {
-  .Form-option--checkbox,
-  .Form-option--radio {
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-.Form-label {
-  position: relative;
-  line-height: normal;
-  padding-right: var(--Form-padding);
-}
-
-.Form-option--checkbox .Form-toggle:focus-visible + .Form-label,
-.Form-option--radio .Form-toggle:focus-visible + .Form-label {
-  text-decoration: underline;
-}
-
-.Form-option--checkbox .Form-toggle:checked + .Form-label,
-.Form-option--radio .Form-toggle:checked + .Form-label {
-  color: #fff;
-}
-
-/* -------------------------------------------------------------------------- */
-
-/**
- * Tooltip
- */
-
-.Form-tooltip {
-  padding: 1rem;
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  font-size: var(--Form-font-size-sm);
-  background: #fff;
-  white-space: nowrap;
-  color: rgb(var(--color-red));
-  transform: translate(0rem, -50%);
-  animation: Form-tooltip--appear 200ms forwards cubic-bezier(0.1, 0.885, 0.24, 1.35);
-}
-
-@keyframes Form-tooltip--appear {
-  to {
-    opacity: 1;
-    transform: translate(2.3rem, -50%);
-  }
-}
-
-@media (min-width: 1000px) {
-  .Form-tooltip {
-    width: 10rem;
-    left: 50%;
-    top: auto;
-    bottom: 100%;
-    white-space: normal;
-    transform: translate(-50%, 0rem);
-    animation-timing-function: cubic-bezier(0.1, 0.885, 0.24, 1.75);
-  }
-
-  @keyframes Form-tooltip--appear {
-    to {
-      opacity: 1;
-      transform: translate(-50%, -1.3rem);
-    }
-  }
-}
-
-.Form-tooltip::after {
-  content: "";
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0.6rem 1.6rem;
-  border-color: transparent #fff transparent transparent;
-  position: absolute;
-  right: calc(100% - 1px);
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-@media (min-width: 1000px) {
-  .Form-tooltip::after {
-    border-width: 1.6rem 0.6rem;
-    border-color: #fff transparent transparent;
-    left: 50%;
-    right: auto;
-    top: calc(100% - 1px);
-    transform: translateX(-50%);
-  }
-}
-
-.Form-tooltip a {
-  text-decoration: underline;
-}
-
-.Form-option--text {
-  display: flex;
-  overflow: hidden;
-}
-
-.Form-text {
-  flex: 1 1 auto;
-  font: inherit;
-  line-height: normal;
-  border: 0;
-  background: transparent;
-  border-radius: 0;
-  box-shadow: none;
-  color: currentColor;
-  -webkit-appearance: none;
-}
-
-.Form-text::placeholder {
-  color: currentColor;
-}
-
-.Form-option--textarea {
-  padding: 1.2rem 0 0;
-}
-
-.Form-option--textarea .Form-text {
-  padding: 0.5rem;
 }
 
 /* -------------------------------------------------------------------------- */
