@@ -188,6 +188,10 @@
   font: inherit;
 }
 
+.Form-action:focus-visible:not(:disabled):not(.is-disabled) {
+  background-color: rgb(var(--color-yellow));
+}
+
 .Form-action + .Form-action {
   border-left: var(--Form-border-width) solid rgb(var(--color-red));
 }
@@ -208,7 +212,9 @@
 
 :root:not([scripting-enabled]) .Form-action--next,
 :root[scripting-enabled] .Form-action--next:not(:disabled) {
-  background: url("./next.svg") no-repeat center center;
+  background-image: url("./next.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: var(--Form-space-md);
 }
 
@@ -222,15 +228,6 @@
 .Form-action--restart .Form-button {
   text-decoration: underline;
   font-style: normal;
-}
-
-.Form-action:focus-visible {
-  color: rgb(var(--color-red));
-  background-color: transparent;
-}
-
-.Form-action:focus-visible .Form-button {
-  text-decoration: underline;
 }
 
 :root:not([scripting-enabled]) .Form-action--submit,
@@ -292,6 +289,7 @@
 .Form-question {
   padding: var(--Form-padding);
   font-size: var(--Form-font-size-lg);
+  padding-bottom: var(--Form-space-lg);
 }
 
 @media (min-width: 1000px) {
@@ -336,6 +334,12 @@
   border-top: var(--Form-border-width) solid rgb(var(--color-red));
 }
 
+@media (min-width: 1000px) {
+  .Form-options {
+    border: 0;
+  }
+}
+
 .Form-option {
   flex: 1 1 auto;
   display: flex;
@@ -373,6 +377,8 @@
 
 .Form-label {
   position: relative;
+  line-height: normal;
+  padding-right: var(--Form-padding);
 }
 
 .Form-option--checkbox .Form-toggle:focus-visible + .Form-label,
@@ -460,15 +466,17 @@
 
 .Form-option--text {
   display: flex;
+  overflow: hidden;
 }
 
 .Form-text {
-  flex: 1 0 auto;
-  padding: 0 0.5rem;
+  flex: 1 1 auto;
+  font: inherit;
+  line-height: normal;
   border: 0;
   background: transparent;
   border-radius: 0;
-  box-shadow: 0;
+  box-shadow: none;
   color: currentColor;
   -webkit-appearance: none;
 }

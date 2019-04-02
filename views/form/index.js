@@ -141,9 +141,9 @@ class Form extends Component {
                       return list
                     }, [])}
                   </dl>
-                  <div class="Form-action Form-action--restart">
+                  <div class="Form-restart">
                       Blev något fel?<br>
-                      <a href="${state.href}${query}${query ? '&' : '?'}q=0" class="Form-button" onclick=${goto(0)}>Gå tillbaka och ändra</a>
+                      <a href="${state.href}${query}${query ? '&' : '?'}q=0" onclick=${goto(0)}>Gå tillbaka och ändra</a>
                   </div>
                 </div>
               `}
