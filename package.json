@@ -48,15 +48,18 @@
     "choo": "^6.13.2",
     "choo-meta": "^1.0.3",
     "choo-service-worker": "^2.4.0",
+    "date-fns": "^1.30.1",
     "dotenv": "^6.2.0",
     "focus-visible": "^4.1.5",
     "jalla": "^0.12.0-7",
     "koa-body": "^4.0.8",
     "koa-compose": "^4.1.0",
     "koa-route": "^3.2.0",
+    "nanoraf": "^3.1.0",
     "normalize.css": "^8.0.1",
     "postcss-custom-properties": "^8.0.9",
     "postcss-focus-visible": "^4.0.0",
-    "postcss-url": "^8.0.0"
+    "postcss-url": "^8.0.0",
+    "scroll-into-view": "^1.9.5"
   }
 }

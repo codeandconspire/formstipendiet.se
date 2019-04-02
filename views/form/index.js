@@ -3,11 +3,11 @@ var { i18n, className } = require('../../components/base')
 var questions = [
   require('../../components/q0'),
   require('../../components/q1'),
-  require('../../components/q2')
+  require('../../components/q2'),
+  require('../../components/q3')
 ]
 
 var text = i18n()
-var data = require('./questions.json')
 
 module.exports = form
 
@@ -24,7 +24,7 @@ function form (state, emit) {
   var current = all[state.step]
 
   var query = serialize(state.answers)
-  var isSummary = state.step === data.length
+  var isSummary = state.step === questions.length
   var isValid = isSummary || current.verify()
 
   var answers = all
