@@ -1,5 +1,6 @@
 var html = require('choo/html')
 var Countdown = require('../../components/countdown')
+var intro = require('../../components/intro')
 var { i18n } = require('../../components/base')
 
 var DEADLINE = new Date('2019-05-25')
@@ -18,6 +19,7 @@ function home (state, emit) {
   return html`
     <body>
       <main class="Home">
+        ${intro()}
         <div class="Home-main">
           <div class="Home-content">
             <p>Din designkarriär kan börja hos Beckmans Kvällsskola!</p>
