@@ -6,18 +6,20 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .Q2-option {
   display: flex;
   position: relative;
-  padding-top: 0.6em;
+  padding-top: var(--Form-space-md);
 }
 
 @media (min-width: 1000px) {
   .Q2-option {
     min-height: 65vh;
-    border: solid rgb(var(--color-red));
+    border: solid;
     border-width: 1px 0;
   }
 }
@@ -41,8 +43,7 @@
 
 .Q2-limit {
   position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
-  font-size: 0.8rem;
-  color: rgb(var(--color-red));
+  right: var(--Form-padding);
+  top: var(--Form-padding);
+  font-size: var(--Form-font-size-small);
 }

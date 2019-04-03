@@ -17,7 +17,7 @@
 }
 
 .Q0-option:first-child {
-  border-bottom: 1px solid rgb(var(--color-red));
+  border-bottom: 1px solid;
 }
 
 @media (min-width: 1000px) {
@@ -41,10 +41,6 @@
   background: rgb(var(--color-red));
 }
 
-.Q0-label {
-  position: relative;
-}
-
 .Q0-toggle:checked + .Q0-label {
   color: #fff;
 }
@@ -54,37 +50,43 @@
  */
 
 .Q0-tooltip {
-  padding: 1rem;
+  padding: 0.7em;
   position: absolute;
-  left: 100%;
+  left: 50%;
   top: 50%;
-  font-size: var(--Form-font-size-sm);
+  font-size: var(--Form-font-size-small);
   background: #fff;
-  white-space: nowrap;
   opacity: 0;
   color: rgb(var(--color-red));
-  transform: translate(0rem, -50%);
+  transform: translate(-2em, -50%);
+  width: 9.3em;
+  pointer-events: none;
 }
 
 .Q0-toggle:checked + .Q0-label .Q0-tooltip {
   animation: Q0-tooltip--appear 200ms forwards cubic-bezier(0.1, 0.885, 0.24, 1.35);
+  pointer-events: all;
 }
 
 @keyframes Q0-tooltip--appear {
   to {
     opacity: 1;
-    transform: translate(2.3rem, -50%);
+    transform: translate(0em, -50%);
   }
 }
 
 @media (min-width: 1000px) {
+  .Q0-label {
+    position: relative;
+  }
+
   .Q0-tooltip {
     width: 10rem;
     left: 50%;
     top: auto;
     bottom: 100%;
     white-space: normal;
-    transform: translate(-50%, 0rem);
+    transform: translate(-50%, 0em);
   }
 
   .Q0-toggle:checked + .Q0-label .Q0-tooltip {
@@ -94,7 +96,7 @@
   @keyframes Q0-tooltip--appear {
     to {
       opacity: 1;
-      transform: translate(-50%, -1.3rem);
+      transform: translate(-50%, -1.3em);
     }
   }
 }
@@ -104,7 +106,7 @@
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 0.6rem 1.6rem;
+  border-width: 0.4em 1em;
   border-color: transparent #fff transparent transparent;
   position: absolute;
   right: calc(100% - 1px);
@@ -114,7 +116,7 @@
 
 @media (min-width: 1000px) {
   .Q0-tooltip::after {
-    border-width: 1.6rem 0.6rem;
+    border-width: 1em 0.4em;
     border-color: #fff transparent transparent;
     left: 50%;
     right: auto;

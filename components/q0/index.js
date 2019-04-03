@@ -40,7 +40,7 @@ module.exports = class Q0 extends Component {
           <span class="Q0-label">
             Nej..
             <span class="Q0-tooltip">
-              Se till att göra det på <a href="https://www.beckmans.se" rel="noopener noreferrer">beckmans.se</a>
+              Se till att göra det på <a href="https://www.beckmans.se" rel="noopener noreferrer" target="_blank">beckmans.se</a>
             </span>
           </span>
         </label>

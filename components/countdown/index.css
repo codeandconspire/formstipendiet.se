@@ -2,16 +2,17 @@
 
 /* @define Countdown */
 .Countdown {
-  padding: 0.1rem 0;
   position: relative;
-  font-size: var(--Form-font-size-md);
+  font-size: var(--Form-font-size-interface);
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
+  user-select: none;
+  padding-top: 2px;
 }
 
 .Countdown-counter {
-  animation: Countdown-counter--rolling 10s forwards linear;
+  animation: Countdown-counter--rolling 15s forwards linear;
 }
 
 @keyframes Countdown-counter--rolling {
@@ -23,17 +24,20 @@
 .Countdown-counter {
   display: inline-flex;
   align-items: center;
+  padding-left: 2.3em;
 }
 
 .Countdown-clock {
   flex: 0 0 auto;
   display: inline-block;
-  width: 2rem;
-  height: 2rem;
+  width: 1.4rem;
+  height: 1.4rem;
   border: 2px solid rgb(var(--color-red));
-  margin: 0 1rem;
-  position: relative;
-  border-radius: 1rem;
+  position: absolute;
+  top: calc(50% - 2px);
+  left: 0.7em;
+  transform: translateY(-50%);
+  border-radius: 50%;
 }
 
 .Countdown-hand {

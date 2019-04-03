@@ -5,6 +5,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .Q1-option {

@@ -1,25 +1,28 @@
 @import "../../components/base";
 
 :root {
-  --Form-space-sm: 6vh;
+  --Form-space-sm: 2.2rem;
   --Form-space-md: 8vh;
   --Form-space-lg: 13vh;
-  --Form-statusbar-height: var(--Form-space-sm);
-  --Form-nav-height: var(--Form-space-lg);
   --Form-padding: 0.3rem;
-  --Form-font-size-sm: 0.8rem;
-  --Form-font-size-md: 3.8vh;
-  --Form-font-size-lg: 6.3vh;
+
+  --Form-font-size-small: 1rem;
+  --Form-font-size-interface: 1.5rem;
+  --Form-font-size-text: 2rem;
+  --Form-font-size-title: 2.6;
+  
   --Form-border-width: 1px;
 }
 
 @media (min-width: 1000px) {
   :root {
-    --Form-space-sm: 4vh;
     --Form-space-md: 4vh;
     --Form-space-lg: 9vh;
-    --Form-padding: 0.3rem;
-    --Form-font-size-md: 2.6vh;
+
+    --Form-font-size-small: 1rem;
+    --Form-font-size-interface: 1.5rem;
+    --Form-font-size-text: 2rem;
+    --Form-font-size-title: 3.75rem;
   }
 }
 
@@ -33,6 +36,7 @@
 .Form {
   width: 100vw;
   height: 100vh;
+  -webkit-touch-callout: none;
 }
 
 .Form-statusbar {
@@ -41,16 +45,17 @@
   left: 0;
   z-index: 1;
   width: 100%;
-  height: var(--Form-statusbar-height)
+  height: var(--Form-space-sm);
+  user-select: none;
 }
 
 .Form-main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(100% - var(--Form-statusbar-height) - var(--Form-nav-height));
+  height: calc(100% - var(--Form-space-sm) - var(--Form-space-lg));
   position: relative;
-  top: var(--Form-statusbar-height);
+  top: var(--Form-space-sm);
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -58,11 +63,12 @@
 .Form-footer,
 .Form-nav {
   width: 100%;
-  height: var(--Form-nav-height);
+  height: var(--Form-space-lg);
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 1;
+  user-select: none;
 }
 
 .Form-footer {
@@ -70,6 +76,7 @@
 }
 
 .Form-tools {
+  flex: 1;
   border-top: 1px solid rgb(var(--color-red))
 }
 
@@ -89,7 +96,7 @@
     right: 0;
     bottom: auto;
     left: auto;
-    width: var(--Form-nav-height);
+    width: var(--Form-space-lg);
     height: 100%;
   }
 
@@ -103,15 +110,15 @@
 
   .Form-question {
     width: 50%;
-    height: calc(100% - var(--Form-statusbar-height) - var(--Form-nav-height));
+    height: calc(100% - var(--Form-space-sm) - var(--Form-space-lg));
     position: relative;
-    top: var(--Form-statusbar-height);
+    top: var(--Form-space-sm);
   }
 
   .Form-tools {
     height: 100%;
-    width: calc(50% - var(--Form-nav-height));
-    margin-right: var(--Form-nav-height);
+    width: calc(50% - var(--Form-space-lg));
+    margin-right: var(--Form-space-lg);
     border: 0;
   }
 
@@ -129,7 +136,7 @@
  */
 
 .Form {
-  font-size: var(--Form-font-size-md);
+  font-size: var(--Form-font-size-interface);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -219,6 +226,10 @@
   font: inherit;
 }
 
+.Form-action:hover {
+  background-color: rgba(var(--color-red), 0.06)
+}
+
 .Form-action:focus-visible:not(:disabled):not(.is-disabled) {
   background-color: rgb(var(--color-yellow));
 }
@@ -235,10 +246,12 @@
 .Form-action.is-disabled {
   background-image: url("./disabled.svg");
   background-size: 100% 100%;
+  pointer-events: none;
 }
 
 .Form-action.is-disabled + .Form-action.is-disabled {
   background-image: none;
+  pointer-events: none;
 }
 
 :root:not([scripting-enabled]) .Form-action--next,
@@ -289,7 +302,7 @@
     right: 0;
     bottom: calc(var(--Form-space-lg) - 1em);
     transform-origin: 0 0;
-    transform: translateX(calc(100% - (var(--Form-nav-height) / 2) - 0.5em)) rotate(-90deg);
+    transform: translateX(calc(100% - (var(--Form-space-lg) / 2) - 0.5em)) rotate(-90deg);
   }
 
   .Form-action--submit {
@@ -342,8 +355,12 @@
 
 .Form-question {
   padding: var(--Form-padding);
-  font-size: var(--Form-font-size-lg);
+  font-size: var(--Form-font-size-title);
   padding-bottom: var(--Form-space-lg);
+}
+
+.Form-tools {
+  font-size: var(--Form-font-size-text);
 }
 
 @media (min-width: 1000px) {

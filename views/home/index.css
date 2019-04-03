@@ -6,55 +6,65 @@
   flex-wrap: wrap;
   height: 100%;
   position: relative;
+  font-size: 1.5rem;
 }
 
 @media (min-width: 1000px) {
   .Home {
     flex-wrap: nowrap;
+    font-size: 2.5rem;
   }
 }
 
 .Home-main {
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   position: relative;
-  overflow: hidden;
-  font-size: 2.5rem;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.Home-main p {
+  margin: 0.5em 0;
+}
+
+.Home-content {
+  padding: 10rem var(--Form-padding) 5rem;
+}
+
+@media (min-width: 600px) {
+  .Home-content {
+    padding: var(--Form-space-md);
+  }
 }
 
 @media (min-width: 1000px) {
   .Home-main {
     flex: 1 1 auto;
   }
-}
 
-.Home-main p:not(:first-child) {
-  margin-top: 0.35em;
-}
-
-.Home-main p:not(:last-child) {
-  margin-bottom: 0.35em;
-}
-
-.Home-content {
-  padding: 2vw;
-  margin: auto 0;
+  .Home-content {
+    padding: var(--Form-space-lg);
+  }
 }
 
 .Home-apply {
   display: flex;
+  padding-right: 0.5em;
+  margin-top: 1em;
   align-items: center;
-  margin-top: 4rem;
+  text-transform: uppercase;
+  user-select: none;
 }
 
 .Home-apply::before {
   content: "";
   order: -1;
   flex: 1 0 auto;
-  height: 1px;
+  height: 2px;
   background-color: rgb(var(--color-red));
 }
 
@@ -62,8 +72,8 @@
   content: "";
   order: -1;
   display: block;
-  width: 0.25em;
-  height: 0.4em;
+  width: 8px;
+  height: 13px;
   margin-right: 0.5em;
   position: relative;
   left: -1px;
@@ -71,28 +81,29 @@
   background-size: 100% auto;
 }
 
-.Home-apply:hover::after,
-.Home-apply:hover::before {
-  transform: translateX(0.5em);
-}
-
 .Home-menu {
-  position: absolute;
-  top: 2vh;
-  right: 2vh;
-
-  font-size: 1.4rem;
+  position: fixed;
+  top: 0.5vh;
+  right: -1.5em;
+  font-size: var(--Form-font-size-interface);
   text-transform: uppercase;
   word-spacing: 0.2em;
   color: rgb(var(--color-red));
-
   transform-origin: center;
-  animation: Home-menu--spinning 45s infinite linear;
+  animation: Home-menu--spinning 15s infinite linear;
+  user-select: none;
+}
+
+@media (min-width: 1000px) {
+  .Home-menu {
+    top: 1.5vw;
+    right: 37%;
+  }
 }
 
 .Home-menu .Home-dot {
   transform-origin: center;
-  transition: transform 300ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  transition: transform 150ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
   will-change: transform;
 }
 
@@ -102,16 +113,20 @@
 
 @keyframes Home-menu--spinning {
   to {
-    transform: rotate(360deg);
+    transform: rotate(1turn);
   }
 }
 
 .Home-footer {
+  display: flex;
   width: 100%;
-  border-top: 1px solid rgb(var(--color-red));
-  position: absolute;
+  border-top: 2px solid rgb(var(--color-red));
+  position: fixed;
   left: 0;
   bottom: 0;
+  height: var(--Form-space-sm);
+  background: #fff;
+  align-items: center;
 }
 
 .Home-sidebar {
@@ -122,5 +137,7 @@
 @media (min-width: 1000px) {
   .Home-sidebar {
     flex: 0 0 35%;
+    position: relative;
+    z-index: 10;
   }
 }

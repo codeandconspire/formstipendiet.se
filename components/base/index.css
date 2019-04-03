@@ -62,18 +62,6 @@
   text-rendering: geometricPrecision; /* 6 */
 }
 
-@media (min-width: 1500px) {
-  :root {
-    font-size: 110%;
-  }
-}
-
-@media (min-width: 1800px) {
-  :root {
-    font-size: 120%;
-  }
-}
-
 ::selection {
   background: rgb(var(--color-yellow));
 }
