@@ -1,0 +1,153 @@
+@import "../../components/base/";
+
+/* @define Info */
+.Info {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  font-size: 1.75rem;
+}
+
+@media (min-width: 1000px) {
+  .Info {
+    flex-wrap: nowrap;
+  }
+}
+
+.Info-main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.Info-main p {
+  margin: 0.5em 0;
+}
+
+.Info-content {
+  padding: 8rem var(--Form-padding) 5rem;
+}
+
+@media (min-width: 600px) {
+  .Info-content {
+    padding: var(--Form-space-sm) 6rem var(--Form-space-sm) var(--Form-space-sm);
+  }
+}
+
+@media (min-width: 1000px) {
+  .Info-main {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .Info-content {
+    padding: var(--Form-space-lg) 6rem var(--Form-space-lg) var(--Form-space-lg);
+  }
+}
+
+.Info-menu {
+  position: fixed;
+  top: 0.5vh;
+  right: -1.5em;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  word-spacing: 0.2em;
+  color: rgb(var(--color-red));
+  transform-origin: center;
+  animation: Info-menu--spinning 15s infinite linear;
+  user-select: none;
+}
+
+@media (min-width: 1000px) {
+  .Info-menu {
+    top: 1.5vw;
+    right: 37%;
+  }
+}
+
+.Info-menu .Info-dot {
+  transform-origin: center;
+  transition: transform 150ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  will-change: transform;
+}
+
+.Info-menu:hover .Info-dot {
+  transform: scale(8);
+}
+
+@keyframes Info-menu--spinning {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.Info-footer {
+  padding: var(--Form-padding);
+  margin: auto var(--Form-padding) var(--Form-padding);
+  border: 1px solid rgb(var(--color-red));
+}
+
+@media (min-width: 600px) {
+  .Info-footer {
+    margin: auto var(--Form-space-sm) var(--Form-space-sm);
+  }
+}
+
+@media (min-width: 1000px) {
+  .Info-footer {
+    margin: auto var(--Form-space-lg) var(--Form-space-lg);
+  }
+}
+
+.Info-sidebar {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  color: #fff;
+  background-color: rgb(var(--color-red));
+}
+
+@media (min-width: 1000px) {
+  .Info-sidebar {
+    flex: 0 0 35%;
+    position: relative;
+    z-index: 10;
+  }
+}
+
+.Info-instructions {
+  padding: var(--Form-padding);
+  margin-bottom: var(--Form-space-sm);
+}
+
+.Info-step {
+  font-size: 1.75rem;
+  margin: 0.5rem 0;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.Info-step::before {
+  display: inline-block;
+  margin-right: 0.5em;
+  font-size: 0.8rem;
+  vertical-align: super;
+}
+
+.Info-step:nth-child(1)::before {
+  content: "1";
+}
+
+.Info-step:nth-child(2)::before {
+  content: "2";
+}
+
+.Info-step:nth-child(3)::before {
+  content: "3";
+}

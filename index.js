@@ -17,6 +17,7 @@ app.use(require('choo-meta')({ origin: app.state.origin }))
 app.use(require('choo-service-worker')('/sw.js'))
 
 app.route('/', require('./views/home'))
+app.route('/info', require('./views/info'))
 app.route('/ansok', require('./views/form'))
 app.route('/tack', require('./views/thanks'))
 

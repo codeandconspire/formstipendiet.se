@@ -1,7 +1,6 @@
 var html = require('choo/html')
-var Countdown = require('../../components/countdown')
-var intro = require('../../components/intro')
 var { i18n } = require('../../components/base')
+var Countdown = require('../../components/countdown')
 
 var DEADLINE = new Date('2019-05-25')
 
