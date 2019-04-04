@@ -58,6 +58,10 @@
 }
 
 @media (min-width: 1000px) {
+  .Age-option::after {
+    content: none;
+  }
+  
   .Age-option {
     margin: 0;
     padding: 3.5rem 0;

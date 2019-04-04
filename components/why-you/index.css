@@ -19,7 +19,7 @@
 
 @media (min-width: 1000px) {
   .WhyYou-option {
-    min-height: 65vh;
+    height: 65vh;
     border: solid;
     border-width: 1px 0;
   }
