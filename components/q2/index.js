@@ -19,7 +19,7 @@ module.exports = class Q2 extends Component {
   }
 
   title () {
-    return 'Berätta lite om varför du tycker att du ska få Formstipendiet.'
+    return 'Berätta om varför du tycker att du ska få Formstipendiet.'
   }
 
   update () {
