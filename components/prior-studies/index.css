@@ -1,7 +1,7 @@
 @import "../base";
 
-/* @Q1 */
-.Q1 {
+/* @PriorStudies */
+.PriorStudies {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -9,7 +9,7 @@
   -webkit-touch-callout: none;
 }
 
-.Q1-option {
+.PriorStudies-option {
   flex: 1 1 auto;
   display: flex;
   align-items: center;
@@ -18,7 +18,7 @@
   position: relative;
 }
 
-.Q1-indicator {
+.PriorStudies-indicator {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -27,7 +27,7 @@
   z-index: -1;
 }
 
-.Q1-toggle {
+.PriorStudies-toggle {
   -webkit-appearance: none;
   width: 100%;
   height: 100%;
@@ -38,19 +38,19 @@
   outline: none;
 }
 
-.Q1-toggle:checked + .Q1-indicator {
+.PriorStudies-toggle:checked + .PriorStudies-indicator {
   background: rgb(var(--color-red));
 }
 
-.Q1-label {
+.PriorStudies-label {
   line-height: normal;
 }
 
-.Q1-toggle:checked ~ .Q1-label {
+.PriorStudies-toggle:checked ~ .PriorStudies-label {
   color: #fff;
 }
 
-.Q1-toggle ~ .Q1-label::after {
+.PriorStudies-toggle ~ .PriorStudies-label::after {
   content: "";
   width: 100%;
   height: 1px;
@@ -60,7 +60,7 @@
   background-color: currentColor;
 }
 
-.Q1-text {
+.PriorStudies-text {
   width: 100%;
   flex: 1 1 auto;
   padding: 0 0.5rem;
@@ -72,6 +72,6 @@
   -webkit-appearance: none;
 }
 
-.Q1-text::placeholder {
+.PriorStudies-text::placeholder {
   color: currentColor;
 }

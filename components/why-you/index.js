@@ -3,7 +3,7 @@ var Component = require('choo/component')
 
 var NAME = 'why-me'
 
-module.exports = class Q2 extends Component {
+module.exports = class WhyYou extends Component {
   constructor (id, state, emit) {
     super(id)
     var value = state.answers[NAME] || ''
@@ -30,11 +30,11 @@ module.exports = class Q2 extends Component {
     var self = this
 
     return html`
-      <div class="Q2" id="${this.local.id}">
-        <label class="Q2-option">
-          <div class="Q2-limit">${500 - this.local.value.length} tecken</div>
+      <div class="WhyYou" id="${this.local.id}">
+        <label class="WhyYou-option">
+          <div class="WhyYou-limit">${500 - this.local.value.length} tecken</div>
           <span class="u-hiddenVisually">Varför tycker du att du ska få Formstipendiet?</span>
-          <textarea class="Q2-text" name="${NAME}" maxlength="500" rows="9" placeholder="Skriv här…" required oninput=${oninput}>${this.local.value}</textarea>
+          <textarea class="WhyYou-text" name="${NAME}" maxlength="500" rows="9" placeholder="Skriv här…" required oninput=${oninput}>${this.local.value}</textarea>
         </label>
       </div>
     `

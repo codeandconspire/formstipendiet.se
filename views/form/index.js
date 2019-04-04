@@ -1,10 +1,10 @@
 var html = require('choo/html')
 var { i18n, className } = require('../../components/base')
 var questions = [
-  require('../../components/q0'),
-  require('../../components/q1'),
-  require('../../components/q2'),
-  require('../../components/q3')
+  require('../../components/has-applied'),
+  require('../../components/why-you'),
+  require('../../components/prior-studies'),
+  require('../../components/age')
 ]
 
 var text = i18n()

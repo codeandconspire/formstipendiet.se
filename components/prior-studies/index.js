@@ -10,7 +10,7 @@ var OPTIONS = [
   'Fristående kurser'
 ]
 
-module.exports = class Q1 extends Component {
+module.exports = class PriorStudies extends Component {
   constructor (id, state, emit) {
     super(id)
     var value = state.answers[NAME] || []
@@ -38,17 +38,17 @@ module.exports = class Q1 extends Component {
     var self = this
 
     return html`
-      <div class="Q1" id="${this.local.id}">
+      <div class="PriorStudies" id="${this.local.id}">
         ${OPTIONS.map((label) => html`
-          <label class="Q1-option">
-            <input class="Q1-toggle" type="checkbox" name="${NAME}" value="${label}" checked=${this.local.value.includes(label)} onchange=${onchange}>
-            <div class="Q1-indicator"></div>
-            <span class="Q1-label">${label}</span>
+          <label class="PriorStudies-option">
+            <input class="PriorStudies-toggle" type="checkbox" name="${NAME}" value="${label}" checked=${this.local.value.includes(label)} onchange=${onchange}>
+            <div class="PriorStudies-indicator"></div>
+            <span class="PriorStudies-label">${label}</span>
           </label>
         `)}
-        <label class="Q1-option">
-          <span class="Q1-label">Annat:</span>
-          <input class="Q1-text" type="text" name="${NAME}" value="${this.local.text}" oninput=${oninput}>
+        <label class="PriorStudies-option">
+          <span class="PriorStudies-label">Annat:</span>
+          <input class="PriorStudies-text" type="text" name="${NAME}" value="${this.local.text}" oninput=${oninput}>
         </label>
       </div>
     `
