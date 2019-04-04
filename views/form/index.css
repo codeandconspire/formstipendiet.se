@@ -2,8 +2,8 @@
 
 :root {
   --Form-space-sm: 2.2rem;
-  --Form-space-md: 8vh;
-  --Form-space-lg: 13vh;
+  --Form-space-md: 4rem;
+  --Form-space-lg: 6rem;
   --Form-padding: 0.3rem;
 
   --Form-font-size-small: 1rem;
@@ -16,8 +16,8 @@
 
 @media (min-width: 1000px) {
   :root {
-    --Form-space-md: 4vh;
-    --Form-space-lg: 9vh;
+    --Form-space-md: 4rem;
+    --Form-space-lg: 7rem;
 
     --Form-font-size-small: 1rem;
     --Form-font-size-interface: 1.5rem;
@@ -34,8 +34,8 @@
  */
 
 .Form {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   -webkit-touch-callout: none;
 }
 
@@ -53,9 +53,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(87vh - 2.2rem);
+  height: calc(100% - var(--Form-space-lg) - var(--Form-space-sm));
   position: relative;
-  top: 2.2rem;
+  top: var(--Form-space-sm);
 }
 
 .Form-container {

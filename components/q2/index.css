@@ -1,7 +1,7 @@
 @import "../base";
 
-/* @WhyYou */
-.WhyYou {
+/* @Q2 */
+.Q2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +10,7 @@
   -webkit-touch-callout: none;
 }
 
-.WhyYou-option {
+.Q2-option {
   display: flex;
   position: relative;
   padding-top: 2rem;
@@ -18,14 +18,14 @@
 }
 
 @media (min-width: 1000px) {
-  .WhyYou-option {
-    height: 65%;
+  .Q2-option {
+    max-height: 65%;
     border: solid;
     border-width: 1px 0;
   }
 }
 
-.WhyYou-text {
+.Q2-text {
   width: 100%;
   flex: 1 1 auto;
   padding: var(--Form-padding);
@@ -39,15 +39,15 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.WhyYou-text:focus {
+.Q2-text:focus {
   outline: 0;
 }
 
-.WhyYou-text::placeholder {
+.Q2-text::placeholder {
   color: currentColor;
 }
 
-.WhyYou-limit {
+.Q2-limit {
   position: absolute;
   right: var(--Form-padding);
   top: var(--Form-padding);

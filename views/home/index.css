@@ -4,8 +4,8 @@
 .Home {
   display: flex;
   flex-wrap: wrap;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: relative;
   font-size: 1.5rem;
 }
@@ -18,7 +18,7 @@
 }
 
 .Home-main {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
