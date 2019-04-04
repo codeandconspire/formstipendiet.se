@@ -9,7 +9,7 @@
   --Form-font-size-small: 1rem;
   --Form-font-size-interface: 1.5rem;
   --Form-font-size-text: 2rem;
-  --Form-font-size-title: 2.6;
+  --Form-font-size-title: 2.6rem;
   
   --Form-border-width: 1px;
 }
@@ -53,7 +53,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(100% - var(--Form-space-sm) - var(--Form-space-lg));
+  height: 100%;
+  padding: var(--Form-space-sm) 0 var(--Form-space-lg);
   position: relative;
   top: var(--Form-space-sm);
   overflow: auto;
@@ -102,6 +103,7 @@
 
   .Form-main {
     height: 100%;
+    padding: 0;
     top: 0;
     flex-direction: row;
     overflow: hidden;

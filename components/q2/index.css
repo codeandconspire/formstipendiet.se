@@ -13,12 +13,13 @@
 .Q2-option {
   display: flex;
   position: relative;
-  padding-top: var(--Form-space-md);
+  padding-top: 2rem;
+  height: 100%;
 }
 
 @media (min-width: 1000px) {
   .Q2-option {
-    min-height: 65vh;
+    max-height: 65vh;
     border: solid;
     border-width: 1px 0;
   }
