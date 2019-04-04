@@ -38,6 +38,10 @@
   -webkit-appearance: none;
 }
 
+.Q2-text:focus {
+  outline: 0;
+}
+
 .Q2-text::placeholder {
   color: currentColor;
 }

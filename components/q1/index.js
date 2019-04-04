@@ -42,6 +42,7 @@ module.exports = class Q1 extends Component {
         ${OPTIONS.map((label) => html`
           <label class="Q1-option">
             <input class="Q1-toggle" type="checkbox" name="${NAME}" value="${label}" checked=${this.local.value.includes(label)} onchange=${onchange}>
+            <div class="Q1-indicator"></div>
             <span class="Q1-label">${label}</span>
           </label>
         `)}

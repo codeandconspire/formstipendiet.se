@@ -33,10 +33,12 @@ module.exports = class Q0 extends Component {
       <div class="Q0" id="${this.local.id}">
         <label class="Q0-option">
           <input class="Q0-toggle" type="radio" name="${NAME}" value="Ja" checked=${this.local.value === 'Ja'} required onchange=${onchange}>
+          <div class="Q0-indicator"></div>
           <span class="Q0-label">Ja, självklart</span>
         </label>
         <label class="Q0-option">
           <input class="Q0-toggle" type="radio" name="${NAME}" value="Nej" checked=${this.local.value === 'Nej'} onchange=${onchange}>
+          <div class="Q0-indicator"></div>
           <span class="Q0-label">
             Nej..
             <span class="Q0-tooltip">

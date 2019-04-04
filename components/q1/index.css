@@ -18,6 +18,15 @@
   position: relative;
 }
 
+.Q1-indicator {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
 .Q1-toggle {
   -webkit-appearance: none;
   width: 100%;
@@ -25,12 +34,11 @@
   position: absolute;
   left: 0;
   top: 0;
-  z-index: -1;
   opacity: 0;
   outline: none;
 }
 
-.Q1-toggle:checked {
+.Q1-toggle:checked + .Q1-indicator {
   background: rgb(var(--color-red));
 }
 
@@ -38,11 +46,11 @@
   line-height: normal;
 }
 
-.Q1-toggle:checked + .Q1-label {
+.Q1-toggle:checked ~ .Q1-label {
   color: #fff;
 }
 
-.Q1-toggle + .Q1-label::after {
+.Q1-toggle ~ .Q1-label::after {
   content: "";
   width: 100%;
   height: 1px;

@@ -27,6 +27,15 @@
   }
 }
 
+.Q0-indicator {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
 .Q0-toggle {
   -webkit-appearance: none;
   width: 100%;
@@ -39,11 +48,11 @@
   opacity: 0;
 }
 
-.Q0-toggle:checked {
+.Q0-toggle:checked + .Q0-indicator {
   background: rgb(var(--color-red));
 }
 
-.Q0-toggle:checked + .Q0-label {
+.Q0-toggle:checked ~ .Q0-label {
   color: #fff;
 }
 
@@ -56,6 +65,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
+  z-index: 2;
   font-size: var(--Form-font-size-small);
   background: #fff;
   opacity: 0;
@@ -65,7 +75,7 @@
   pointer-events: none;
 }
 
-.Q0-toggle:checked + .Q0-label .Q0-tooltip {
+.Q0-toggle:checked ~ .Q0-label .Q0-tooltip {
   animation: Q0-tooltip--appear 200ms forwards cubic-bezier(0.1, 0.885, 0.24, 1.35);
   pointer-events: all;
 }
