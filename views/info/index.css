@@ -7,7 +7,7 @@
   width: 100vw;
   height: 100vh;
   position: relative;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
 @media (min-width: 1000px) {
@@ -36,7 +36,7 @@
 
 @media (min-width: 600px) {
   .Info-content {
-    padding: var(--Form-space-sm) 6rem var(--Form-space-sm) var(--Form-space-sm);
+    padding: var(--Form-space-md);
   }
 }
 
@@ -47,7 +47,7 @@
   }
 
   .Info-content {
-    padding: var(--Form-space-lg) 6rem var(--Form-space-lg) var(--Form-space-lg);
+    padding: var(--Form-space-lg);
   }
 }
 
@@ -95,7 +95,7 @@
 
 @media (min-width: 600px) {
   .Info-footer {
-    margin: auto var(--Form-space-sm) var(--Form-space-sm);
+    margin: auto var(--Form-space-md) var(--Form-space-md);
   }
 }
 
