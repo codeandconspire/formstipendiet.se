@@ -25,7 +25,7 @@ function form (state, emitter, app) {
       .reduce(function (obj, key) {
         var val = state.query[key]
         if (Array.isArray(val)) obj[key] = val.map(decodeURIComponent)
-        else obj[key] = val
+        else obj[key] = decodeURIComponent(val)
         return obj
       }, {})
 

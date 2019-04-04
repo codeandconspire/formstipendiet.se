@@ -3,6 +3,7 @@ var { i18n, className } = require('../../components/base')
 var questions = [
   require('../../components/has-applied'),
   require('../../components/why-you'),
+  require('../../components/opportunities'),
   require('../../components/prior-studies'),
   require('../../components/age')
 ]

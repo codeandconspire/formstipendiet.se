@@ -1,0 +1,104 @@
+@import "../base";
+
+/* @Opportunities */
+.Opportunities {
+  display: flex;
+  height: 100%;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+@media (min-width: 1000px) {
+  .Opportunities {
+    flex-direction: column;
+  }
+}
+
+.Opportunities-option {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+  padding: var(--Form-padding);
+  position: relative;
+  border: 1px solid currentColor;
+}
+
+@media (min-width: 1000px) {
+  .Opportunities-option {
+    min-height: var(--Form-space-md);
+    border: 0;
+    margin: 0;
+  }
+}
+
+.Opportunities-indicator {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.Opportunities-toggle {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  outline: none;
+}
+
+.Opportunities-toggle:checked + .Opportunities-indicator {
+  background: rgb(var(--color-red));
+}
+
+.Opportunities-label {
+  display: flex;
+  align-content: center;
+  font-size: 2.625rem;
+  line-height: normal;
+}
+
+@media (min-width: 1000px) {
+  .Opportunities-label {
+    padding: var(--Form-space-md);
+  }
+}
+
+.Opportunities-toggle:checked ~ .Opportunities-label {
+  color: #fff;
+}
+
+@media (min-width: 1000px) {
+  .Opportunities-toggle ~ .Opportunities-label::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: currentColor;
+  }
+}
+
+.Opportunities-symbol {
+  display: block;
+  width: 70px;
+  max-width: 20vw;
+  margin-right: 2rem;
+}
+
+.Opportunities-title {
+  display: block;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.Opportunities-description {
+  display: block;
+  font-size: 0.875rem;
+}
