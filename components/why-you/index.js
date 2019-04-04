@@ -34,7 +34,7 @@ module.exports = class WhyYou extends Component {
         <label class="WhyYou-option">
           <div class="WhyYou-limit">${500 - this.local.value.length} tecken</div>
           <span class="u-hiddenVisually">Varför tycker du att du ska få Formstipendiet?</span>
-          <textarea class="WhyYou-text" name="${NAME}" maxlength="500" rows="9" placeholder="Skriv här…" required oninput=${oninput}>${this.local.value}</textarea>
+          <textarea class="WhyYou-text" name="${NAME}" maxlength="500" placeholder="Skriv här…" required oninput=${oninput}>${this.local.value}</textarea>
         </label>
       </div>
     `

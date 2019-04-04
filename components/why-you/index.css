@@ -36,6 +36,7 @@
   color: currentColor;
   resize: none;
   -webkit-appearance: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .WhyYou-text:focus {
