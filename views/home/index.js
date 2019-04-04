@@ -19,7 +19,6 @@ function home (state, emit) {
   return html`
     <body>
       <main class="Home">
-        <!-- ${intro()} -->
         <div class="Home-main">
           <div class="Home-content">
             <p>Din designkarriär kan börja hos Beckmans Kvällsskola!</p>
