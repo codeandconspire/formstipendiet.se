@@ -56,39 +56,41 @@ function form (state, emit) {
         </div>
 
         <div class="Form-main">
-          <div class="Form-question">
-            <p>${isSummary ? 'Granska din ansökan' : current.title()}</p>
-            ${state.error ? html`
-              <div class="Form-error">
-                <h2>Hoppsan!</h2>
-                <p>Något verkar gått galet. Kontrollera att allt är ifyllt rätt innan du försöker igen.</p>
-                ${process.env.NODE_ENV === 'development' ? html`<pre>${state.error.stack}</pre>` : null}
-              </div>
-            ` : null}
-          </div>
-
-          <div class="Form-tools">
-            ${!isSummary ? current.render(onchange) : html`
-              <div class="Form-summary">
-                <dl class="Form-dl">
-                  ${all.reduce((list, question) => {
-                    list.push(html`<dt class="Form-title">${question.title()}</dt>`)
-                    var answers = Object.values(question.serialize())
-                    for (let i = 0, len = answers.length; i < len; i++) {
-                      if (i !== 0) list.push(html`<br>`)
-                      let value = answers[i]
-                      if (Array.isArray(value)) value = value.join(', ')
-                      list.push(html`<dd class="Form-value">${value}</dd>`)
-                    }
-                    return list
-                  }, [])}
-                </dl>
-                <div class="Form-restart">
-                  Blev något fel?<br>
-                  <a class="Form-link" href="${state.href}${query}${query ? '&' : '?'}q=0" onclick=${goto(0)}>Gå tillbaka och ändra</a>
+          <div class="Form-container">
+            <div class="Form-question">
+              <p>${isSummary ? 'Granska din ansökan' : current.title()}</p>
+              ${state.error ? html`
+                <div class="Form-error">
+                  <h2>Hoppsan!</h2>
+                  <p>Något verkar gått galet. Kontrollera att allt är ifyllt rätt innan du försöker igen.</p>
+                  ${process.env.NODE_ENV === 'development' ? html`<pre>${state.error.stack}</pre>` : null}
                 </div>
-              </div>
-            `}
+              ` : null}
+            </div>
+
+            <div class="Form-tools">
+              ${!isSummary ? current.render(onchange) : html`
+                <div class="Form-summary">
+                  <dl class="Form-dl">
+                    ${all.reduce((list, question) => {
+                      list.push(html`<dt class="Form-title">${question.title()}</dt>`)
+                      var answers = Object.values(question.serialize())
+                      for (let i = 0, len = answers.length; i < len; i++) {
+                        if (i !== 0) list.push(html`<br>`)
+                        let value = answers[i]
+                        if (Array.isArray(value)) value = value.join(', ')
+                        list.push(html`<dd class="Form-value">${value}</dd>`)
+                      }
+                      return list
+                    }, [])}
+                  </dl>
+                  <div class="Form-restart">
+                    Blev något fel?<br>
+                    <a class="Form-link" href="${state.href}${query}${query ? '&' : '?'}q=0" onclick=${goto(0)}>Gå tillbaka och ändra</a>
+                  </div>
+                </div>
+              `}
+            </div>
           </div>
         </div>
 

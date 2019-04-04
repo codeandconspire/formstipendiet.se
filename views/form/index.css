@@ -53,10 +53,19 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
-  padding: var(--Form-space-sm) 0 var(--Form-space-lg);
+  height: calc(100% - var(--Form-space-sm) - var(--Form-space-lg));
   position: relative;
+  top: var(--Form-space-sm);
+}
+
+.Form-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  position: absolute;
   top: 0;
+  left: 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -104,7 +113,11 @@
   .Form-main {
     height: 100%;
     padding: 0;
+    top: 0;
     flex-direction: row;
+  }
+
+  .Form-container {
     overflow: hidden;
     -webkit-overflow-scrolling: auto;
   }
