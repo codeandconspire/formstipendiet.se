@@ -56,7 +56,7 @@
   height: 100%;
   padding: var(--Form-space-sm) 0 var(--Form-space-lg);
   position: relative;
-  top: var(--Form-space-sm);
+  top: 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -104,7 +104,6 @@
   .Form-main {
     height: 100%;
     padding: 0;
-    top: 0;
     flex-direction: row;
     overflow: hidden;
     -webkit-overflow-scrolling: auto;
@@ -381,6 +380,7 @@
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  font-size: 1.5rem;
 }
 
 .Form-dl {
@@ -388,7 +388,7 @@
   width: 100%;
   padding-bottom: var(--Form-space-sm);
   border: solid;
-  border-width: var(--Form-border-width) 0;
+  border-width: 0 0 var(--Form-border-width) 0;
 }
 
 .Form-title {

@@ -4,7 +4,8 @@
 .Home {
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   position: relative;
   font-size: 1.5rem;
 }
