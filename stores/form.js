@@ -2,26 +2,39 @@ module.exports = form
 
 var STORAGE_ID = 'formstipendiet-form'
 
-function form (state, emitter) {
-  try {
-    var persisted = window.localStorage.getItem(STORAGE_ID)
-    if (persisted) persisted = JSON.parse(persisted)
-  } catch (e) {}
+function form (state, emitter, app) {
+  var initialized = false
 
-  var queried = Object.keys(state.query)
-    .filter((key) => key !== 'q')
-    .reduce(function (obj, key) {
-      var val = state.query[key]
-      if (Array.isArray(val)) obj[key] = val.map(decodeURIComponent)
-      else obj[key] = val
-      return obj
-    }, {})
+  var _prerender = app._prerender
+  app._prerender = function () {
+    if (!initialized) {
+      initialized = true
+      init()
+    }
+    return _prerender.apply(app, arguments)
+  }
 
-  var step = +state.query.q
-  state.step = isNaN(step) ? 0 : step
-  state.error = null
-  state.loading = false
-  state.answers = Object.assign({}, persisted, queried)
+  function init () {
+    try {
+      var persisted = window.localStorage.getItem(STORAGE_ID)
+      if (persisted) persisted = JSON.parse(persisted)
+    } catch (e) {}
+
+    var queried = Object.keys(state.query)
+      .filter((key) => key !== 'q')
+      .reduce(function (obj, key) {
+        var val = state.query[key]
+        if (Array.isArray(val)) obj[key] = val.map(decodeURIComponent)
+        else obj[key] = val
+        return obj
+      }, {})
+
+    var step = +state.query.q
+    state.step = isNaN(step) ? 0 : step
+    state.error = null
+    state.loading = false
+    state.answers = Object.assign({}, persisted, queried)
+  }
 
   emitter.on('form:save', function (name, value) {
     if (value) state.answers[name] = value
