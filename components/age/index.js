@@ -28,13 +28,23 @@ module.exports = class Age extends Component {
 
   serialize () {
     var { year, month, day } = this.local
-    month = ('0' + month).substr(-2)
+    month = ('0' + (month + 1)).substr(-2)
     day = ('0' + day).substr(-2)
     return { [NAME]: [year, month, day].join('-') }
   }
 
   title () {
     return 'När är du född?'
+  }
+
+  value () {
+    var { year, month, day } = this.local
+    var data = this.serialize()
+    return html`
+      <time datetime="${JSON.stringify(new Date(year, month, day)).replace(/^"|"$/g, '')}">
+        ${data[NAME]}
+      </time>
+    `
   }
 
   load (el) {

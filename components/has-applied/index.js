@@ -22,6 +22,10 @@ module.exports = class HasApplied extends Component {
     return 'Har du skickat in din ansökan till Kvällsskolan på Beckmans?'
   }
 
+  value () {
+    return null
+  }
+
   update () {
     return false
   }

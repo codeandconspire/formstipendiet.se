@@ -22,6 +22,14 @@ module.exports = class WhyYou extends Component {
     return 'Berätta om varför du tycker att du ska få Formstipendiet.'
   }
 
+  value () {
+    return html`
+      <div>
+        ${this.local.value.split(/\n+/).map((part) => html`<p>${part}</p>`)}
+      </div>
+    `
+  }
+
   update () {
     return false
   }

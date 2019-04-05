@@ -13,12 +13,14 @@
 @media (min-width: 1000px) {
   .Opportunities {
     flex-direction: column;
+    padding: 0;
   }
 }
 
 .Opportunities-option {
-  flex: 0 0 calc(100% * 1 / 3);
+  flex: 1 0 calc(100% * 1 / 3);
   display: flex;
+  flex-direction: column;
   padding: 0 0.25rem;
   position: relative;
 }
@@ -27,6 +29,7 @@
   .Opportunities-option {
     flex: 1 1 auto;
     min-height: var(--Form-space-md);
+    padding: 0;
   }
 }
 
@@ -57,8 +60,10 @@
 .Opportunities-label {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   height: 100%;
+  width: 100%;
   padding: var(--Form-padding);
   border: 1px solid rgb(var(--color-red));
   position: relative;
@@ -69,27 +74,21 @@
 
 @media (min-width: 1000px) {
   .Opportunities-label {
+    flex: 1 0 auto;
     flex-direction: row;
     padding: var(--Form-space-md);
+    border-width: 1px 0 0;
     font-size: 2.625rem;
     text-align: left;
+  }
+
+  .Opportunities-label:first-child {
+    border-top: 0;
   }
 }
 
 .Opportunities-toggle:checked ~ .Opportunities-label {
   color: #fff;
-}
-
-@media (min-width: 1000px) {
-  .Opportunities-toggle ~ .Opportunities-label::after {
-    content: "";
-    width: 100%;
-    height: 1px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background-color: currentColor;
-  }
 }
 
 .Opportunities-symbol {

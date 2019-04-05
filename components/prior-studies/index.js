@@ -30,6 +30,10 @@ module.exports = class PriorStudies extends Component {
     return 'Vad har du pluggat tidigare?'
   }
 
+  value () {
+    return html`<p>${this.local.value.join(', ')}</p>`
+  }
+
   update () {
     return false
   }

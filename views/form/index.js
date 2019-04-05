@@ -27,7 +27,9 @@ function form (state, emit) {
 
   var query = serialize(state.answers)
   var isSummary = state.step === questions.length
-  var isValid = isSummary || current.verify()
+  var isValid = isSummary ? all.reduce(function (valid, component) {
+    return valid && component.verify()
+  }, true) : current.verify()
 
   var answers = all
     .filter((component, index) => index !== state.step)
@@ -75,14 +77,12 @@ function form (state, emit) {
                 <div class="Form-summary">
                   <dl class="Form-dl">
                     ${all.reduce((list, question) => {
-                      list.push(html`<dt class="Form-title">${question.title()}</dt>`)
-                      var answers = Object.values(question.serialize())
-                      for (let i = 0, len = answers.length; i < len; i++) {
-                        if (i !== 0) list.push(html`<br>`)
-                        let value = answers[i]
-                        if (Array.isArray(value)) value = value.join(', ')
-                        list.push(html`<dd class="Form-value">${value}</dd>`)
-                      }
+                      var value = question.value()
+                      if (!value) return list
+                      list.push(
+                        html`<dt class="Form-title">${question.title()}</dt>`,
+                        html`<dd class="Form-value">${value}</dd>`
+                      )
                       return list
                     }, [])}
                   </dl>

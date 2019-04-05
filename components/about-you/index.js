@@ -32,6 +32,16 @@ module.exports = class AboutYou extends Component {
     }
   }
 
+  value () {
+    return html`
+      <p>
+        ${this.local[NAME]}<br>
+        ${this.local[STREET_ADDRESS]}<br>
+        ${this.local[POSTAL_CODE]}, ${this.local[CITY]}
+      </p>
+    `
+  }
+
   title () {
     return 'Vem är du?'
   }

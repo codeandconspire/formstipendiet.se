@@ -22,6 +22,10 @@ module.exports = class Opportunities extends Component {
     return 'Hur ser dina möjligheter ut att gå kvällsskolan om du inte skulle få Formstipendiet?'
   }
 
+  value () {
+    return html`<p>${this.local.value}</p>`
+  }
+
   update () {
     return false
   }
