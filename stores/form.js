@@ -34,6 +34,7 @@ function form (state, emitter, app) {
     state.error = null
     state.loading = false
     state.answers = Object.assign({}, persisted, queried)
+    state.contact = state.query.contact
   }
 
   emitter.on('form:save', function (name, value) {
@@ -74,6 +75,7 @@ function form (state, emitter, app) {
       if (!res.ok) return res.text().then((err) => Promise.reject(Error(err)))
       window.localStorage.removeItem(STORAGE_ID)
       state.loading = false
+      state.contact = state.answers['entry.1286633865'] || state.answers['entry.1025892237']
       emitter.emit('pushState', '/tack')
     }).catch(function (err) {
       state.loading = false

@@ -1,0 +1,24 @@
+@import "../base";
+
+/* @define Banner */
+.Banner {
+  font-size: 30vh;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.Banner-text {
+  display: inline-block;
+  padding-right: 0.25em;
+  transform: translateX(calc(-100% * var(--Banner-offset, 0)));
+  animation: Banner-text--rolling 15s forwards linear;
+  animation-duration: var(--Banner-duration);
+}
+
+@keyframes Banner-text--rolling {
+  to {
+    transform: translateX(calc(-100% * var(--Banner-offset, 0) - 100%));
+  }
+}

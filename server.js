@@ -28,7 +28,9 @@ app.use(post('/ansok', compose([
     })
 
     if (ctx.accepts('html')) {
-      ctx.redirect('/tack')
+      let fields = ctx.request.body.entry
+      let contact = fields['1286633865'] || fields['entry.1025892237']
+      ctx.redirect('/tack?contact=' + contact)
     } else {
       ctx.type = 'application/json'
       ctx.body = {}
