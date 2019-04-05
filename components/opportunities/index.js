@@ -33,8 +33,8 @@ module.exports = class Opportunities extends Component {
       <div class="Opportunities" id="${this.local.id}">
         <label class="Opportunities-option">
           <input class="Opportunities-toggle" type="radio" name="${NAME}" value="Dåliga" checked=${this.local.value === 'Dåliga'} onchange=${onchange}>
-          <div class="Opportunities-indicator"></div>
           <span class="Opportunities-label">
+            <div class="Opportunities-indicator"></div>
             <svg class="Opportunities-symbol" width="70" height="70" viewBox="0 0 70 70">
               <g fill="currentColor" fill-rule="evenodd">
                 <path fill-rule="nonzero" d="M35 70a35 35 0 1 1 0-70 35 35 0 0 1 0 70zm0-2.3a32.7 32.7 0 1 0 0-65.4 32.7 32.7 0 0 0 0 65.4z"/>
@@ -51,8 +51,8 @@ module.exports = class Opportunities extends Component {
         </label>
         <label class="Opportunities-option">
           <input class="Opportunities-toggle" type="radio" name="${NAME}" value="Hm" checked=${this.local.value === 'Hm'} onchange=${onchange}>
-          <div class="Opportunities-indicator"></div>
           <span class="Opportunities-label">
+            <div class="Opportunities-indicator"></div>
             <svg class="Opportunities-symbol" width="70" height="70" viewBox="0 0 70 70">
               <g fill="currentColor" fill-rule="evenodd">
                 <path fill-rule="nonzero" d="M35 70a35 35 0 1 1 0-70 35 35 0 0 1 0 70zm0-2.3a32.7 32.7 0 1 0 0-65.4 32.7 32.7 0 0 0 0 65.4z"/>
@@ -69,8 +69,8 @@ module.exports = class Opportunities extends Component {
         </label>
         <label class="Opportunities-option">
           <input class="Opportunities-toggle" type="radio" name="${NAME}" value="Bra" checked=${this.local.value === 'Bra'} onchange=${onchange}>
-          <div class="Opportunities-indicator"></div>
           <span class="Opportunities-label">
+            <div class="Opportunities-indicator"></div>
             <svg class="Opportunities-symbol" width="70" height="70" viewBox="0 0 70 70">
               <g fill="currentColor" fill-rule="evenodd">
                 <path fill-rule="nonzero" d="M35 70a35 35 0 1 1 0-70 35 35 0 0 1 0 70zm0-2.3a32.7 32.7 0 1 0 0-65.4 32.7 32.7 0 0 0 0 65.4z"/>

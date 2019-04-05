@@ -6,6 +6,13 @@
   flex-direction: column;
   height: 100%;
   user-select: none;
+  border-top: 1px solid rgb(var(--color-red));
+}
+
+@media (min-width: 1000px) {
+  .Age {
+    border: 0;
+  }
 }
 
 @media (min-width: 1000px) {
@@ -61,7 +68,7 @@
   .Age-option::after {
     content: none;
   }
-  
+
   .Age-option {
     margin: 0;
     padding: 3.5rem 0;

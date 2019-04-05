@@ -2,16 +2,24 @@
 
 :root {
   --Form-space-sm: 2.2rem;
-  --Form-space-md: 4rem;
-  --Form-space-lg: 6rem;
+  --Form-space-md: 3rem;
+  --Form-space-lg: 4rem;
   --Form-padding: 0.3rem;
 
   --Form-font-size-small: 1rem;
   --Form-font-size-interface: 1.5rem;
+  --Form-font-size-title: 2rem;
   --Form-font-size-text: 1.7rem;
-  --Form-font-size-title: 2.6rem;
-  
+
   --Form-border-width: 1px;
+}
+
+@media (min-height: 600px) {
+  :root {
+    --Form-space-md: 4rem;
+    --Form-space-lg: 6rem;
+    --Form-font-size-title: 2.6rem;
+  }
 }
 
 @media (min-width: 1000px) {
@@ -87,7 +95,6 @@
 
 .Form-tools {
   flex: 1;
-  border-top: 1px solid rgb(var(--color-red))
 }
 
 @media (min-width: 1000px) {
@@ -398,6 +405,13 @@
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
+  border-top: 1px solid rgb(var(--color-red));
+}
+
+@media (min-width: 1000px) {
+  .Form-summary {
+    border: 0;
+  }
 }
 
 .Form-dl {

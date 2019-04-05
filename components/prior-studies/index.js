@@ -59,7 +59,7 @@ module.exports = class PriorStudies extends Component {
       var text = self.local.text
       if (text) {
         value = self.local.value.map(function (val) {
-          if (val === text) return target.value
+          if (val === text && target) return target.value
           return val
         })
       } else {
@@ -70,8 +70,9 @@ module.exports = class PriorStudies extends Component {
         if (!OPTIONS.includes(b)) return -1
         return OPTIONS.indexOf(a) - OPTIONS.indexOf(b)
       })
+      value = value.filter(Boolean)
       self.local.text = target.value
-      self.local.value = value.filter(Boolean)
+      self.local.value = value
       callback(NAME, value)
     }
 

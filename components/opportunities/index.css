@@ -1,9 +1,11 @@
 @import "../base";
 
-/* @Opportunities */
+/* @define Opportunities */
 .Opportunities {
   display: flex;
   height: 100%;
+  width: 100%;
+  padding: 0.25rem 0;
   user-select: none;
   -webkit-touch-callout: none;
 }
@@ -15,20 +17,16 @@
 }
 
 .Opportunities-option {
-  flex: 1 1 auto;
+  flex: 0 0 calc(100% * 1 / 3);
   display: flex;
-  align-items: center;
-  margin: 1rem;
-  padding: var(--Form-padding);
+  padding: 0 0.25rem;
   position: relative;
-  border: 1px solid currentColor;
 }
 
 @media (min-width: 1000px) {
   .Opportunities-option {
+    flex: 1 1 auto;
     min-height: var(--Form-space-md);
-    border: 0;
-    margin: 0;
   }
 }
 
@@ -52,20 +50,29 @@
   outline: none;
 }
 
-.Opportunities-toggle:checked + .Opportunities-indicator {
+.Opportunities-toggle:checked + .Opportunities-label .Opportunities-indicator {
   background: rgb(var(--color-red));
 }
 
 .Opportunities-label {
   display: flex;
-  align-content: center;
-  font-size: 2.625rem;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: var(--Form-padding);
+  border: 1px solid rgb(var(--color-red));
+  position: relative;
   line-height: normal;
+  text-align: center;
+  font-size: 1.3rem;
 }
 
 @media (min-width: 1000px) {
   .Opportunities-label {
+    flex-direction: row;
     padding: var(--Form-space-md);
+    font-size: 2.625rem;
+    text-align: left;
   }
 }
 
@@ -88,8 +95,14 @@
 .Opportunities-symbol {
   display: block;
   width: 70px;
-  max-width: 20vw;
-  margin-right: 2rem;
+  max-width: 15vw;
+  margin: 0 0 1rem;
+}
+
+@media (min-width: 1000px) {
+  .Opportunities-symbol {
+    margin: 0 2rem 0 0;
+  }
 }
 
 .Opportunities-title {
