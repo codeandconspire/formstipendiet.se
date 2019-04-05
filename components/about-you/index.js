@@ -1,10 +1,10 @@
 var html = require('choo/html')
 var Component = require('choo/component')
 
-var NAME = 'name'
-var STREET_ADDRESS = 'street-address'
-var POSTAL_CODE = 'postal-code'
-var CITY = 'address-level1'
+var NAME = 'entry.481660275'
+var STREET_ADDRESS = 'entry.160977161'
+var POSTAL_CODE = 'entry.1139769175'
+var CITY = 'entry.31493464'
 
 module.exports = class AboutYou extends Component {
   constructor (id, state, emit) {
@@ -57,19 +57,19 @@ module.exports = class AboutYou extends Component {
       <div class="AboutYou" id="${this.local.id}">
       <label class="AboutYou-option">
           <span class="AboutYou-label">Namn:</span>
-          <input class="AboutYou-text" type="text" name="${NAME}" value="${this.local[NAME]}" autocomplete="${NAME}" required oninput=${oninput}>
+          <input class="AboutYou-text" type="text" name="${NAME}" value="${this.local[NAME]}" autocomplete="name" required oninput=${oninput}>
         </label>
         <label class="AboutYou-option">
           <span class="AboutYou-label">Address:</span>
-          <input class="AboutYou-text" type="text" name="${STREET_ADDRESS}" value="${this.local[STREET_ADDRESS]}" autocomplete="${STREET_ADDRESS}" required oninput=${oninput}>
+          <input class="AboutYou-text" type="text" name="${STREET_ADDRESS}" value="${this.local[STREET_ADDRESS]}" autocomplete="street-address" required oninput=${oninput}>
         </label>
         <label class="AboutYou-option">
           <span class="AboutYou-label">Postnummer:</span>
-          <input class="AboutYou-text" type="text" name="${POSTAL_CODE}" value="${this.local[POSTAL_CODE]}" autocomplete="${POSTAL_CODE}" required oninput=${oninput}>
+          <input class="AboutYou-text" type="text" name="${POSTAL_CODE}" value="${this.local[POSTAL_CODE]}" autocomplete="postal-code" required oninput=${oninput}>
         </label>
         <label class="AboutYou-option">
           <span class="AboutYou-label">Ort:</span>
-          <input class="AboutYou-text" type="text" name="${CITY}" value="${this.local[CITY]}" autocomplete="${CITY}" required oninput=${oninput}>
+          <input class="AboutYou-text" type="text" name="${CITY}" value="${this.local[CITY]}" autocomplete="address-level1" required oninput=${oninput}>
         </label>
       </div>
     `

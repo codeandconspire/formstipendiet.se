@@ -47,11 +47,27 @@ function form (state, emitter, app) {
     state.error = null
     state.loading = true
     emitter.emit('render')
+
+    var body = Object.keys(state.answers).reduce(function (query, key) {
+      var value = state.answers[key]
+      if (Array.isArray(value)) {
+        for (let i = 0, len = value.length; i < len; i++) {
+          query += `&${key}=${encodeURIComponent(value[i])}`
+        }
+      } else {
+        query += `&${key}=${encodeURIComponent(value)}`
+        if (key === 'entry.551104495.other_option_response') {
+          query += '&entry.551104495=__other_option__'
+        }
+      }
+      return query
+    }, '')
+
     window.fetch('/ansok', {
       method: 'POST',
-      body: JSON.stringify(state.answers),
+      body: body.substr(1),
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json'
       }
     }).then(function (res) {

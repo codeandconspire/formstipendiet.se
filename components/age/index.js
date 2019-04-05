@@ -5,7 +5,9 @@ var scrollIntoView = require('scroll-into-view')
 var getDaysInMonth = require('date-fns/get_days_in_month')
 var { vw, vh } = require('../base')
 
-var NAME = 'yob'
+var MONTH = 'entry.1051571347_month'
+var DAY = 'entry.1051571347_day'
+var YEAR = 'entry.1051571347_year'
 var YEARS = [1900]
 for (let i = 0; i < 110; i++) YEARS.push(1900 + i)
 var MONTHS = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli',
@@ -14,8 +16,9 @@ var MONTHS = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli',
 module.exports = class Age extends Component {
   constructor (id, state, emit) {
     super(id)
-    var value = state.answers[NAME] || '1990-0-1'
-    var [year, month, day] = value.split('-').map((num) => +num)
+    var year = parse(state.answers[YEAR], 1990)
+    var month = parse(state.answers[MONTH], 1) - 1
+    var day = parse(state.answers[DAY], 1)
     this.local = state.components[id] = { id, year, month, day }
   }
 
@@ -28,9 +31,11 @@ module.exports = class Age extends Component {
 
   serialize () {
     var { year, month, day } = this.local
-    month = ('0' + (month + 1)).substr(-2)
-    day = ('0' + day).substr(-2)
-    return { [NAME]: [year, month, day].join('-') }
+    return {
+      [YEAR]: year,
+      [MONTH]: month + 1,
+      [DAY]: day
+    }
   }
 
   title () {
@@ -39,10 +44,11 @@ module.exports = class Age extends Component {
 
   value () {
     var { year, month, day } = this.local
-    var data = this.serialize()
+    month = ('0' + (month + 1)).substr(-2)
+    day = ('0' + day).substr(-2)
     return html`
       <time datetime="${JSON.stringify(new Date(year, month, day)).replace(/^"|"$/g, '')}">
-        ${data[NAME]}
+        ${[year, month, day].join('-')}
       </time>
     `
   }
@@ -93,13 +99,15 @@ module.exports = class Age extends Component {
       }
 
       item.checked = true
-      self.local[item.name] = +item.value
-      if (item.name === 'month') {
+      var value = +item.value
+      if (item.name === MONTH) {
+        self.local[item.dataset.name] = value - 1
         var max = getDaysInMonth(new Date(self.local.year, +item.value))
         if (self.local.day > max) self.local.day = null
+      } else {
+        self.local[item.dataset.name] = value
       }
-      var value = [self.local.year, self.local.month, self.local.day].join('-')
-      self.callback(NAME, value)
+      self.callback(item.name, value)
       self.rerender()
       align()
     }
@@ -123,7 +131,7 @@ module.exports = class Age extends Component {
         <div class="Age-list js-list">
           ${YEARS.map((value) => html`
             <label class="Age-option Age-option--year">
-              <input class="Age-toggle js-toggle" type="radio" name="year" value="${value}" checked="${this.local.year === value}" onchange=${onchange}>
+              <input class="Age-toggle js-toggle" type="radio" data-name="year" name="${YEAR}" value="${value}" checked="${this.local.year === value}" onchange=${onchange}>
               <span class="Age-label">${value}</span>
             </label>
           `)}
@@ -131,7 +139,7 @@ module.exports = class Age extends Component {
         <div class="Age-list js-list">
           ${MONTHS.map((value, index) => html`
             <label class="Age-option Age-option--month">
-              <input class="Age-toggle js-toggle" type="radio" name="month" value="${index}" checked="${this.local.month === index}" onchange=${onchange}>
+              <input class="Age-toggle js-toggle" type="radio" data-name="month" name="${MONTH}" value="${index + 1}" checked="${this.local.month === index}" onchange=${onchange}>
               <span class="Age-label">${value}</span>
             </label>
           `)}
@@ -139,7 +147,7 @@ module.exports = class Age extends Component {
         <div class="Age-list js-list">
           ${days.map((value) => html`
             <label class="Age-option Age-option--day">
-              <input class="Age-toggle js-toggle" type="radio" name="day" value="${value}" checked="${this.local.day === value}" onchange=${onchange}>
+              <input class="Age-toggle js-toggle" type="radio" data-name="day" name="${DAY}" value="${value}" checked="${this.local.day === value}" onchange=${onchange}>
               <span class="Age-label">${value}</span>
             </label>
           `)}
@@ -149,15 +157,23 @@ module.exports = class Age extends Component {
 
     function onchange (event) {
       var target = event.target
-      if (event.target.name === 'month') {
+      var value = +target.value
+      if (event.target.name === MONTH) {
+        self.local[target.dataset.name] = value - 1
         var max = getDaysInMonth(new Date(self.local.year, +target.value))
         if (self.local.day > max) self.local.day = null
+      } else {
+        self.local[target.dataset.name] = value
       }
-      var value = [self.local.year, self.local.month, self.local.day].join('-')
-      self.local[target.name] = +target.value
       self.rerender()
       self.align()
-      callback(NAME, value)
+      callback(target.name, value)
     }
   }
+}
+
+function parse (value, fallback) {
+  value = parseInt(value, 10)
+  if (isNaN(value)) value = fallback
+  return value
 }

@@ -1,8 +1,8 @@
 var html = require('choo/html')
 var Component = require('choo/component')
 
-var EMAIL = 'email'
-var TEL = 'tel'
+var EMAIL = 'entry.1286633865'
+var TEL = 'entry.1025892237'
 
 module.exports = class Contact extends Component {
   constructor (id, state, emit) {
@@ -15,8 +15,7 @@ module.exports = class Contact extends Component {
   }
 
   verify () {
-    var fields = [EMAIL, TEL]
-    return fields.reduce((valid, key) => valid && this.local[key], true)
+    return this.local[EMAIL] || this.local[TEL]
   }
 
   serialize () {
@@ -50,11 +49,11 @@ module.exports = class Contact extends Component {
       <div class="Contact" id="${this.local.id}">
       <label class="Contact-option">
           <span class="Contact-label">E-post:</span>
-          <input class="Contact-text" type="email" name="${EMAIL}" value="${this.local[EMAIL]}" autocomplete="${EMAIL}" required oninput=${oninput}>
+          <input class="Contact-text" type="email" name="${EMAIL}" value="${this.local[EMAIL]}" autocomplete="email" required oninput=${oninput}>
         </label>
         <label class="Contact-option">
           <span class="Contact-label">Telefonnumer:</span>
-          <input class="Contact-text" type="text" name="${TEL}" value="${this.local[TEL]}" autocomplete="${TEL}" required oninput=${oninput}>
+          <input class="Contact-text" type="text" name="${TEL}" value="${this.local[TEL]}" autocomplete="tel" required oninput=${oninput}>
         </label>
       </div>
     `

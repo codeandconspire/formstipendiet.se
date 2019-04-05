@@ -1,7 +1,7 @@
 var html = require('choo/html')
 var Component = require('choo/component')
 
-var NAME = 'has-applied'
+var NAME = 'entry.2131449369'
 
 module.exports = class HasApplied extends Component {
   constructor (id, state, emit) {

@@ -82,7 +82,7 @@
     text-align: left;
   }
 
-  .Opportunities-label:first-child {
+  .Opportunities-option:first-child .Opportunities-label {
     border-top: 0;
   }
 }

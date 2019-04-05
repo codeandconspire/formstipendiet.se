@@ -45,6 +45,9 @@ function form (state, emit) {
           }
         } else {
           pairs.push([key, props[key]])
+          if (key === 'entry.551104495.other_option_response') {
+            pairs.push(['entry.551104495', '__other_option__'])
+          }
         }
       }
       return pairs
@@ -104,7 +107,7 @@ function form (state, emit) {
             </a>
           ` : null}
           ${isSummary ? html`
-            <button type="submit" class="Form-action Form-action--submit" disabled=${!isValid} label="Skicka ansökan">
+            <button type="submit" class="Form-action Form-action--submit" disabled=${!isValid && !state.loading} label="Skicka ansökan">
               <span class="Form-button">Skicka ansökan</span>
             </button>
           ` : html`

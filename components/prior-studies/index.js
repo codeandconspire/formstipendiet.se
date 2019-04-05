@@ -1,7 +1,8 @@
 var html = require('choo/html')
 var Component = require('choo/component')
 
-var NAME = 'proir-studies'
+var NAME = 'entry.551104495'
+var OTHER_NAME = 'entry.551104495.other_option_response'
 var OPTIONS = [
   'Grundskola (årskurs 1-9)',
   'Gymnasium',
@@ -14,7 +15,7 @@ module.exports = class PriorStudies extends Component {
   constructor (id, state, emit) {
     super(id)
     var value = state.answers[NAME] || []
-    var text = value.find((val) => !OPTIONS.includes(val)) || ''
+    var text = state.answers[OTHER_NAME] || ''
     this.local = state.components[id] = { id, value, text }
   }
 
@@ -23,7 +24,10 @@ module.exports = class PriorStudies extends Component {
   }
 
   serialize () {
-    return { [NAME]: this.local.value }
+    return {
+      [NAME]: this.local.value,
+      [OTHER_NAME]: this.local.text
+    }
   }
 
   title () {
@@ -31,7 +35,8 @@ module.exports = class PriorStudies extends Component {
   }
 
   value () {
-    return html`<p>${this.local.value.join(', ')}</p>`
+    var value = this.local.value.concat(this.local.text).filter(Boolean)
+    return html`<p>${value.join(', ')}</p>`
   }
 
   update () {
@@ -50,34 +55,19 @@ module.exports = class PriorStudies extends Component {
             <span class="PriorStudies-label">${label}</span>
           </label>
         `)}
+        <input type="hidden" name="${NAME}" value="__other_option__">
         <label class="PriorStudies-option">
           <span class="PriorStudies-label">Annat:</span>
-          <input class="PriorStudies-text" type="text" name="${NAME}" value="${this.local.text}" oninput=${oninput}>
+          <input class="PriorStudies-text" type="text" name="${OTHER_NAME}" value="${this.local.text}" oninput=${oninput}>
         </label>
       </div>
     `
 
     function oninput (event) {
-      var value
       var target = event.target
-      var text = self.local.text
-      if (text) {
-        value = self.local.value.map(function (val) {
-          if (val === text && target) return target.value
-          return val
-        })
-      } else {
-        value = self.local.value.concat(target.value)
-      }
-      value.sort(function (a, b) {
-        if (!OPTIONS.includes(a)) return 1
-        if (!OPTIONS.includes(b)) return -1
-        return OPTIONS.indexOf(a) - OPTIONS.indexOf(b)
-      })
-      value = value.filter(Boolean)
-      self.local.text = target.value
-      self.local.value = value
-      callback(NAME, value)
+      var value = target.value
+      self.local.text = value
+      callback(OTHER_NAME, value)
     }
 
     function onchange (event) {
