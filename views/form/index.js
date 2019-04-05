@@ -6,7 +6,8 @@ var questions = [
   require('../../components/opportunities'),
   require('../../components/prior-studies'),
   require('../../components/age'),
-  require('../../components/about-you')
+  require('../../components/about-you'),
+  require('../../components/contact')
 ]
 
 var text = i18n()
