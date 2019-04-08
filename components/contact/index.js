@@ -9,8 +9,8 @@ module.exports = class Contact extends Component {
     super(id)
     this.local = state.components[id] = {
       id,
-      [EMAIL]: state.answers[EMAIL],
-      [TEL]: state.answers[TEL]
+      [EMAIL]: state.answers[EMAIL] || '',
+      [TEL]: state.answers[TEL] || ''
     }
   }
 
@@ -53,11 +53,11 @@ module.exports = class Contact extends Component {
       <div class="Contact" id="${this.local.id}">
       <label class="Contact-option">
           <span class="Contact-label">E-post:</span>
-          <input class="Contact-text" type="email" name="${EMAIL}" value="${this.local[EMAIL]}" autocomplete="email" required oninput=${oninput}>
+          <input class="Contact-text" type="email" name="${EMAIL}" value="${this.local[EMAIL]}" autocomplete="email" oninput=${oninput}>
         </label>
         <label class="Contact-option">
           <span class="Contact-label">Telefonnumer:</span>
-          <input class="Contact-text" type="text" name="${TEL}" value="${this.local[TEL]}" autocomplete="tel" required oninput=${oninput}>
+          <input class="Contact-text" type="text" name="${TEL}" value="${this.local[TEL]}" autocomplete="tel" oninput=${oninput}>
         </label>
       </div>
     `

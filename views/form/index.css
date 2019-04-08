@@ -101,7 +101,7 @@
 }
 
 .Form-tools {
-  flex: 1 1 0;
+  flex: 1 1 0%;
   display: flex;
   position: relative;
 }
@@ -129,12 +129,26 @@
 .Form.is-intransition .Form-tools {
   z-index: -1;
   overflow: visible;
-  animation: Form-tools--transition var(--Form-animation-duration) forwards var(--Form-animation-easing);
+  animation: 350ms forwards cubic-bezier(0.42, 0.34, 0.18, 0.99);
 }
 
-@keyframes Form-tools--transition {
+.Form.Form--backward .Form-tools {
+  animation-name: Form-transition-backward;
+}
+
+@keyframes Form-transition-backward {
   to {
-    transform: translateX(calc(-100% * var(--Form-direction)));
+    transform: translateX(100%);
+  }
+}
+
+.Form.Form--forward .Form-tools {
+  animation-name: Form-transition-forward;
+}
+
+@keyframes Form-transition-forward {
+  to {
+    transform: translateX(-100%);
   }
 }
 
@@ -397,7 +411,7 @@
 
   .Form.is-intransition .Form-nav:not(.Form-nav--placeholder) {
     z-index: -1;
-    animation: Form-nav--transition var(--Form-animation-duration) forwards var(--Form-animation-easing);
+    animation: Form-nav--transition 350ms forwards cubic-bezier(0.42, 0.34, 0.18, 0.99);
   }
 
   @keyframes Form-nav--transition {

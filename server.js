@@ -13,7 +13,7 @@ var ENDPOINT = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSd7gzpZ2H8-KAV_dB2N
 
 var app = jalla('index.js', {
   sw: 'sw.js',
-  serve: process.env.NODE_ENV === 'production'
+  serve: Boolean(process.env.NOW)
 })
 
 app.use(post('/ansok', compose([

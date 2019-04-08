@@ -11,10 +11,10 @@ module.exports = class AboutYou extends Component {
     super(id)
     this.local = state.components[id] = {
       id,
-      [NAME]: state.answers[NAME],
-      [STREET_ADDRESS]: state.answers[STREET_ADDRESS],
-      [POSTAL_CODE]: state.answers[POSTAL_CODE],
-      [CITY]: state.answers[CITY]
+      [NAME]: state.answers[NAME] || '',
+      [STREET_ADDRESS]: state.answers[STREET_ADDRESS] || '',
+      [POSTAL_CODE]: state.answers[POSTAL_CODE] || '',
+      [CITY]: state.answers[CITY] || ''
     }
   }
 

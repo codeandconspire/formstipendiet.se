@@ -27,6 +27,7 @@ function form (state, emit) {
   var current = all[state.step]
   var next = all[state.next]
 
+  var hasWindow = typeof window !== 'undefined'
   var query = serialize(state.answers)
   var isSummary = state.step === questions.length
   var isValid = isSummary ? all.reduce(function (valid, component) {
@@ -57,8 +58,9 @@ function form (state, emit) {
   var attrs = {
     class: className('Form', {
       'is-intransition': state.next != null,
+      [`Form--${state.next - state.step === 1 ? 'forward' : 'backward'}`]: state.next != null,
       'Form--summary': isSummary,
-      'is-valid': isValid
+      'is-valid': !hasWindow || isValid
     }),
     action: state.href,
     method: isSummary ? 'POST' : 'GET',
@@ -133,11 +135,11 @@ function form (state, emit) {
             </a>
           ` : null}
           ${isSummary ? html`
-            <button type="submit" class="Form-action Form-action--submit" disabled=${!isValid && !state.loading} label="Skicka ansökan">
+            <button type="submit" class="Form-action Form-action--submit" disabled=${hasWindow && !isValid && !state.loading} label="Skicka ansökan">
               <span class="Form-button">Skicka ansökan</span>
             </button>
           ` : html`
-            <button type="submit" name="q" value="${state.step + 1}" class="Form-action Form-action--next ${!isValid ? 'is-disabled' : ''}" disabled=${!isValid} label="${state.step === questions.length - 1 ? 'Granska' : 'Nästa fråga'}">
+            <button type="submit" name="q" value="${state.step + 1}" class="Form-action Form-action--next ${hasWindow && !isValid ? 'is-disabled' : ''}" disabled=${hasWindow && !isValid} label="${state.step === questions.length - 1 ? 'Granska' : 'Nästa fråga'}">
               <span class="Form-button">${state.step === questions.length - 1 ? 'Granska' : 'Nästa fråga'}</span>
             </button>
           `}

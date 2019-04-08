@@ -60,3 +60,14 @@
   top: var(--Form-padding);
   font-size: var(--Form-font-size-small);
 }
+
+.WhyYou-placeholder {
+  display: none;
+  position: absolute;
+  left: 0.3rem;
+  top: 2.25rem;
+}
+
+.WhyYou-text:empty + .WhyYou-placeholder {
+  display: block;
+}
