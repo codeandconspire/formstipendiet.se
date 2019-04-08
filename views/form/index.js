@@ -116,8 +116,8 @@ function form (state, emit) {
                 ${!isSummary && next ? next.placeholder(onchange, { in: state.next - state.step }) : null}
                 <div class="Form-nav Form-nav--placeholder">
                   ${next ? html`
-                    <button type="submit" name="q" value="${state.step + 1}" class="Form-action Form-action--next ${!next.verify() ? 'is-disabled' : ''}" disabled=${!next.verify()} label="Nästa fråga">
-                      <span class="Form-button">Nästa fråga</span>
+                    <button type="submit" name="q" value="${state.step + 1}" class="Form-action Form-action--next ${!next.verify() ? 'is-disabled' : ''}" disabled=${!next.verify()} label="${state.next === questions.length - 1 ? 'Granska' : 'Nästa fråga'}">
+                      <span class="Form-button">${state.next === questions.length - 1 ? 'Granska' : 'Nästa fråga'}</span>
                     </button>
                   ` : null}
                 </div>
@@ -137,14 +137,16 @@ function form (state, emit) {
               <span class="Form-button">Skicka ansökan</span>
             </button>
           ` : html`
-            <button type="submit" name="q" value="${state.step + 1}" class="Form-action Form-action--next ${!isValid ? 'is-disabled' : ''}" disabled=${!isValid} label="Nästa fråga">
-              <span class="Form-button">Nästa fråga</span>
+            <button type="submit" name="q" value="${state.step + 1}" class="Form-action Form-action--next ${!isValid ? 'is-disabled' : ''}" disabled=${!isValid} label="${state.step === questions.length - 1 ? 'Granska' : 'Nästa fråga'}">
+              <span class="Form-button">${state.step === questions.length - 1 ? 'Granska' : 'Nästa fråga'}</span>
             </button>
           `}
         </div>
 
         ${state.step > 0 ? html`
-          <button class="Form-footer" type="submit" name="q" value="${state.step - 1}" onclick=${onclick(state.step - 1)}>Föregående fråga</button>
+          <button class="Form-footer" type="submit" name="q" value="${state.step - 1}" onclick=${onclick(state.step - 1)}>
+            Föregående fråga
+          </button>
         ` : html`
           <div class="Form-footer"></div>
         `}
