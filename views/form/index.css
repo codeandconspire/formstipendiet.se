@@ -147,14 +147,14 @@
   .Form-statusbar{
     border-right: var(--Form-border-width) solid;
   }
-  
+
   .Form-footer:hover:not(:empty),
   .Form-footer:focus-visible:not(:empty) {
     background-color: rgb(var(--color-red));
     color: #fff;
     border-color: rgb(var(--color-red));
   }
-  
+
   .Form-footer:hover:not(:empty)::after,
   .Form-footer:focus-visible:not(:empty)::after {
     background-image: url("./prev-white.svg") !important;
@@ -274,6 +274,7 @@
 @media (min-width: 1000px) {
   .Form-footer {
     display: flex;
+    align-items: center;
     padding: 0 var(--Form-padding) 0 var(--Form-space-lg);
     height: var(--Form-space-lg);
     border-top: var(--Form-border-width) solid;
