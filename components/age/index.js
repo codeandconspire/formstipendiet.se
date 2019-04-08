@@ -67,14 +67,6 @@ module.exports = class Age extends Component {
 
   load (el) {
     var self = this
-    var align = this.align = nanoraf(function (time = 500) {
-      var items = el.querySelectorAll('.js-toggle:checked')
-      for (let i = 0, len = items.length; i < len; i++) {
-        let parent = items[i].parentElement
-        scrollIntoView(parent, { time })
-      }
-    })
-
     var timeout
     var onscroll = nanoraf(function (event) {
       clearTimeout(timeout)
@@ -88,9 +80,18 @@ module.exports = class Age extends Component {
       lists[i].addEventListener('scroll', onscroll, { passive: true })
     }
 
-    window.addEventListener('resize', align)
+    this.align = nanoraf(align)
+    window.addEventListener('resize', this.align)
     this.unload = function () {
-      window.removeEventListener('resize', align)
+      window.removeEventListener('resize', this.align)
+    }
+
+    function align (time = 500) {
+      var items = el.querySelectorAll('.js-toggle:checked')
+      for (let i = 0, len = items.length; i < len; i++) {
+        let parent = items[i].parentElement
+        scrollIntoView(parent, { time })
+      }
     }
 
     function select (list) {
@@ -121,7 +122,7 @@ module.exports = class Age extends Component {
       }
       self.callback(item.name, value)
       self.rerender()
-      align()
+      self.align()
     }
   }
 
