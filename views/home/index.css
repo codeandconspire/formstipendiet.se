@@ -13,6 +13,11 @@
 @media (min-width: 1000px) {
   .Home {
     flex-wrap: nowrap;
+  }
+}
+
+@media (min-width: 1000px) and (min-height: 800px) {
+  .Home {
     font-size: 2.5rem;
   }
 }
@@ -86,9 +91,9 @@
   position: fixed;
   top: 0.5vh;
   right: -1.5em;
-  font-size: var(--Form-font-size-interface);
+  font-size: 1.25rem;
   text-transform: uppercase;
-  word-spacing: 0.2em;
+  word-spacing: 0.5em;
   color: rgb(var(--color-red));
   transform-origin: center;
   animation: Home-menu--spinning 15s infinite linear;

@@ -10,6 +10,12 @@
   -webkit-touch-callout: none;
 }
 
+@media (min-width: 1000px) {
+  .Contact {
+    margin: auto 0;
+  }
+}
+
 .Contact-option {
   display: block;
   padding: var(--Form-padding);
