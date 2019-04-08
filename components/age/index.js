@@ -67,6 +67,7 @@ module.exports = class Age extends Component {
 
   load (el) {
     var self = this
+    var scrolling = false
     var timeout
     var onscroll = nanoraf(function (event) {
       clearTimeout(timeout)
@@ -87,14 +88,18 @@ module.exports = class Age extends Component {
     }
 
     function align (time = 500) {
+      scrolling = true
       var items = el.querySelectorAll('.js-toggle:checked')
       for (let i = 0, len = items.length; i < len; i++) {
         let parent = items[i].parentElement
-        scrollIntoView(parent, { time })
+        scrollIntoView(parent, { time }, function () {
+          scrolling = false
+        })
       }
     }
 
     function select (list) {
+      if (scrolling) return
       var item
       var { scrollLeft, scrollTop } = list
       var items = list.querySelectorAll('.js-toggle')
