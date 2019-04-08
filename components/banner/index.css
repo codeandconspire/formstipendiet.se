@@ -2,18 +2,20 @@
 
 /* @define Banner */
 .Banner {
-  font-size: 30vh;
+  font-size: 26vh;
   white-space: nowrap;
   width: 100%;
   overflow: hidden;
   text-transform: uppercase;
+  line-height: 25.3vh;
+  word-spacing: 0.5em;
 }
 
 .Banner-text {
   display: inline-block;
   padding-right: 0.25em;
   transform: translateX(calc(-100% * var(--Banner-offset, 0)));
-  animation: Banner-text--rolling 15s forwards linear;
+  animation: Banner-text--rolling 5s forwards linear;
   animation-duration: var(--Banner-duration);
 }
 

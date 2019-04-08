@@ -21,7 +21,7 @@ module.exports = class Banner extends Component {
   createElement (offset, duration) {
     return html`
       <div class="Banner" id="${this.local.id}" style="--Banner-offset: ${offset}; --Banner-duration: ${duration}s;">
-        <span class="Banner-text" id="${this.local.id}-${this.local.counter}">Tack för din anmälan</span><span class="Banner-text" id="${this.local.id}-${this.local.counter}">Tack för din anmälan</span>
+        <span class="Banner-text" id="${this.local.id}-${this.local.counter}">Tack! Tack! Tack! Tack! Tack! Tack! Tack! Tack!</span><span class="Banner-text" id="${this.local.id}-${this.local.counter}">Tack! Tack! Tack! Tack! Tack! Tack! Tack! Tack!</span>
       </div>
     `
   }

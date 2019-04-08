@@ -80,8 +80,8 @@
  */
 
 :focus-visible {
-  background: rgb(var(--color-yellow));
-  color: rgb(var(--color-red));
+  background: rgb(var(--color-red));
+  color: #fff;
   outline: none;
 }
 

@@ -14,24 +14,21 @@
   display: block;
   padding: var(--Form-padding);
   border-top: 1px solid rgb(var(--color-red));
-}
-
-@media (min-width: 1000px) {
-  .Contact-option:last-child {
-    border-bottom: 1px solid rgb(var(--color-red));
-  }
+  font-size: var(--Form-font-size-title);
+  flex: 1 1 auto;
 }
 
 .Contact-label {
   display: block;
   line-height: normal;
-  font-size: 1.5rem;
+  font-size: var(--Form-font-size-interface);
 }
 
 .Contact-text {
   width: 100%;
-  padding: 0.3em 0;
+  padding: 0.2em 0 0.3em;
   border: 0;
+  margin-bottom: calc(var(--Form-padding) * -1);
   background: transparent;
   border-radius: 0;
   box-shadow: none;
@@ -39,12 +36,22 @@
   -webkit-appearance: none;
 }
 
-@media (min-width: 1000px) {
-  .Contact-text {
-    padding: 0.3em 0 0.5em;
-  }
-}
-
 .Contact-text::placeholder {
   color: currentColor;
+  opacity: 1;
+}
+
+@media (min-height: 500px) and (min-width: 1000px) {
+  .Contact-option {
+    font-size: 2.6rem;
+    flex: 0 0 auto;
+  }
+
+  .Contact-text {
+    padding: 0.5em 0 0.7em;
+  }
+
+  .Contact-option:last-child {
+    border-bottom: 1px solid rgb(var(--color-red));
+  }
 }

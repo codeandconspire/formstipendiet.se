@@ -22,7 +22,7 @@
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-height: 500px) and (min-width: 1000px) {
   :root {
     --Form-space-md: 4rem;
     --Form-space-lg: 7rem;
@@ -106,6 +106,26 @@
 
   .Form-footer {
     display: block;
+  }
+  
+  .Form-footer:hover:not(:empty),
+  .Form-footer:focus-visible:not(:empty) {
+    background-color: rgb(var(--color-red));
+    color: #fff;
+    border-color: rgb(var(--color-red));
+  }
+  
+  .Form-footer:hover:not(:empty)::after,
+  .Form-footer:focus-visible:not(:empty)::after {
+    background-image: url("./prev-white.svg") !important;
+  }
+
+  :root .Form-action--next:hover:not(:disabled):not(.is-disabled),
+  :root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled) {
+    background-image: none;
+    color: #fff;
+    outline: 1px solid #fff;
+    outline-offset: 1px;
   }
 
   .Form-nav {
@@ -193,6 +213,11 @@
   text-align: right;
 }
 
+.Form-cancel:hover {
+  background: rgb(var(--color-red));
+  color: #fff;
+}
+
 @media (min-width: 1000px) {
   .Form-cancel {
     width: auto;
@@ -251,14 +276,6 @@
   font: inherit;
 }
 
-.Form-action:hover {
-  background-color: rgba(var(--color-red), 0.06)
-}
-
-.Form-action:focus-visible:not(:disabled):not(.is-disabled) {
-  background-color: rgb(var(--color-yellow));
-}
-
 .Form-action + .Form-action {
   border-left: var(--Form-border-width) solid;
 }
@@ -270,7 +287,7 @@
 
 .Form-action.is-disabled {
   background-image: url("./disabled.svg");
-  background-size: 100% 100%;
+  background-size: 101% 100%;
   pointer-events: none;
 }
 
@@ -291,6 +308,18 @@
 :root[scripting-enabled] .Form-action--submit:not(:disabled) {
   background-color: rgb(var(--color-red));
   color: #fff;
+}
+
+:root .Form-action--prev:hover:not(:disabled):not(.is-disabled),
+:root .Form-action--prev:focus-visible:not(:disabled):not(.is-disabled) {
+  background-color: rgb(var(--color-red));
+  background-image: url("./prev-white.svg");
+}
+
+:root .Form-action--next:hover:not(:disabled):not(.is-disabled),
+:root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled) {
+  background-color: rgb(var(--color-red));
+  background-image: url("./next-white.svg");
 }
 
 .Form-button {
@@ -332,6 +361,7 @@
 
   .Form-action--submit {
     flex: 1 0 100%;
+    cursor: pointer;
   }
 
   .Form-action--prev {
@@ -363,8 +393,18 @@
   }
 
   :root:not([scripting-enabled]) .Form-action--submit::after,
-  :root[scripting-enabled] .Form-action--submit:not(:disabled)::after {
+  :root[scripting-enabled] .Form-action--submit:not(:disabled)::after,
+  :root .Form-action--next:hover:not(:disabled):not(.is-disabled)::after,
+  :root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled)::after {
     background-image: url("./next-white.svg");
+  }
+
+  :root .Form-action--next:hover:not(:disabled):not(.is-disabled),
+  :root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled) {
+    background-image: none;
+    color: #fff;
+    outline: 1px solid #fff;
+    outline-offset: 1px;
   }
 }
 

@@ -16,39 +16,6 @@
   }
 }
 
-/**
- * Display
- */
-
-.u-block { display: block !important; }
-.u-inlineBlock { display: inline-block !important; }
-.u-inline { display: inline !important; }
-.u-flex { display: flex !important; }
-
-/**
- * Flex
- */
-
-.u-flexWrap { flex-Wrap: wrap !important; }
-.u-alignCenter { align-items: center !important; }
-.u-alignStart { align-items: flex-start !important; }
-.u-alignEnd { align-items: flex-end !important; }
-.u-justifyCenter { justify-content: center !important; }
-
-/**
- * Space
- */
-
-.u-spaceA { margin: var(--document-space) !important; }
-.u-spaceT { margin-top: var(--document-space) !important; }
-.u-spaceB { margin-bottom: var(--document-space) !important; }
-.u-spaceL { margin-left: var(--document-space) !important; }
-.u-spaceR { margin-right: var(--document-space) !important; }
-.u-spaceV {
-  margin-top: var(--document-space) !important;
-  margin-bottom: var(--document-space) !important;
-}
-.u-spaceH {
-  margin-left: var(--document-space) !important;
-  margin-right: var(--document-space) !important;
+.u-textBreak {
+  word-break: break-word;
 }
