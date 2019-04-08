@@ -8,6 +8,7 @@
   height: 100vh;
   position: relative;
   font-size: 1.5rem;
+  overflow: auto;
 }
 
 @media (min-width: 1000px) {
@@ -17,13 +18,18 @@
 }
 
 .Info-main {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 1000px) {
+  .Info-main {
+    height: 100vh;
+  }
 }
 
 .Info-main p {
@@ -36,7 +42,7 @@
 
 @media (min-width: 600px) {
   .Info-content {
-    padding: var(--Form-space-md);
+    padding: var(--Form-space-md) 10rem 3rem 3rem;
   }
 }
 
@@ -44,10 +50,6 @@
   .Info-main {
     flex: 1 1 auto;
     justify-content: center;
-  }
-
-  .Info-content {
-    padding: var(--Form-space-lg);
   }
 }
 
@@ -59,9 +61,15 @@
   text-transform: uppercase;
   word-spacing: 0.2em;
   color: rgb(var(--color-red));
+  background-image: url("./cross.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  user-select: none;
+}
+
+.Info-spinner {
   transform-origin: center;
   animation: Info-menu--spinning 15s infinite linear;
-  user-select: none;
 }
 
 @media (min-width: 1000px) {
@@ -89,26 +97,19 @@
 
 .Info-footer {
   padding: var(--Form-padding);
-  margin: auto var(--Form-padding) var(--Form-padding);
+  margin: auto var(--Form-padding) var(--Form-space-sm) var(--Form-padding);
   border: 1px solid rgb(var(--color-red));
 }
 
 @media (min-width: 600px) {
   .Info-footer {
-    margin: auto var(--Form-space-md) var(--Form-space-md);
-  }
-}
-
-@media (min-width: 1000px) {
-  .Info-footer {
-    margin: auto var(--Form-space-lg) var(--Form-space-lg);
+    margin: auto 10rem 3rem 3rem;
   }
 }
 
 .Info-sidebar {
   display: flex;
   align-items: flex-end;
-  height: 100%;
   color: #fff;
   background-color: rgb(var(--color-red));
 }
@@ -116,6 +117,7 @@
 @media (min-width: 1000px) {
   .Info-sidebar {
     flex: 0 0 35%;
+    height: 100%;
     position: relative;
     z-index: 10;
   }
@@ -129,15 +131,17 @@
 .Info-step {
   font-size: 1.75rem;
   margin: 0.5rem 0;
-  font-style: italic;
+  position: relative;
+  padding-left: 1.2rem;
   text-transform: uppercase;
 }
 
 .Info-step::before {
   display: inline-block;
-  margin-right: 0.5em;
+  position: absolute;
+  left: 0.4rem;
+  top: 0.25rem;
   font-size: 0.8rem;
-  vertical-align: super;
 }
 
 .Info-step:nth-child(1)::before {
@@ -150,4 +154,8 @@
 
 .Info-step:nth-child(3)::before {
   content: "3";
+}
+
+.Info-step a {
+  text-decoration: underline;
 }
