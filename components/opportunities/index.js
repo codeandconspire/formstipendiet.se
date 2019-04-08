@@ -11,7 +11,7 @@ module.exports = class Opportunities extends Component {
   }
 
   verify () {
-    return true
+    return this.local.value
   }
 
   serialize () {
@@ -24,6 +24,10 @@ module.exports = class Opportunities extends Component {
 
   value () {
     return html`<p>${this.local.value}</p>`
+  }
+
+  placeholder (...args) {
+    return this.createElement(...args)
   }
 
   update () {

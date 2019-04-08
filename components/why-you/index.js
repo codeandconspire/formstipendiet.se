@@ -30,6 +30,10 @@ module.exports = class WhyYou extends Component {
     `
   }
 
+  placeholder (...args) {
+    return this.createElement(...args)
+  }
+
   update () {
     return false
   }

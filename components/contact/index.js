@@ -38,6 +38,10 @@ module.exports = class Contact extends Component {
     `
   }
 
+  placeholder (...args) {
+    return this.createElement(...args)
+  }
+
   update () {
     return false
   }

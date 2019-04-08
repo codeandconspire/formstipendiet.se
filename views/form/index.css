@@ -1,5 +1,6 @@
 @import "../../components/base";
 
+/* @define Form */
 :root {
   --Form-space-sm: 2.2rem;
   --Form-space-md: 3rem;
@@ -12,6 +13,9 @@
   --Form-font-size-text: 1.7rem;
 
   --Form-border-width: 1px;
+
+  --Form-animation-duration: 350ms;
+  --Form-animation-easing: cubic-bezier(0.42, 0.34, 0.18, 0.99);
 }
 
 @media (min-height: 600px) {
@@ -33,8 +37,6 @@
     --Form-font-size-title: 3.75rem;
   }
 }
-
-/* @define Form */
 
 /**
  * General form layout.
@@ -78,6 +80,11 @@
   -webkit-overflow-scrolling: touch;
 }
 
+
+.Form.is-intransition .Form-container {
+  overflow: hidden;
+}
+
 .Form-footer,
 .Form-nav {
   width: 100%;
@@ -94,7 +101,40 @@
 }
 
 .Form-tools {
-  flex: 1;
+  flex: 1 1 0;
+  display: flex;
+  position: relative;
+}
+
+.Form-answer {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.Form-answer--next {
+  display: none;
+  width: 100%;
+  position: absolute;
+  left: calc(100% * var(--Form-direction));
+  top: 0;
+}
+
+.Form.is-intransition .Form-answer--next {
+  display: flex;
+}
+
+.Form.is-intransition .Form-tools {
+  z-index: -1;
+  overflow: visible;
+  animation: Form-tools--transition var(--Form-animation-duration) forwards var(--Form-animation-easing);
+}
+
+@keyframes Form-tools--transition {
+  to {
+    transform: translateX(calc(-100% * var(--Form-direction)));
+  }
 }
 
 @media (min-width: 1000px) {
@@ -104,8 +144,8 @@
     width: 50%;
   }
 
-  .Form-footer {
-    display: block;
+  .Form-statusbar{
+    border-right: var(--Form-border-width) solid;
   }
   
   .Form-footer:hover:not(:empty),
@@ -128,13 +168,8 @@
     outline-offset: 1px;
   }
 
-  .Form-nav {
-    top: 0;
-    right: 0;
-    bottom: auto;
-    left: auto;
-    width: var(--Form-space-lg);
-    height: 100%;
+  .Form-footer {
+    display: block;
   }
 
   .Form-main {
@@ -158,13 +193,18 @@
     height: calc(100% - var(--Form-space-sm) - var(--Form-space-lg));
     position: relative;
     top: var(--Form-space-sm);
+    border-right: var(--Form-border-width) solid;
   }
 
   .Form-tools {
     height: 100%;
     width: calc(50% - var(--Form-space-lg));
-    margin-right: var(--Form-space-lg);
+    padding-right: var(--Form-space-lg);
     border: 0;
+  }
+
+  .Form-answer--next {
+    padding-right: var(--Form-space-lg);
   }
 
   .Form-question,
@@ -237,6 +277,7 @@
     padding: 0 var(--Form-padding) 0 var(--Form-space-lg);
     height: var(--Form-space-lg);
     border-top: var(--Form-border-width) solid;
+    border-right: var(--Form-border-width) solid;
     text-transform: uppercase;
     background: #fff;
   }
@@ -268,12 +309,17 @@
   text-transform: uppercase;
 }
 
+.Form-nav--placeholder {
+  display: none;
+}
+
 .Form-action {
   flex: 1 1 50%;
   height: 100%;
   overflow: hidden;
   white-space: nowrap;
   font: inherit;
+  font-size: 1.5rem;
 }
 
 .Form-action + .Form-action {
@@ -332,8 +378,30 @@
 
 @media (min-width: 1000px) {
   .Form-nav {
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: auto;
+    width: var(--Form-space-lg);
+    height: 100%;
     border: 0;
     border-left: var(--Form-border-width) solid;
+  }
+
+  .Form-nav--placeholder {
+    display: flex;
+    position: absolute;
+  }
+
+  .Form.is-intransition .Form-nav:not(.Form-nav--placeholder) {
+    z-index: -1;
+    animation: Form-nav--transition var(--Form-animation-duration) forwards var(--Form-animation-easing);
+  }
+
+  @keyframes Form-nav--transition {
+    to {
+      transform: translateX(calc(-50vw * var(--Form-direction)));
+    }
   }
 
   .Form-action {
@@ -419,19 +487,13 @@
 }
 
 .Form-question {
-  padding: var(--Form-padding);
+  padding: var(--Form-padding) var(--Form-padding) var(--Form-space-lg);
   font-size: var(--Form-font-size-title);
-  padding-bottom: var(--Form-space-lg);
+  background-color: #fff;
 }
 
 .Form-tools {
   font-size: var(--Form-font-size-text);
-}
-
-@media (min-width: 1000px) {
-  .Form-tools {
-    border-left: var(--Form-border-width) solid;
-  }
 }
 
 /* -------------------------------------------------------------------------- */

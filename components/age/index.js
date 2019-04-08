@@ -53,6 +53,18 @@ module.exports = class Age extends Component {
     `
   }
 
+  placeholder (...args) {
+    var res = this.createElement(...args)
+    window.requestAnimationFrame(() => {
+      var items = res.querySelectorAll('.js-toggle:checked')
+      for (let i = 0, len = items.length; i < len; i++) {
+        let parent = items[i].parentElement
+        scrollIntoView(parent, { time: 0 })
+      }
+    })
+    return res
+  }
+
   load (el) {
     var self = this
     var align = this.align = nanoraf(function (time = 500) {

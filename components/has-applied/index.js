@@ -1,5 +1,6 @@
 var html = require('choo/html')
 var Component = require('choo/component')
+var { className } = require('../base')
 
 var NAME = 'entry.2131449369'
 
@@ -26,8 +27,12 @@ module.exports = class HasApplied extends Component {
     return null
   }
 
-  update () {
+  update (callback, opts = {}) {
     return false
+  }
+
+  placeholder (...args) {
+    return this.createElement(...args)
   }
 
   createElement (callback) {

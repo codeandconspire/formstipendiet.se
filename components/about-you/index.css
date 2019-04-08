@@ -11,11 +11,21 @@
 }
 
 .AboutYou-option {
+  flex: 1 1 auto;
   display: block;
   padding: var(--Form-padding);
   border-top: 1px solid rgb(var(--color-red));
   font-size: var(--Form-font-size-title);
-  flex: 1 1 auto;
+}
+
+@media (min-width: 1000px) {
+  .AboutYou-option {
+    flex: 0 1 auto;
+  }
+
+  .AboutYou-option:last-child {
+    border-bottom: 1px solid rgb(var(--color-red));
+  }
 }
 
 .AboutYou-label {

@@ -70,3 +70,20 @@ function className (root, classes) {
     return str + ' ' + key
   }, root).trim()
 }
+
+// Append event listener to element
+// (str, fn, obj?, el) -> Element
+exports.addEventListener = addEventListener
+function addEventListener (event, callback, opts, el) {
+  var args = [event, callback]
+  if (el) args.push(opts)
+  else el = opts
+  if (typeof window !== 'undefined') {
+    if (el.id) {
+      let existing = document.getElementById(el.id)
+      if (existing) existing.addEventListener.apply(existing, args)
+    }
+    el.addEventListener.apply(el, args)
+  }
+  return el
+}

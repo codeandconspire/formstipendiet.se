@@ -31,9 +31,14 @@ function form (state, emitter, app) {
 
     var step = +state.query.q
     state.step = isNaN(step) ? 0 : step
+    state.next = null
     state.error = null
     state.loading = false
-    state.answers = Object.assign({}, persisted, queried)
+    state.answers = Object.assign({
+      'entry.1051571347_month': 1,
+      'entry.1051571347_day': 1,
+      'entry.1051571347_year': 1990
+    }, persisted, queried)
     state.contact = state.query.contact
   }
 
@@ -85,7 +90,18 @@ function form (state, emitter, app) {
     })
   })
 
+  emitter.on('form:next', function () {
+    state.next = state.step + 1
+    emitter.emit('render')
+  })
+
+  emitter.on('form:prev', function () {
+    state.next = state.step - 1
+    emitter.emit('render')
+  })
+
   emitter.on('form:goto', function (step) {
+    state.next = null
     state.step = step
     if (Object.keys(state.query).length) emitter.emit('pushState', state.href)
     else emitter.emit('render')

@@ -46,6 +46,10 @@ module.exports = class AboutYou extends Component {
     return 'Vem är du?'
   }
 
+  placeholder (...args) {
+    return this.createElement(...args)
+  }
+
   update () {
     return false
   }

@@ -1,5 +1,5 @@
 var html = require('choo/html')
-var { i18n, className } = require('../../components/base')
+var { i18n, className, addEventListener } = require('../../components/base')
 var questions = [
   require('../../components/has-applied'),
   require('../../components/why-you'),
@@ -25,6 +25,7 @@ function form (state, emit) {
     return state.cache(Component, `forum-question-${index}`)
   })
   var current = all[state.step]
+  var next = all[state.next]
 
   var query = serialize(state.answers)
   var isSummary = state.step === questions.length
@@ -53,9 +54,22 @@ function form (state, emit) {
       return pairs
     }, [])
 
+  var attrs = {
+    class: className('Form', {
+      'is-intransition': state.next != null,
+      'Form--summary': isSummary,
+      'is-valid': isValid
+    }),
+    action: state.href,
+    method: isSummary ? 'POST' : 'GET',
+    onsubmit: onsubmit
+  }
+
+  if (state.next != null) attrs.style = `--Form-direction: ${state.next - state.step};`
+
   return html`
     <body>
-      <form class="${className('Form', { 'Form--summary': isSummary, 'is-valid': isValid })}" action="${state.href}" method="${isSummary ? 'POST' : 'GET'}" onsubmit=${onsubmit}>
+      <form ${attrs}>
         ${answers.map(([name, value]) => html`<input type="hidden" name="${name}" value="${value}">`)}
 
         <div class="Form-statusbar">
@@ -76,33 +90,45 @@ function form (state, emit) {
               ` : null}
             </div>
 
-            <div class="Form-tools">
-              ${!isSummary ? current.render(onchange) : html`
-                <div class="Form-summary">
-                  <dl class="Form-dl">
-                    ${all.reduce((list, question) => {
-                      var value = question.value()
-                      if (!value) return list
-                      list.push(
-                        html`<dt class="Form-title">${question.title()}</dt>`,
-                        html`<dd class="Form-value">${value}</dd>`
-                      )
-                      return list
-                    }, [])}
-                  </dl>
-                  <div class="Form-restart">
-                    Blev något fel?<br>
-                    <a class="Form-link" href="${state.href}${query}${query ? '&' : '?'}q=0" onclick=${goto(0)}>Gå tillbaka och ändra</a>
+            <div class="Form-tools js-tools">
+              <div class="Form-answer">
+                ${!isSummary ? current.render(onchange, { out: state.step - state.next }) : html`
+                  <div class="Form-summary">
+                    <dl class="Form-dl">
+                      ${all.reduce((list, question) => {
+                        var value = question.value()
+                        if (!value) return list
+                        list.push(
+                          html`<dt class="Form-title">${question.title()}</dt>`,
+                          html`<dd class="Form-value">${value}</dd>`
+                        )
+                        return list
+                      }, [])}
+                    </dl>
+                    <div class="Form-restart">
+                      Blev något fel?<br>
+                      <a class="Form-link" href="${state.href}${query}${query ? '&' : '?'}q=0" onclick=${onclick(0)}>Gå tillbaka och ändra</a>
+                    </div>
                   </div>
+                `}
+              </div>
+              <div class="Form-answer Form-answer--next">
+                ${!isSummary && next ? next.placeholder(onchange, { in: state.next - state.step }) : null}
+                <div class="Form-nav Form-nav--placeholder">
+                  ${next ? html`
+                    <button type="submit" name="q" value="${state.step + 1}" class="Form-action Form-action--next ${!next.verify() ? 'is-disabled' : ''}" disabled=${!next.verify()} label="Nästa fråga">
+                      <span class="Form-button">Nästa fråga</span>
+                    </button>
+                  ` : null}
                 </div>
-              `}
+              </div>
             </div>
           </div>
         </div>
 
         <div class="Form-nav">
           ${!isSummary ? html`
-            <a href="${state.href}${query}${query ? '&' : '?'}q=${state.step - 1}" class="Form-action Form-action--prev ${state.step === 0 ? 'is-disabled' : ''}" label="Föregående fråga" onclick=${goto(state.step - 1)}>
+            <a href="${state.href}${query}${query ? '&' : '?'}q=${state.step - 1}" class="Form-action Form-action--prev ${state.step === 0 ? 'is-disabled' : ''}" label="Föregående fråga" onclick=${onclick(state.step - 1)}>
               <span class="Form-button">Föregående fråga</span>
             </a>
           ` : null}
@@ -118,7 +144,7 @@ function form (state, emit) {
         </div>
 
         ${state.step > 0 ? html`
-          <button class="Form-footer" type="submit" name="q" value="${state.step - 1}" onclick=${goto(state.step - 1)}>Föregående fråga</button>
+          <button class="Form-footer" type="submit" name="q" value="${state.step - 1}" onclick=${onclick(state.step - 1)}>Föregående fråga</button>
         ` : html`
           <div class="Form-footer"></div>
         `}
@@ -126,9 +152,9 @@ function form (state, emit) {
     </body>
   `
 
-  function goto (step) {
+  function onclick (step) {
     return function (event) {
-      emit('form:goto', step)
+      goto(step)
       event.preventDefault()
     }
   }
@@ -140,9 +166,25 @@ function form (state, emit) {
   function onsubmit (event) {
     if (!state.loading) {
       if (isSummary) emit('form:submit')
-      else emit('form:goto', state.step + 1)
+      else goto(state.step + 1)
     }
     event.preventDefault()
+  }
+
+  function goto (step) {
+    var diff = state.step - step
+    if (Math.abs(diff) === 1) {
+      if (diff === -1) emit('form:next')
+      else emit('form:prev')
+      let tools = document.querySelector('.js-tools')
+      tools.addEventListener('animationend', function onanimationend (event) {
+        if (event.target !== tools) return
+        tools.removeEventListener('animationend', onanimationend)
+        emit('form:goto', step)
+      })
+    } else {
+      emit('form:goto', step)
+    }
   }
 }
 

@@ -39,6 +39,10 @@ module.exports = class PriorStudies extends Component {
     return html`<p>${value.join(', ')}</p>`
   }
 
+  placeholder (...args) {
+    return this.createElement(...args)
+  }
+
   update () {
     return false
   }
