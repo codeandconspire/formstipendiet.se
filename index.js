@@ -1,4 +1,5 @@
 var choo = require('choo')
+var html = require('choo/html')
 var app = choo({ hash: false })
 
 app.state.origin = process.env.NODE_ENV === 'development'

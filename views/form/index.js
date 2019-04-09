@@ -1,5 +1,5 @@
 var html = require('choo/html')
-var { i18n, className, addEventListener } = require('../../components/base')
+var { i18n, className } = require('../../components/base')
 var questions = [
   require('../../components/has-applied'),
   require('../../components/why-you'),

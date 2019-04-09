@@ -30,6 +30,7 @@
       "CLOUDFLARE_ZONE": "@cloudflare-formstipendiet-zone",
       "CLOUDFLARE_EMAIL": "@cloudflare-formstipendiet-email",
       "CLOUDFLARE_KEY": "@cloudflare-formstipendiet-key",
+      "MAILGUN_KEY": "@mailgun-formstipendiet-key",
       "POLYFILL_FEATURES": "default-3.3,Array.prototype.find,Array.prototype.includes"
     }
   },
@@ -56,6 +57,7 @@
     "koa-body": "^4.1.0",
     "koa-compose": "^4.1.0",
     "koa-route": "^3.2.0",
+    "mailgun-js": "^0.22.0",
     "nanoraf": "^3.1.0",
     "normalize.css": "^8.0.1",
     "postcss-custom-properties": "^8.0.9",

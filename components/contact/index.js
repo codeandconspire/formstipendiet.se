@@ -15,7 +15,7 @@ module.exports = class Contact extends Component {
   }
 
   verify () {
-    return this.local[EMAIL] || this.local[TEL]
+    return this.local[EMAIL]
   }
 
   serialize () {
@@ -53,7 +53,7 @@ module.exports = class Contact extends Component {
       <div class="Contact" id="${this.local.id}">
       <label class="Contact-option">
           <span class="Contact-label">E-post:</span>
-          <input class="Contact-text" type="email" name="${EMAIL}" value="${this.local[EMAIL]}" autocomplete="email" oninput=${oninput}>
+          <input class="Contact-text" type="email" name="${EMAIL}" value="${this.local[EMAIL]}" autocomplete="email" required oninput=${oninput}>
         </label>
         <label class="Contact-option">
           <span class="Contact-label">Telefonnumer:</span>

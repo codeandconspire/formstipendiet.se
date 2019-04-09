@@ -81,7 +81,7 @@ function form (state, emitter, app) {
       window.localStorage.removeItem(STORAGE_ID)
       state.step = 0
       state.loading = false
-      state.contact = state.answers['entry.1286633865'] || state.answers['entry.1025892237']
+      state.contact = state.answers['entry.1286633865']
       state.answers = {
         'entry.1051571347_month': 1,
         'entry.1051571347_day': 1,

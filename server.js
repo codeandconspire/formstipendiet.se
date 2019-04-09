@@ -8,6 +8,7 @@ var compose = require('koa-compose')
 var { get, post } = require('koa-route')
 var unparsed = require('koa-body/unparsed')
 var purge = require('./lib/purge')
+var email = require('./lib/email')
 
 var ENDPOINT = 'https://docs.google.com/forms/u/1/d/e/1FAIpQLSd7gzpZ2H8-KAV_dB2NtFO0UcnvwDbVj-uvO883sSGgj57bCg/formResponse'
 
@@ -16,6 +17,7 @@ var app = jalla('index.js', {
   serve: Boolean(process.env.NOW)
 })
 
+// proxy application form for Google Forms
 app.use(post('/ansok', compose([
   body({ includeUnparsed: true }),
   async function (ctx, next) {
@@ -27,10 +29,13 @@ app.use(post('/ansok', compose([
       body: ctx.request.body[unparsed]
     })
 
+    var fields = ctx.request.body.entry
+
+    // send an confirmation email
+    await email(fields).catch(console.error)
+
     if (ctx.accepts('html')) {
-      let fields = ctx.request.body.entry
-      let contact = fields['1286633865'] || fields['entry.1025892237']
-      ctx.redirect('/tack?contact=' + contact)
+      ctx.redirect('/tack?contact=' + fields['1286633865'])
     } else {
       ctx.type = 'application/json'
       ctx.body = {}
