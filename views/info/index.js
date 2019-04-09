@@ -14,7 +14,7 @@ function home (state, emit) {
 
   return html`
     <body>
-      <main class="Info">
+      <main class="Info js-scroll">
         <div class="Info-main">
           <div class="Info-content">
             <p>Gillar du att skapa med händerna? Kanske gillar du att inreda ditt rum och fantiserar om att bygga en bokhylla? Formgivning kan vara allt möjligt och form finns överallt.</p>

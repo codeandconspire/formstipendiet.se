@@ -16,4 +16,13 @@ function reset (state, emitter) {
 
   // reset meta in-between renders
   state.meta = state.prefetch ? {} : state.meta
+
+  emitter.on('navigate', function () {
+    window.requestAnimationFrame(function () {
+      var containers = document.querySelectorAll('.js-scroll')
+      for (let i = 0, len = containers.length; i < len; i++) {
+        containers[i].scrollTo(0, 0)
+      }
+    })
+  })
 }

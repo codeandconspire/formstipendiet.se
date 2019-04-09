@@ -80,7 +80,7 @@ function form (state, emit) {
         </div>
 
         <div class="Form-main">
-          <div class="Form-container">
+          <div class="Form-container js-scroll">
             <div class="Form-question">
               <p>${isSummary ? 'Granska din ansökan' : current.title()}</p>
               ${state.error ? html`
@@ -92,7 +92,7 @@ function form (state, emit) {
               ` : null}
             </div>
 
-            <div class="Form-tools js-tools">
+            <div class="Form-tools js-tools js-scroll">
               <div class="Form-answer">
                 ${!isSummary ? current.render(onchange, { out: state.step - state.next }) : html`
                   <div class="Form-summary">

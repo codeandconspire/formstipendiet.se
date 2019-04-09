@@ -1,12 +1,15 @@
 @import "../base";
 
+:root {
+  --Intro-size: 1;
+}
+
 /* @define Intro */
 .Intro {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
   height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
   z-index: 1;
 }
 
@@ -26,58 +29,25 @@
  */
 
 .Intro-1 {
+  z-index: 2;
+  padding: 0.3rem;
+  animation: Intro-1--shrinking 600ms 500ms forwards var(--ease-out);
+  will-change: transform;
+  transform-origin: top;
   background: rgb(var(--color-blue));
-  z-index: 1;
 }
 
-.Intro-container {
-  position: absolute;
-  top: var(--Form-padding);
-  right: var(--Form-padding);
-  bottom: var(--Form-padding);
-  left: var(--Form-padding);
-  animation: scale-container 200ms 2000ms var(--ease) forwards;
-}
-
-.Intro-line,
-.Intro-box {
+.Intro-figure {
   width: 100%;
-  height: 1%;
-  min-height: 2px;
-  position: absolute;
-  background: #fff;
+  height: 100%;
+  padding: 1rem 0.3rem;
 }
 
-.Intro-line {
-  max-height: 7px;
+@keyframes Intro-1--shrinking {
+  to {
+    transform: scaleY(0.35);
+  }
 }
-
-.Intro-line:nth-child(1) { width: 100%; }
-.Intro-line:nth-child(2) { top: 22.7%; width: 30%; left: 4%; }
-.Intro-line:nth-child(3) { top: 45.7%; width: 21%; }
-.Intro-line:nth-child(4) { top: 45.7%; left: 50%; width: 50%; }
-.Intro-line:nth-child(5) { bottom: 46.6%; width: 42%; }
-.Intro-line:nth-child(6) { bottom: 25.6%; width: 46%; left: 4%; }
-.Intro-line:nth-child(7) { bottom: 0%; width: 21%; }
-.Intro-line:nth-child(8) { bottom: 46.6%; left: 50%; width: 50%; }
-.Intro-line:nth-child(9) { bottom: 0%; left: 41%; width: 30%; }
-
-.Intro-box {
-  height: 23%;
-}
-
-.Intro-box:nth-child(1) { width: 9%; left: 4%; top: 0.4%; }
-.Intro-box:nth-child(2) { width: 17%; left: 4%; top: 23%; }
-.Intro-box:nth-child(3) { left: 33%; width: 17%; height: 10%; top: 0.4%; }
-.Intro-box:nth-child(4) { left: 54%; width: 17%; height: 46%; top: 0.4%; }
-.Intro-box:nth-child(5) { left: 87%; width: 9%; height: 46%; top: 0.4%; }
-.Intro-box:nth-child(6) { bottom: 26%; width: 9%; height: 21%; left: 4%; }
-.Intro-box:nth-child(7) { bottom: 0.2%; width: 17%; height: 26%; left: 4%; }
-.Intro-box:nth-child(8) { bottom: 26%; width: 17%; left: 25%; height: 21%; }
-.Intro-box:nth-child(9) { bottom: 0.2%; left: 41%; width: 9%; height: 26%; }
-.Intro-box:nth-child(10) { bottom: 0.2%; width: 17%; left: 54%; height: 47%; }
-.Intro-box:nth-child(11) { bottom: 20%; width: 9%; left: 77%; height: 27%; }
-.Intro-box:nth-child(12) { bottom: 0; width: 9%; left: 91%; height: 47%; }
 
 /* -------------------------------------------------------------------------- */
 
@@ -86,12 +56,21 @@
  */
 
 .Intro-2 {
+  top: 35%;
+  height: 65%;
   background: rgb(var(--color-red));
+  animation: Intro-2--shrinking 400ms 5100ms forwards var(--ease);
+}
+
+@keyframes Intro-2--shrinking {
+  to {
+    height: 18%;
+  }
 }
 
 .Intro-word {
   color: yellow;
-  font-size: 10vh;
+  font-size: 8vh;
   text-transform: uppercase;
   letter-spacing: -0.02em;
   position: absolute;
@@ -106,3 +85,52 @@
   right: auto;
   left: 0.1em;
 }
+
+.Intro-logo {
+  width: 94%;
+  height: auto;
+  max-height: 58%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  overflow: visible;
+  transform: translate(-50%, -50%);
+  animation: Intro-logo--hidden 0ms 5000ms forwards linear;
+}
+
+@keyframes Intro-logo--hidden {
+  to {
+    opacity: 0;
+  }
+}
+
+.Intro-slice {
+  animation:
+    Intro-slice--appear 600ms 2500ms forwards var(--ease),
+    Intro-slice--disappear 600ms 4000ms forwards var(--ease);
+}
+
+@keyframes Intro-slice--appear {
+  to {
+    transform: translateX(0vw);
+  }
+}
+
+@keyframes Intro-slice--disappear {
+  from {
+    transform: translateX(0vw);
+  }
+
+  to {
+    transform: translateX(calc(var(--Intro-slice-origin) * -1));
+  }
+}
+
+.Intro-slice:nth-child(odd) { --Intro-slice-origin: -120vw; }
+.Intro-slice:nth-child(even) { --Intro-slice-origin: 120vw; }
+
+.Intro-slice { transform: translateX(var(--Intro-slice-origin)); }
+.Intro-slice:nth-child(2) { animation-delay: 2700ms, 4200ms; }
+.Intro-slice:nth-child(3) { animation-delay: 2900ms, 4400ms; }
+.Intro-slice:nth-child(4) { animation-delay: 3100ms, 4600ms; }
+.Intro-slice:nth-child(5) { animation-delay: 3300ms, 4800ms; }
