@@ -1,5 +1,6 @@
 var html = require('choo/html')
 var { i18n } = require('../../components/base')
+var intro = require('../../components/intro')
 var Countdown = require('../../components/countdown')
 
 var DEADLINE = new Date('2019-05-25')
@@ -46,6 +47,7 @@ function home (state, emit) {
           ` : null}
         </div>
         <div class="Home-sidebar">
+          ${intro()}
         </div>
       </main>
     </body>
