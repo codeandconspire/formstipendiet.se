@@ -38,11 +38,12 @@
 
 .Info-content {
   padding: 8rem var(--Form-padding) 5rem;
+  max-width: 60rem;
 }
 
 @media (min-width: 600px) {
   .Info-content {
-    padding: var(--Form-space-md) 10rem 3rem 3rem;
+    padding: var(--Form-space-md) 12rem 3rem 3rem;
   }
 }
 
@@ -96,14 +97,15 @@
 }
 
 .Info-footer {
-  padding: var(--Form-padding);
   margin: auto var(--Form-padding) var(--Form-space-sm) var(--Form-padding);
-  border: 1px solid rgb(var(--color-red));
+  max-width: 45rem;
 }
 
 @media (min-width: 600px) {
   .Info-footer {
     margin: auto 10rem 3rem 3rem;
+    padding: var(--Form-padding);
+    border: 1px solid rgb(var(--color-red));
   }
 }
 
@@ -112,6 +114,7 @@
   align-items: flex-end;
   color: #fff;
   background-color: rgb(var(--color-red));
+  width: 100%;
 }
 
 @media (min-width: 1000px) {
@@ -129,13 +132,19 @@
 }
 
 .Info-step {
-  font-size: 1.75rem;
+  font-size: 1.45rem;
   margin: 0.5rem 0;
   position: relative;
   padding-left: 1.2rem;
   text-transform: uppercase;
 }
 
+@media (min-width: 1200px) {
+  .Info-step {
+    font-size: 1.75rem;
+  }
+}
+ 
 .Info-step::before {
   display: inline-block;
   position: absolute;
