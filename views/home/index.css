@@ -27,8 +27,14 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-top: 45vh;
+  padding-top: 53vh;
   overflow: hidden;
+}
+
+@media (min-width: 1000px) {
+  .Home-main {
+    padding-top: 0;
+  }
 }
 
 .Home-main p {
@@ -53,6 +59,10 @@
   }
 
   .Home-content {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: var(--Form-space-lg);
   }
 }
@@ -60,7 +70,7 @@
 .Home-apply {
   display: flex;
   padding-right: 0.5em;
-  margin-top: 1em 0 3em;
+  margin: 1em 0 3em;
   align-items: center;
   text-transform: uppercase;
   user-select: none;
@@ -103,7 +113,7 @@
 @media (min-width: 1000px) {
   .Home-menu {
     top: 1.5vw;
-    right: 37%;
+    right: 1.5vw;
   }
 }
 

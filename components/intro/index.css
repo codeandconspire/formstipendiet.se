@@ -59,12 +59,18 @@
   top: 35%;
   height: 65%;
   background: rgb(var(--color-red));
-  animation: Intro-2--shrinking 400ms 5100ms forwards var(--ease);
+  animation: Intro-2--shrinking 400ms 4100ms forwards var(--ease);
 }
 
 @keyframes Intro-2--shrinking {
   to {
     height: 18%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .Intro-2 {
+    animation: none;
   }
 }
 
@@ -95,7 +101,13 @@
   top: 50%;
   overflow: visible;
   transform: translate(-50%, -50%);
-  animation: Intro-logo--hidden 0ms 5000ms forwards linear;
+  animation: Intro-logo--hidden 0ms 4000ms forwards linear;
+}
+
+@media (min-width: 1000px) {
+  .Intro-logo {
+    animation: none;
+  }
 }
 
 @keyframes Intro-logo--hidden {
@@ -106,8 +118,14 @@
 
 .Intro-slice {
   animation:
-    Intro-slice--appear 600ms 2500ms forwards var(--ease),
-    Intro-slice--disappear 600ms 4000ms forwards var(--ease);
+    Intro-slice--appear 600ms 1500ms forwards var(--ease),
+    Intro-slice--disappear 600ms 3000ms forwards var(--ease);
+}
+
+@media (min-width: 1000px) {
+  .Intro-slice {
+    animation: Intro-slice--appear 600ms 1500ms forwards var(--ease);
+  }
 }
 
 @keyframes Intro-slice--appear {
@@ -130,7 +148,19 @@
 .Intro-slice:nth-child(even) { --Intro-slice-origin: 120vw; }
 
 .Intro-slice { transform: translateX(var(--Intro-slice-origin)); }
-.Intro-slice:nth-child(2) { animation-delay: 2700ms, 4200ms; }
-.Intro-slice:nth-child(3) { animation-delay: 2900ms, 4400ms; }
-.Intro-slice:nth-child(4) { animation-delay: 3100ms, 4600ms; }
-.Intro-slice:nth-child(5) { animation-delay: 3300ms, 4800ms; }
+.Intro-slice:nth-child(1) { animation-delay: 1500ms, 3000ms; }
+.Intro-slice:nth-child(2) { animation-delay: 1700ms, 3200ms; }
+.Intro-slice:nth-child(3) { animation-delay: 1900ms, 3400ms; }
+.Intro-slice:nth-child(4) { animation-delay: 2100ms, 3600ms; }
+.Intro-slice:nth-child(5) { animation-delay: 2300ms, 3800ms; }
+
+@media (min-width: 1000px) {
+  .Intro-slice {
+    animation: Intro-slice--appear 600ms 1500ms forwards var(--ease);
+  }
+  .Intro-slice:nth-child(1) { animation-delay: 1500ms; }
+  .Intro-slice:nth-child(2) { animation-delay: 1700ms; }
+  .Intro-slice:nth-child(3) { animation-delay: 1900ms; }
+  .Intro-slice:nth-child(4) { animation-delay: 2100ms; }
+  .Intro-slice:nth-child(5) { animation-delay: 2300ms; }
+}

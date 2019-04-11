@@ -4,6 +4,8 @@ var Banner = require('../../components/banner')
 module.exports = thanks
 
 function thanks (state, emit) {
+  var contact = state.contact ? state.contact.toUpperCase() : '?'
+
   return html`
     <body>
       <main class="Thanks">
@@ -16,7 +18,7 @@ function thanks (state, emit) {
         <div class="Thanks-text">
           <h1 class="Thanks-title">Så där ja!</h1>
           <p>
-            Vi kontaktar dig på <span class="u-textBreak">${state.contact.toUpperCase()}</span> när urvalet till Formstipendiet är beslutat. Svaret kommer runt 25 juni 2019.
+            Vi kontaktar dig på <span class="u-textBreak">${contact}</span> när urvalet till Formstipendiet är beslutat. Svaret kommer runt 25 juni 2019.
           </p>
         </div>
       </main>
