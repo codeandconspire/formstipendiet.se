@@ -18,7 +18,7 @@ function form (state, emit) {
   emit('meta', {
     title: text`SITE_NAME`,
     description: text`SITE_DESCRIPTION`,
-    'og:image': '/share.jpg'
+    'og:image': '/share.png'
   })
 
   var all = questions.map(function (Component, index) {
@@ -76,7 +76,7 @@ function form (state, emit) {
 
         <div class="Form-statusbar">
           <span>${state.step < questions.length ? `${state.step + 1}/${questions.length}` : null}</span>
-          <a href="/" class="Form-cancel"><span>Avbryt</span></a>
+          <a href="/" class="Form-cancel" onclick=${reset}><span>Avbryt</span></a>
         </div>
 
         <div class="Form-main">
@@ -155,6 +155,11 @@ function form (state, emit) {
       </form>
     </body>
   `
+
+  function reset (event) {
+    emit('form:abort')
+    event.preventDefault()
+  }
 
   function onclick (step) {
     return function (event) {

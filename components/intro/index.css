@@ -57,6 +57,7 @@
 
 .Intro-2 {
   top: 35%;
+  width: 100%;
   height: 65%;
   background: rgb(var(--color-red));
   animation: Intro-2--shrinking 400ms 4100ms forwards var(--ease);
@@ -74,22 +75,58 @@
   }
 }
 
-.Intro-word {
-  color: yellow;
-  font-size: 8vh;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  position: absolute;
-  top: 0;
-  right: 0.1em;
-  line-height: 1;
+.Intro-words {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 100%;
+  padding: var(--Form-padding);
+  font-weight: normal;
 }
 
-.Intro-word + .Intro-word {
-  top: auto;
-  bottom: 0;
-  right: auto;
-  left: 0.1em;
+.Intro-word {
+  color: yellow;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-size: 15vw;
+  font-family: 'NimbusSanExt-Reg', var(--document-font-family);
+}
+
+@media (min-width: 400px) {
+  .Intro-word {
+    font-size: 5.3vh;
+  }
+}
+
+@media (min-width: 1000px) {
+  .Intro-word {
+    font-size: 4.6vw;
+  }
+}
+
+@media (min-width: 1600px) {
+  .Intro-word {
+    font-size: 7.5vh;
+  }
+}
+
+.Intro-word:nth-child(1) {
+  order: -1;
+}
+
+.Intro-word:nth-child(2) {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.Intro-word--year {
+  order: -1;
+  border: 3px solid currentColor;
+  border-radius: 100%;
+  padding: 0.3em 0.4em;
+  font-style: italic;
+  font-size: 2vh;
 }
 
 .Intro-logo {

@@ -8,7 +8,7 @@
   width: 100%;
   overflow: hidden;
   user-select: none;
-  border-top: 1px solid rgb(var(--color-red));
+  border-top: var(--Form-border-width) solid rgb(var(--color-red));
 }
 
 @media (min-width: 1000px) {
@@ -32,7 +32,7 @@
 }
 
 .Age-list:not(:last-child) {
-  border-bottom: 1px solid rgb(var(--color-red));
+  border-bottom: var(--Form-border-width) solid rgb(var(--color-red));
 }
 
 @media (min-width: 1000px) {
@@ -43,7 +43,7 @@
 
   .Age-list:not(:last-child) {
     border-bottom: 0;
-    border-right: 1px solid rgb(var(--color-red));
+    border-right: var(--Form-border-width) solid rgb(var(--color-red));
   }
 }
 

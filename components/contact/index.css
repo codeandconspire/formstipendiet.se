@@ -19,7 +19,7 @@
 .Contact-option {
   display: block;
   padding: var(--Form-padding);
-  border-top: 1px solid rgb(var(--color-red));
+  border-top: var(--Form-border-width) solid rgb(var(--color-red));
   font-size: var(--Form-font-size-title);
   flex: 1 1 auto;
 }
@@ -58,6 +58,6 @@
   }
 
   .Contact-option:last-child {
-    border-bottom: 1px solid rgb(var(--color-red));
+    border-bottom: var(--Form-border-width) solid rgb(var(--color-red));
   }
 }

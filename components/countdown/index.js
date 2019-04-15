@@ -6,7 +6,7 @@ module.exports = class Countdown extends Component {
     super(id)
     this.cache = state.cache
     this.local = state.components[id] = { id, offset: 0, counters: [] }
-    for (let i = 0; i < 3; i++) this.local.counters.push(i)
+    for (let i = 0; i < 5; i++) this.local.counters.push(i)
   }
 
   update () {

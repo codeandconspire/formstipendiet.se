@@ -64,7 +64,7 @@ module.exports = class AboutYou extends Component {
           <input class="AboutYou-text" type="text" name="${NAME}" value="${this.local[NAME]}" autocomplete="name" required oninput=${oninput}>
         </label>
         <label class="AboutYou-option">
-          <span class="AboutYou-label">Address:</span>
+          <span class="AboutYou-label">Adress:</span>
           <input class="AboutYou-text" type="text" name="${STREET_ADDRESS}" value="${this.local[STREET_ADDRESS]}" autocomplete="street-address" required oninput=${oninput}>
         </label>
         <label class="AboutYou-option">

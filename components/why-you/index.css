@@ -8,7 +8,7 @@
   height: 100%;
   user-select: none;
   -webkit-touch-callout: none;
-  border-top: 1px solid rgb(var(--color-red));
+  border-top: var(--Form-border-width) solid rgb(var(--color-red));
 }
 
 @media (min-width: 1000px) {
@@ -28,7 +28,7 @@
   .WhyYou-option {
     height: 65%;
     border: solid;
-    border-width: 1px 0;
+    border-width: var(--Form-border-width) 0;
   }
 }
 
@@ -58,7 +58,7 @@
   position: absolute;
   right: var(--Form-padding);
   top: var(--Form-padding);
-  font-size: var(--Form-font-size-small);
+  font-size: var(--Form-font-size-interface);
 }
 
 .WhyYou-placeholder {

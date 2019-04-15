@@ -46,7 +46,9 @@ module.exports = class Intro extends Component {
           <svg class="Intro-figure" viewBox="0 0 458 312" preserveAspectRatio="none" width="458" height="312"><path d="M94.93 311.114v.326H0v-4.457h19V170.484H0v-4.457h190.417v62.957h38.305v77.999h17.765V170.484h-17.765v-4.457H456.89V311.44h-38.86V170.484h-26.093v78h-38.86v-78h-30.534V311.44H190.417v-79.114H95.056v78.788h-.125zm-37.625-83.245h57.056v-57.385H57.305v57.385zM438.57 4.457v136.499h18.32v4.457H228.722v-4.457h18.876V4.457h-18.876V31.2h-76.055V4.457H57.736v66.3h94.93v4.457h-57.18v70.199H0v-4.457h19.43V4.457H0V0h458v4.457h-19.43zm-38.86 0h-76.057v136.499h76.056V4.457z" fill="#FFF" fill-rule="evenodd"/></svg>
         </div>
         <div class="Intro-2 js-last">
-          <h1><span class="Intro-word">Form</span><span class="Intro-word">stipendiet</span> <span class="Intro-year">2019</span></h1>
+          <h1 class="Intro-words">
+            <span class="Intro-word">Form</span><span class="Intro-word">stipendiet</span> <span class="Intro-word Intro-word--year">2019</span>
+          </h1>
           <svg class="Intro-logo" width="364" height="244" viewBox="0 0 364 244">
             <g fill="#FFF203" fill-rule="evenodd">
               <g class="Intro-slice">

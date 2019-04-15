@@ -4,7 +4,7 @@
 .Home {
   width: 100%;
   height: 100%;
-  font-size: 1.5rem;
+  font-size: var(--Form-font-size-text);
   overflow: auto;
   position: relative;
   -webkit-overflow-scrolling: touch;
@@ -14,12 +14,7 @@
   .Home {
     flex-wrap: nowrap;
     display: flex;
-  }
-}
-
-@media (min-width: 1000px) and (min-height: 800px) {
-  .Home {
-    font-size: 2.5rem;
+    flex-direction: row-reverse;
   }
 }
 
@@ -28,6 +23,7 @@
   flex-direction: column;
   justify-content: flex-start;
   padding-top: 53vh;
+  position: relative;
   overflow: hidden;
 }
 
@@ -67,34 +63,24 @@
   }
 }
 
+.Home-nav {
+  text-align: center;
+}
+
 .Home-apply {
-  display: flex;
-  padding-right: 0.5em;
+  display: inline-block;
   margin: 1em 0 3em;
-  align-items: center;
+  padding: 0.15em 0.1em 0.025em;
+  color: #fff;
+  background-color: rgb(var(--color-red));
   text-transform: uppercase;
   user-select: none;
+  line-height: 0.9;
 }
 
-.Home-apply::before {
-  content: "";
-  order: -1;
-  flex: 1 0 auto;
-  height: 2px;
+.Home-apply:hover {
+  color: #fff;
   background-color: rgb(var(--color-red));
-}
-
-.Home-apply::after {
-  content: "";
-  order: -1;
-  display: block;
-  width: 8px;
-  height: 13px;
-  margin-right: 0.5em;
-  position: relative;
-  left: -1px;
-  background: url("./arrow.svg") 0 0 no-repeat;
-  background-size: 100% auto;
 }
 
 .Home-menu {
@@ -136,8 +122,8 @@
 .Home-footer {
   display: flex;
   width: 100%;
-  border-top: 2px solid rgb(var(--color-red));
-  position: fixed;
+  border-top: var(--Form-border-width) solid rgb(var(--color-red));
+  position: absolute;
   left: 0;
   bottom: 0;
   height: var(--Form-space-sm);

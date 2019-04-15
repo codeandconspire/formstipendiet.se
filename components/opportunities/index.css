@@ -53,8 +53,8 @@
   outline: none;
 }
 
-.Opportunities-toggle:checked + .Opportunities-label .Opportunities-indicator {
-  background: rgb(var(--color-red));
+.Opportunities-toggle:checked ~ .Opportunities-label .Opportunities-indicator {
+  background: rgb(var(--color-yellow));
 }
 
 .Opportunities-label {
@@ -65,7 +65,7 @@
   height: 100%;
   width: 100%;
   padding: 1.2rem var(--Form-padding);
-  border: 1px solid rgb(var(--color-red));
+  border: var(--Form-border-width) solid rgb(var(--color-red));
   position: relative;
   line-height: normal;
   text-align: center;
@@ -76,8 +76,7 @@
   .Opportunities-label {
     flex: 1 0 auto;
     flex-direction: row;
-    padding: var(--Form-space-md);
-    border-width: 1px 0 0;
+    border-width: var(--Form-border-width) 0 0;
     font-size: 2.625rem;
     text-align: left;
     justify-content: flex-start;
@@ -88,8 +87,10 @@
   }
 }
 
-.Opportunities-toggle:checked ~ .Opportunities-label {
-  color: #fff;
+@media (min-height: 700px) and (min-width: 1000px) {
+  .Opportunities-label {
+    padding: var(--Form-space-md);
+  }
 }
 
 .Opportunities-symbol {
@@ -107,8 +108,14 @@
 
 .Opportunities-description {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   max-width: 130px;
+}
+
+@media (min-width: 600px) {
+  .Opportunities-description {
+    font-size: var(--Form-font-size-interface);
+  }
 }
 
 @media (min-width: 1000px) {
@@ -118,6 +125,5 @@
 
   .Opportunities-description {
     max-width: none;
-    font-size: 16px;
   }
 }

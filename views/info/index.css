@@ -7,14 +7,15 @@
   width: 100%;
   height: 100%;
   position: relative;
-  font-size: 1.5rem;
   overflow: auto;
+  font-size: var(--Form-font-size-text);
   -webkit-overflow-scrolling: touch;
 }
 
 @media (min-width: 1000px) {
   .Info {
     flex-wrap: nowrap;
+    flex-direction: row-reverse;
   }
 }
 
@@ -54,7 +55,7 @@
 }
 
 .Info-menu {
-  position: fixed;
+  position: absolute;
   top: 0.5vh;
   right: -1.5em;
   font-size: 1.25rem;
@@ -65,6 +66,12 @@
   background-position: center;
   background-repeat: no-repeat;
   user-select: none;
+  background-size: 100%;
+  transition: background-size 150ms var(--ease-out);
+}
+
+.Info-menu:hover {
+  background-size: 200%;
 }
 
 .Info-spinner {
@@ -75,7 +82,7 @@
 @media (min-width: 1000px) {
   .Info-menu {
     top: 1.5vw;
-    right: 37%;
+    right: 1.5vw;
   }
 }
 
@@ -98,13 +105,14 @@
 .Info-footer {
   margin: auto var(--Form-padding) var(--Form-space-sm) var(--Form-padding);
   max-width: 45rem;
+  font-size: 0.8em;
 }
 
 @media (min-width: 600px) {
   .Info-footer {
     margin: auto 10rem 3rem 3rem;
     padding: var(--Form-padding);
-    border: 1px solid rgb(var(--color-red));
+    border: var(--Form-border-width) solid rgb(var(--color-red));
   }
 }
 
@@ -131,7 +139,7 @@
 }
 
 .Info-step {
-  font-size: 1.45rem;
+  font-size: 0.8em;
   margin: 0.5rem 0;
   position: relative;
   padding-left: 1.2rem;

@@ -42,6 +42,11 @@ function form (state, emitter, app) {
     state.contact = state.query.contact
   }
 
+  emitter.on('form:abort', function () {
+    state.step = 0
+    emitter.emit('pushState', '/')
+  })
+
   emitter.on('form:save', function (name, value) {
     if (value) state.answers[name] = value
     else delete state.answers[name]

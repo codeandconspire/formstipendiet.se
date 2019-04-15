@@ -6,7 +6,7 @@
   flex-direction: column;
   height: 100%;
   user-select: none;
-  border-top: 1px solid rgb(var(--color-red));
+  border-top: var(--Form-border-width) solid rgb(var(--color-red));
 }
 
 @media (min-width: 1000px) {
@@ -25,7 +25,7 @@
 }
 
 .HasApplied-option:first-child {
-  border-bottom: 1px solid;
+  border-bottom: var(--Form-border-width) solid;
 }
 
 @media (min-width: 1000px) {
@@ -57,11 +57,11 @@
 }
 
 .HasApplied-toggle:checked + .HasApplied-indicator {
-  background: rgb(var(--color-red));
+  background: rgb(var(--color-yellow));
 }
 
 .HasApplied-toggle:checked ~ .HasApplied-label {
-  color: #fff;
+  color: rgb(var(--color-red));
 }
 
 /**
@@ -75,9 +75,9 @@
   top: 50%;
   z-index: 2;
   font-size: var(--Form-font-size-small);
-  background: #fff;
+  color: #fff;
+  background: rgb(var(--color-red));
   opacity: 0;
-  color: rgb(var(--color-red));
   transform: translate(-2em, -50%);
   width: 9.3em;
   pointer-events: none;
@@ -101,7 +101,7 @@
   }
 
   .HasApplied-tooltip {
-    width: 10rem;
+    width: 14rem;
     left: 50%;
     top: auto;
     bottom: 100%;
@@ -127,7 +127,7 @@
   height: 0;
   border-style: solid;
   border-width: 0.4em 1em;
-  border-color: transparent #fff transparent transparent;
+  border-color: transparent rgb(var(--color-red)) transparent transparent;
   position: absolute;
   right: calc(100% - 1px);
   top: 50%;
@@ -137,7 +137,7 @@
 @media (min-width: 1000px) {
   .HasApplied-tooltip::after {
     border-width: 1em 0.4em;
-    border-color: #fff transparent transparent;
+    border-color: rgb(var(--color-red)) transparent transparent;
     left: 50%;
     right: auto;
     top: calc(100% - 1px);
