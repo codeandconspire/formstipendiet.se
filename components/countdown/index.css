@@ -32,7 +32,7 @@
   display: inline-block;
   width: 1.4rem;
   height: 1.4rem;
-  border: var(--Form-border-width) solid rgb(var(--color-red));
+  border: 2px solid rgb(var(--color-red));
   position: absolute;
   top: calc(50% - 2px);
   left: 0.7em;

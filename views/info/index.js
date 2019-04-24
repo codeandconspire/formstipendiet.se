@@ -21,21 +21,12 @@ function home (state, emit) {
             <p>Med vilja och lust att skapa något kommer man långt. På kvällsskolan får du bland annat lära dig möbeldesign, inredning, skissteknik, materialkunskap, foto, designhistoria, förpackningsdesign och verkstadsteknik.</p>
             <nav>
               <a href="/" class="Info-menu">
-                <svg class="Info-spinner" width="120" height="120" viewBox="0 0 120 120">
-                  <defs>
-                    <path id="menu-text-path" d="M60 98a38 38 0 1 1 0-76 38 38 0 0 1 0 76zm0-1a37 37 0 1 0 0-74 37 37 0 0 0 0 74z"/>
-                  </defs>
-                  <text width="120">
-                    <textPath fill="currentColor" alignment-baseline="top" xlink:href="#menu-text-path">
-                      Mindre information
-                    </textPath>
-                  </text>
-                </svg>
+                Mindre info
               </a>
             </nav>
-          </div>
-          <div class="Info-footer">
-            Sista ansökningsdag 24 maj 2019 och besked om stipendiet ges runt den 25 juni.
+            <div class="Info-footer">
+              Sista ansökningsdag 24 maj 2019 och besked om stipendiet ges runt den 25 juni.
+            </div>
           </div>
         </div>
         <div class="Info-sidebar">

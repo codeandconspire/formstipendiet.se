@@ -21,7 +21,6 @@
   display: flex;
   flex-direction: column;
   justify-content: inherit;
-  border-radius: 50%;
   border-width: 0.5rem;
 }
 

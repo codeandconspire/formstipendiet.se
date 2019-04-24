@@ -25,19 +25,7 @@ function home (state, emit) {
             <p>Att gå på kvällsskolan kostar 34 000 kronor vilket är mycket pengar. Därför startades Formstipendiet av Familjen Robert Weils Stiftelse. Om du har sökt till kvällsskolan så kan du ansöka om stipendiet och behöver alltså inte betala en enda krona.</p>
             <nav class="Home-nav">
               ${DEADLINE > Date.now() ? html`<a href="/ansok" class="Home-apply">Sök Formstipendiet</a>` : null}
-              <a href="/info" class="Home-menu">
-                <svg width="120" height="120" viewBox="0 0 120 120">
-                  <defs>
-                    <path id="menu-text-path" d="M60 98a38 38 0 1 1 0-76 38 38 0 0 1 0 76zm0-1a37 37 0 1 0 0-74 37 37 0 0 0 0 74z"/>
-                  </defs>
-                  <circle class="Home-dot" r="4" fill="currentColor" cx="60" cy="60" />
-                  <text width="120">
-                    <textPath fill="currentColor" alignment-baseline="top" xlink:href="#menu-text-path">
-                      Mer information
-                    </textPath>
-                  </text>
-                </svg>
-              </a>
+              <a href="/info" class="Home-menu">Mer info</a>
             </nav>
           </div>
           ${DEADLINE > Date.now() ? html`

@@ -85,7 +85,7 @@
 }
 
 .Intro-word {
-  color: yellow;
+  color: rgb(var(--color-yellow));
   text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -95,13 +95,19 @@
 
 @media (min-width: 400px) {
   .Intro-word {
+    font-size: 9vw;
+  }
+}
+
+@media (min-width: 600px) {
+  .Intro-word {
     font-size: 5.3vh;
   }
 }
 
 @media (min-width: 1000px) {
   .Intro-word {
-    font-size: 4.6vw;
+    font-size: 5.5vw;
   }
 }
 
@@ -111,22 +117,26 @@
   }
 }
 
-.Intro-word:nth-child(1) {
-  order: -1;
-}
-
 .Intro-word:nth-child(2) {
   margin-top: auto;
   align-self: flex-start;
 }
 
 .Intro-word--year {
-  order: -1;
-  border: 3px solid currentColor;
+  border: 4px solid currentColor;
   border-radius: 100%;
-  padding: 0.3em 0.4em;
+  padding: 0.4em 0.6em;
+  position: absolute;
+  top: var(--Form-padding);
+  left: var(--Form-padding);
   font-style: italic;
-  font-size: 2vh;
+  font-size: 2.9vh;
+}
+
+@media (min-width: 400px) {
+  .Intro-word--year {
+    font-size: 3.2vh;
+  }
 }
 
 .Intro-logo {
@@ -136,6 +146,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
+  top: calc(50% - 2px);
   overflow: visible;
   transform: translate(-50%, -50%);
   animation: Intro-logo--hidden 0ms 4000ms forwards linear;

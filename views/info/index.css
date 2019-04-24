@@ -20,15 +20,14 @@
 }
 
 .Info-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  width: 100%;
   position: relative;
 }
 
 @media (min-width: 1000px) {
   .Info-main {
     height: 100vh;
+    overflow: auto;
   }
 }
 
@@ -37,13 +36,16 @@
 }
 
 .Info-content {
-  padding: 8rem var(--Form-padding) 5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 5rem var(--Form-padding) 5rem;
   max-width: 60rem;
 }
 
 @media (min-width: 600px) {
   .Info-content {
-    padding: var(--Form-space-md) 12rem 3rem 3rem;
+    padding: 5rem var(--Form-space-md) var(--Form-space-md);
   }
 }
 
@@ -55,28 +57,35 @@
 }
 
 .Info-menu {
+  border: var(--Form-border-width) solid rgb(var(--color-red));
+  padding: 0.3em 0.5em 0.2em;
   position: absolute;
-  top: 0.5vh;
-  right: -1.5em;
+  top: 2vw;
+  right: 2vw;
   font-size: 1.25rem;
   text-transform: uppercase;
-  word-spacing: 0.2em;
   color: rgb(var(--color-red));
-  background-image: url("./cross.svg");
-  background-position: center;
-  background-repeat: no-repeat;
   user-select: none;
-  background-size: 100%;
-  transition: background-size 150ms var(--ease-out);
+  overflow: hidden;
 }
 
-.Info-menu:hover {
-  background-size: 200%;
+.Info-menu::after {
+  content: "Mindre info";
+  width: 100%;
+  height: 100%;
+  padding: 0.3em 0.5em 0.2em;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgb(var(--color-red));
+  color: #fff;
+  transform: translateY(100%);
+  transition: transform 300ms cubic-bezier(0.19, 1, 0.22, 1);
+  will-change: transform;
 }
 
-.Info-spinner {
-  transform-origin: center;
-  animation: Info-menu--spinning 15s infinite linear;
+.Info-menu:hover::after {
+  transform: translateY(0%);
 }
 
 @media (min-width: 1000px) {
@@ -86,31 +95,15 @@
   }
 }
 
-.Info-menu .Info-dot {
-  transform-origin: center;
-  transition: transform 150ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
-  will-change: transform;
-}
-
-.Info-menu:hover .Info-dot {
-  transform: scale(8);
-}
-
-@keyframes Info-menu--spinning {
-  to {
-    transform: rotate(1turn);
-  }
-}
-
 .Info-footer {
-  margin: auto var(--Form-padding) var(--Form-space-sm) var(--Form-padding);
+  margin-top: var(--Form-space-md);
   max-width: 45rem;
   font-size: 0.8em;
 }
 
 @media (min-width: 600px) {
   .Info-footer {
-    margin: auto 10rem 3rem 3rem;
+    margin-top: auto;
     padding: var(--Form-padding);
     border: var(--Form-border-width) solid rgb(var(--color-red));
   }
