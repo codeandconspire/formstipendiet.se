@@ -117,6 +117,7 @@
   position: absolute;
   left: calc(100% * var(--Form-direction));
   top: 0;
+  box-shadow: 0 0 0 var(--Form-border-width) red;
 }
 
 .Form.is-intransition .Form-answer--next {
@@ -158,7 +159,7 @@
   .Form-footer:hover:not(:empty),
   .Form-footer:focus-visible:not(:empty) {
     background-color: rgb(var(--color-red));
-    color: #fff;
+    color: rgb(var(--color-yellow));
     border-color: rgb(var(--color-red));
   }
 
@@ -170,7 +171,7 @@
   :root .Form-action--next:hover:not(:disabled):not(.is-disabled),
   :root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled) {
     background-image: none;
-    color: #fff;
+    color: rgb(var(--color-yellow));
   }
 
   .Form-footer {
@@ -199,13 +200,14 @@
     position: relative;
     top: var(--Form-space-sm);
     border-right: var(--Form-border-width) solid rgb(var(--color-red));
+    line-height: 1.1;
   }
 
   .Form-tools {
     height: 100%;
     width: calc(50% - var(--Form-space-lg));
     padding-right: var(--Form-space-lg);
-    border: 0;
+    border: 0; 
   }
 
   .Form-answer--next {
@@ -283,13 +285,14 @@
 
 .Form-cancel:hover {
   background: rgb(var(--color-red));
-  color: #fff;
+  color: rgb(var(--color-yellow));
 }
 
 @media (min-width: 1000px) {
   .Form-cancel {
     width: auto;
     border: 0;
+    padding-left: calc(var(--Form-padding) + var(--Form-border-width));
   }
 }
 
@@ -389,7 +392,7 @@
 :root:not([scripting-enabled]) .Form-action--submit,
 :root[scripting-enabled] .Form-action--submit:not(:disabled) {
   background-color: rgb(var(--color-red));
-  color: #fff;
+  color: rgb(var(--color-yellow));
 }
 
 :root .Form-action--prev:hover:not(:disabled):not(.is-disabled),
@@ -507,7 +510,7 @@
   :root .Form-action--next:hover:not(:disabled):not(.is-disabled),
   :root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled) {
     background-image: none;
-    color: #fff;
+    color: rgb(var(--color-yellow));
   }
 }
 
@@ -600,7 +603,7 @@
  .Form-error {
   padding: 1rem;
   margin: 1rem 0.5rem;
-  color: #fff;
+  color: rgb(var(--color-yellow));
   font-size: 14px;
   background-color: rgb(var(--color-red));
 }

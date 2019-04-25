@@ -65,7 +65,7 @@
 
 @keyframes Intro-2--shrinking {
   to {
-    height: 18%;
+    height: 29vw;
   }
 }
 
@@ -88,26 +88,26 @@
   color: rgb(var(--color-yellow));
   text-transform: uppercase;
   letter-spacing: -0.02em;
-  line-height: 1;
-  font-size: 15vw;
+  line-height: 0.9;
+  font-size: 16.25vw;
   font-family: 'NimbusSanExt-Reg', var(--document-font-family);
 }
 
-@media (min-width: 400px) {
+/* @media (min-width: 400px) {
   .Intro-word {
     font-size: 9vw;
   }
-}
-
+} */
+/* 
 @media (min-width: 600px) {
   .Intro-word {
     font-size: 5.3vh;
   }
-}
+} */
 
 @media (min-width: 1000px) {
   .Intro-word {
-    font-size: 5.5vw;
+    font-size: 5.6vw;
   }
 }
 
@@ -123,19 +123,30 @@
 }
 
 .Intro-word--year {
-  border: 4px solid currentColor;
+  border: 1.1vw solid currentColor;
   border-radius: 100%;
-  padding: 0.4em 0.6em;
+  padding: 0.4em 0.5em;
   position: absolute;
   top: var(--Form-padding);
   left: var(--Form-padding);
   font-style: italic;
-  font-size: 2.9vh;
+  font-size: 5.3vw;
+  font-weight: bold;
+  margin-top: 0.2em;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 1000px) {
   .Intro-word--year {
-    font-size: 3.2vh;
+    border: 0.4vw solid currentColor;
+    border-radius: 100%;
+    padding: 0.4em 0.5em;
+    position: absolute;
+    top: var(--Form-padding);
+    left: var(--Form-padding);
+    font-style: italic;
+    font-size: 2.2vw;
+    font-weight: bold;
+    margin-top: 0;
   }
 }
 

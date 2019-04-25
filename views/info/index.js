@@ -21,7 +21,7 @@ function home (state, emit) {
             <p>Med vilja och lust att skapa något kommer man långt. På kvällsskolan får du bland annat lära dig möbeldesign, inredning, skissteknik, materialkunskap, foto, designhistoria, förpackningsdesign och verkstadsteknik.</p>
             <nav>
               <a href="/" class="Info-menu">
-                Mindre info
+                Tillbaka
               </a>
             </nav>
             <div class="Info-footer">

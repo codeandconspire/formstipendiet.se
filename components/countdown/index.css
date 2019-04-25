@@ -58,3 +58,9 @@
   width: 27%;
   transform: rotate(calc((360deg * (var(--Countdown-hours) / 12)) - 90deg));
 }
+
+@media (min-height: 800px) and (min-width: 1000px) {
+.Countdown {
+    font-size: 2rem;
+  }
+}
