@@ -77,7 +77,6 @@
   -webkit-overflow-scrolling: touch;
 }
 
-
 .Form.is-intransition .Form-container {
   overflow: hidden;
 }
@@ -178,6 +177,12 @@
     display: block;
   }
 
+  .Form-footer:disabled,
+  .Form-footer:disabled:hover {
+    background: transparent;
+    color: transparent;
+  }
+
   .Form-main {
     height: 100%;
     padding: 0;
@@ -207,7 +212,7 @@
     height: 100%;
     width: calc(50% - var(--Form-space-lg));
     padding-right: var(--Form-space-lg);
-    border: 0; 
+    border: 0;
   }
 
   .Form-answer--next {
@@ -308,14 +313,14 @@
     align-items: center;
     padding: 0 var(--Form-padding) 0 var(--Form-space-lg);
     height: var(--Form-space-lg);
-    border-top: var(--Form-border-width) solid;
-    border-right: var(--Form-border-width) solid;
+    border-top: var(--Form-border-width) solid rgb(var(--color-red));
+    border-right: var(--Form-border-width) solid rgb(var(--color-red));
     font-size: 1.5rem;
     text-transform: uppercase;
     background: #fff;
   }
 
-  .Form-footer:not(:empty)::after {
+  .Form-footer:not(:empty):not(:disabled)::after {
     content: "";
     width: var(--Form-space-lg);
     height: var(--Form-space-lg);
@@ -370,7 +375,7 @@
   background-size: var(--Form-space-md);
 }
 
-.Form-action.is-disabled {
+.Form-action:not(.Form-action--submit).is-disabled {
   background-image: url("./disabled.svg");
   background-size: 101% 100%;
   pointer-events: none;
@@ -390,7 +395,7 @@
 }
 
 :root:not([scripting-enabled]) .Form-action--submit,
-:root[scripting-enabled] .Form-action--submit:not(:disabled) {
+:root[scripting-enabled] .Form-action--submit {
   background-color: rgb(var(--color-red));
   color: rgb(var(--color-yellow));
 }
@@ -405,6 +410,27 @@
 :root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled) {
   background-color: rgb(var(--color-red));
   background-image: url("./next-white.svg");
+}
+
+:root[scripting-enabled] .Form-action--submit:disabled::before {
+  content: "";
+  display: inline-block;
+  width: var(--Form-space-md);
+  height: var(--Form-space-md);
+  border: var(--Form-border-width) solid;
+  border-color: currentColor transparent transparent transparent;
+  position: absolute;
+  left: 1em;
+  bottom: 0.65em;
+  background-image: none;
+  border-radius: 100%;
+  animation: Form-action--loading 1500ms infinite linear;
+}
+
+@keyframes Form-action--loading {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .Form-button {
@@ -452,7 +478,7 @@
     border: 0;
   }
 
-  .Form-action.is-disabled {
+  .Form-action:not(.Form-action--submit).is-disabled {
     background-image: none;
     color: transparent;
   }
@@ -498,6 +524,12 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: var(--Form-space-md);
+  }
+
+  :root[scripting-enabled] .Form-action--submit:disabled::before {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
   }
 
   :root:not([scripting-enabled]) .Form-action--submit::after,

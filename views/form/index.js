@@ -135,7 +135,7 @@ function form (state, emit) {
             </a>
           ` : null}
           ${isSummary ? html`
-            <button type="submit" class="Form-action Form-action--submit" disabled=${hasWindow && !isValid && !state.loading} label="Skicka ansökan">
+            <button type="submit" class="Form-action Form-action--submit ${(hasWindow && !isValid) || state.loading ? 'is-disabled' : ''}" disabled=${(hasWindow && !isValid) || state.loading} label="Skicka ansökan">
               <span class="Form-button">Skicka ansökan</span>
             </button>
           ` : html`
@@ -146,7 +146,7 @@ function form (state, emit) {
         </div>
 
         ${state.step > 0 ? html`
-          <button class="Form-footer" type="submit" name="q" value="${state.step - 1}" onclick=${onclick(state.step - 1)}>
+          <button class="Form-footer" type="submit" name="q" value="${state.step - 1}" disabled=${state.loading} onclick=${onclick(state.step - 1)}>
             Föregående fråga
           </button>
         ` : html`
