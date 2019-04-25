@@ -70,7 +70,7 @@ module.exports = class Opportunities extends Component {
               </g>
             </svg>
             <span class="Opportunities-text">
-              <span class="Opportunities-title">Hm…</span>
+              <span class="Opportunities-title">Hmm</span>
               <small class="Opportunities-description">Vet inte, kanske löser sig</small>
             </span>
           </span>

@@ -69,10 +69,7 @@
   text-transform: uppercase;
   color: rgb(var(--color-red));
   user-select: none;
-}
-
-.Info-menu {
-  font-size: var(--Form-font-size-interface);
+  font-size: 0.95em;
   text-decoration: none;
   border-bottom: var(--Form-border-width) solid;
   line-height: 1;
@@ -167,5 +164,5 @@
 }
 
 .Info-step a {
-  text-decoration: underline;
+  border-bottom: var(--Form-border-width) solid;
 }

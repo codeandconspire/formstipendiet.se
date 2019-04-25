@@ -43,7 +43,7 @@ module.exports = class AboutYou extends Component {
   }
 
   title () {
-    return 'Vem är du?'
+    return 'Namn och adress tack.'
   }
 
   placeholder (...args) {

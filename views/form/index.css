@@ -156,19 +156,22 @@
   }
 
   .Form-footer:hover:not(:empty),
-  .Form-footer:focus-visible:not(:empty) {
+  .Form-footer:focus-visible:not(:empty),
+  .Form-footer:active:not(:empty) {
     background-color: rgb(var(--color-red));
     color: rgb(var(--color-yellow));
     border-color: rgb(var(--color-red));
   }
 
   .Form-footer:hover:not(:empty)::after,
-  .Form-footer:focus-visible:not(:empty)::after {
+  .Form-footer:focus-visible:not(:empty)::after,
+  .Form-footer:active:not(:empty)::after {
     background-image: url("./prev-white.svg") !important;
   }
 
   :root .Form-action--next:hover:not(:disabled):not(.is-disabled),
-  :root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled) {
+  :root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled),
+  :root .Form-action--next:active:not(:disabled):not(.is-disabled) {
     background-image: none;
     color: rgb(var(--color-yellow));
   }
@@ -178,7 +181,8 @@
   }
 
   .Form-footer:disabled,
-  .Form-footer:disabled:hover {
+  .Form-footer:disabled:hover,
+  .Form-footer:disabled:active {
     background: transparent;
     color: transparent;
   }
@@ -288,7 +292,9 @@
   text-align: right;
 }
 
-.Form-cancel:hover {
+.Form-cancel:hover,
+.Form-cancel:focus-visible,
+.Form-cancel:active {
   background: rgb(var(--color-red));
   color: rgb(var(--color-yellow));
 }
@@ -401,13 +407,15 @@
 }
 
 :root .Form-action--prev:hover:not(:disabled):not(.is-disabled),
-:root .Form-action--prev:focus-visible:not(:disabled):not(.is-disabled) {
+:root .Form-action--prev:focus-visible:not(:disabled):not(.is-disabled),
+:root .Form-action--prev:active:not(:disabled):not(.is-disabled) {
   background-color: rgb(var(--color-red));
   background-image: url("./prev-white.svg");
 }
 
 :root .Form-action--next:hover:not(:disabled):not(.is-disabled),
-:root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled) {
+:root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled),
+:root .Form-action--next:active:not(:disabled):not(.is-disabled) {
   background-color: rgb(var(--color-red));
   background-image: url("./next-white.svg");
 }
@@ -535,12 +543,14 @@
   :root:not([scripting-enabled]) .Form-action--submit::after,
   :root[scripting-enabled] .Form-action--submit:not(:disabled)::after,
   :root .Form-action--next:hover:not(:disabled):not(.is-disabled)::after,
-  :root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled)::after {
+  :root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled)::after,
+  :root .Form-action--next:active:not(:disabled):not(.is-disabled)::after {
     background-image: url("./next-white.svg");
   }
 
   :root .Form-action--next:hover:not(:disabled):not(.is-disabled),
-  :root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled) {
+  :root .Form-action--next:focus-visible:not(:disabled):not(.is-disabled),
+  :root .Form-action--next:active:not(:disabled):not(.is-disabled) {
     background-image: none;
     color: rgb(var(--color-yellow));
   }
@@ -604,7 +614,7 @@
 .Form-title {
   padding: 0 var(--Form-padding);
   margin-top: var(--Form-space-sm);
-  font-style: italic;
+  color: rgb(var(--color-blue));
 }
 
 .Form-value {

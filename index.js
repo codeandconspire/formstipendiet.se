@@ -29,5 +29,8 @@ try {
   if (typeof window !== 'undefined') {
     document.documentElement.removeAttribute('scripting-enabled')
     document.documentElement.setAttribute('scripting-initial-only', '')
+
+    // fix stuck hover states in ios
+    document.addEventListener('touchstart', function () {}, false)
   }
 }

@@ -19,7 +19,7 @@ module.exports = class WhyYou extends Component {
   }
 
   title () {
-    return 'Berätta om varför du tycker att just du ska få Formstipendiet.'
+    return 'Berätta varför du tycker att just du ska få Formstipendiet.'
   }
 
   value () {

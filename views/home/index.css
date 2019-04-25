@@ -83,10 +83,10 @@
 .Home-apply {
   display: inline-block;
   margin: 1em 0;
-  padding: 0.8em 0.8em 0.7em;
+  padding: 0.7em 0.4em 0.6em;
   position: relative;
   overflow: hidden;
-  font-size: var(--Form-font-size-interface);
+  font-size: 0.95em;
   color: rgb(var(--color-red));
   border: var(--Form-border-width) solid rgb(var(--color-red));
   background: rgb(var(--color-yellow));
@@ -104,24 +104,23 @@
   }
 }
 
-.Home-apply:hover {
+.Home-apply:hover,
+.Home-apply:focus-visible,
+.Home-apply:active {
   color: rgb(var(--color-yellow));
   background-color: rgb(var(--color-red));
 }
 
 .Home-menu {
-  text-transform: uppercase;
-  color: rgb(var(--color-red));
-  user-select: none;
-}
-
-.Home-menu {
-  font-size: var(--Form-font-size-interface);
+  font-size: 0.95em;
   text-decoration: none;
   line-height: 1;
   border-bottom: var(--Form-border-width) solid;
   display: inline-block;
   margin: -0.6rem 0 0;
+  text-transform: uppercase;
+  color: rgb(var(--color-red));
+  user-select: none;
 }
 
 @media (min-width: 600px) {

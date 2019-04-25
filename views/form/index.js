@@ -130,8 +130,8 @@ function form (state, emit) {
 
         <div class="Form-nav">
           ${!isSummary ? html`
-            <a href="${state.href}${query}${query ? '&' : '?'}q=${state.step - 1}" class="Form-action Form-action--prev ${state.step === 0 ? 'is-disabled' : ''}" label="Föregående fråga" onclick=${onclick(state.step - 1)}>
-              <span class="Form-button">Föregående fråga</span>
+            <a href="${state.href}${query}${query ? '&' : '?'}q=${state.step - 1}" class="Form-action Form-action--prev ${state.step === 0 ? 'is-disabled' : ''}" label="Förra frågan" onclick=${onclick(state.step - 1)}>
+              <span class="Form-button">Förra frågan</span>
             </a>
           ` : null}
           ${isSummary ? html`
@@ -147,7 +147,7 @@ function form (state, emit) {
 
         ${state.step > 0 ? html`
           <button class="Form-footer" type="submit" name="q" value="${state.step - 1}" disabled=${state.loading} onclick=${onclick(state.step - 1)}>
-            Föregående fråga
+            Förra frågan
           </button>
         ` : html`
           <div class="Form-footer"></div>
