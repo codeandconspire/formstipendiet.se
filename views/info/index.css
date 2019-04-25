@@ -42,7 +42,7 @@
 }
 
 .Info-content {
-  padding: 2rem var(--Form-padding) 2rem;
+  padding: 0.9rem var(--Form-padding) 2rem;
   position: relative;
 }
 

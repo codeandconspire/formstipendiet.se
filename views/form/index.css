@@ -531,7 +531,7 @@
 }
 
 .Form-question {
-  padding: var(--Form-padding) var(--Form-padding) var(--Form-space-lg);
+  padding: var(--Form-padding) var(--Form-padding) var(--Form-space-md);
   font-size: var(--Form-font-size-title);
   background-color: #fff;
   color: rgb(var(--color-blue));
@@ -585,7 +585,7 @@
 }
 
 .Form-link {
-  text-decoration: underline;
+  border-bottom: var(--Form-border-width) solid;
 }
 
 @media (min-width: 1000px) {
