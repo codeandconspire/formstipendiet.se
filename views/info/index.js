@@ -9,7 +9,7 @@ function home (state, emit) {
   emit('meta', {
     title: text`SITE_NAME`,
     description: text`SITE_DESCRIPTION`,
-    'og:image': '/share.png'
+    'og:image': '/sharing.png'
   })
 
   return html`
