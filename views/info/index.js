@@ -31,7 +31,7 @@ function home (state, emit) {
         </div>
         <div class="Info-sidebar">
           <ol class="Info-instructions">
-            <li class="Info-step">Du söker till Kvällsskolan på <a href="https://www.beckmans.se">beckmans.se</a></li>
+            <li class="Info-step">Du söker till Kvällsskolan på <a href="https://www.beckmans.se/studera/forberedande-utbildning-kvallsskola/kvallskola-form/">beckmans.se</a></li>
             <li class="Info-step">Därefter kan du söka Formstipendiet</li>
             <li class="Info-step">Blir du utvald slipper du betala utbildningen</li>
           </ol>

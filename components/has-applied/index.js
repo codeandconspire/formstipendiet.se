@@ -51,7 +51,7 @@ module.exports = class HasApplied extends Component {
           <span class="HasApplied-label">
             Nej..
             <span class="HasApplied-tooltip">
-              Se till att göra det på <a href="https://www.beckmans.se" rel="noopener noreferrer" target="_blank">beckmans.se</a>
+              Se till att göra det på <a href="https://www.beckmans.se/studera/forberedande-utbildning-kvallsskola/kvallskola-form/" rel="noopener noreferrer" target="_blank">beckmans.se</a>
             </span>
           </span>
         </label>
