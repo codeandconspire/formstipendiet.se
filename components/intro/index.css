@@ -35,6 +35,8 @@
   will-change: transform;
   transform-origin: top;
   background: rgb(var(--color-blue));
+  box-shadow: 0 1px 0px rgb(var(--color-red));
+  height: 100%;
 }
 
 .Intro-figure {

@@ -1,6 +1,6 @@
 var html = require('choo/html')
 var Component = require('choo/component')
-var { vw } = require('../base')
+var { vw, vh } = require('../base')
 
 var MOUNT = Date.now()
 
@@ -11,6 +11,9 @@ module.exports = class Intro extends Component {
 
   load (el) {
     if (vw() > 1000) return
+
+    document.documentElement.style.setProperty('--vh', vh() + 'px')
+
     var performance = window.performance
     var last = el.querySelector('.js-last')
     var init = performance ? performance.timing.domInteractive : MOUNT

@@ -285,7 +285,7 @@
   width: 50%;
   height: 100%;
   padding: 0 var(--Form-padding);
-  border-left: var(--Form-border-width) solid;
+  border-left: var(--Form-border-width) solid rgb(var(--color-red));
   position: absolute;
   top: 0;
   right: 0;
