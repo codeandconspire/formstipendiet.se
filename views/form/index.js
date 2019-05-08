@@ -18,7 +18,7 @@ function form (state, emit) {
   emit('meta', {
     title: text`SITE_NAME`,
     description: text`SITE_DESCRIPTION`,
-    'og:image': '/meta.png'
+    'og:image': '/share-image.png'
   })
 
   var all = questions.map(function (Component, index) {
