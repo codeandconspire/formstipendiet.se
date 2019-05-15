@@ -21,8 +21,8 @@ function home (state, emit) {
       <main class="Home js-scroll">
         <div class="Home-main">
           <div class="Home-content">
-            <p>Din designkarriär kan börja hos Beckmans Kvällsskola!</p>
-            <p>Att gå på kvällsskolan kostar 34 000 kronor vilket är mycket pengar. Därför startades Formstipendiet av Familjen Robert Weils Stiftelse. Om du har sökt till kvällsskolan så kan du ansöka om stipendiet och behöver alltså inte betala en enda krona.</p>
+            <p>Din framtid kan börja på Beckmans Kvällsskola!</p>
+            <p>Familjen Robert Weils Stiftelse har startat Formstipendiet. Om du vill söka kvällsskolan men tvekar inför att den kostar pengar är du en av de som har möjlighet att ansöka om Formstipendiet. Stipendiet täcker kostnaden för utbildningen.</p>
             <nav class="Home-nav">
               ${DEADLINE > Date.now() ? html`<a href="/ansok" class="Home-apply">Sök Formstipendiet</a>` : null}
               <a href="/info" class="Home-menu">Mer info</a>

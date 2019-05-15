@@ -17,8 +17,10 @@ function home (state, emit) {
       <main class="Info js-scroll">
         <div class="Info-main">
           <div class="Info-content">
-            <p>Gillar du att skapa med händerna? Kanske gillar du att inreda ditt rum och fantiserar om att bygga en bokhylla? Formgivning kan vara allt möjligt och form finns överallt.</p>
-            <p>Med vilja och lust att skapa något kommer man långt. På kvällsskolan får du bland annat lära dig möbeldesign, inredning, skissteknik, materialkunskap, foto, designhistoria, förpackningsdesign och verkstadsteknik.</p>
+            <p>Kvällsskolan på Beckmans: Form, Mode och Visuell Kommunikation.</p>
+            <p>Kvällsskolan har tre inriktningar och är en förberedande utbildning som erbjuder grundläggande orientering i ämnen som exempelvis möbelformgivning, mönsterkomposition, modedesign, fotografi, grafisk design och teckning. Alla utbildningar på Beckmans vilar på en konstnärlig grund.</p>
+            <p>Familjen Robert Weils Stiftelse vill medverka till att Beckmans fortsätter att vara den relevanta plats det varit i 70 år. En högskola där en mångfald av erfarenheter finns med och påverkar utbildningen såväl som vår gemensamma framtid i en demokratisk och hållbar riktning.</p>
+            <p>Därför har vi instiftat Formstipendiet.</p>
             <nav>
               <a href="/" class="Info-menu">
                 Tillbaka
