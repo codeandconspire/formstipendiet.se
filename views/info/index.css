@@ -55,7 +55,6 @@
 @media (min-width: 1000px) {
   .Info-main {
     flex: 1 1 auto;
-    justify-content: center;
   }
 
   .Info-content {
