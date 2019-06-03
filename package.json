@@ -24,7 +24,7 @@
     ]
   },
   "now": {
-    "alias": "2019.formstipendiet.se",
+    "alias": "www.formstipendiet.se",
     "env": {
       "NODE_ENV": "production",
       "CLOUDFLARE_ZONE": "@cloudflare-formstipendiet-zone",
